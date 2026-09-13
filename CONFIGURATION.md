@@ -78,7 +78,9 @@ options use the pinned compiler's defaults.
 | `out` | Directory path; reference destination | `docs/reference` |
 | `cleanOutputDir` | Boolean; whether to erase the output directory | `false` to preserve the handwritten README |
 | `readme` | Path string or `none`; extra project prose | `none`; the handwritten reference README is the entry page |
-| `gitRevision` | String; revision in generated source links | `main` |
+| `disableGit` | Boolean; avoid inferring links from checkout metadata | `true`; works in clones and detached worktrees |
+| `basePath` | Path string; root for source-link paths | `.` (repository root) |
+| `sourceLinkTemplate` | URL string; source-file and line link format | `https://github.com/devdocsorg/qli2-example-repo/blob/main/{path}#L{line}`; TypeDoc substitutes both placeholders |
 | `plugin` | Array of plugin names | `typedoc-plugin-markdown` |
 | `outputFileStrategy` | String; page grouping | `modules`; the single public entry produces one file |
 | `entryFileName` | Filename string; generated entry page | `API.md` |

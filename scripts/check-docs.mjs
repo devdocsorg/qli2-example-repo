@@ -52,16 +52,20 @@ function anchors(markdown) {
 
 const markdown = new Map([...files].filter(file => file.endsWith(".md")).map(file => [file, prose(file)]));
 for (const folder of folders) {
-  const readme = folder === "." ? "README.md" : `${folder}/README.md`;
+  let inventoryFolder = folder;
   if (folder !== "." && basename(folder).startsWith(".")) {
+    const readme = `${folder}/README.md`;
     if (files.has(readme)) errors.push(`${readme}: dot-prefixed folders must not contain a README`);
-    continue;
+    do {
+      inventoryFolder = dirname(inventoryFolder);
+    } while (inventoryFolder !== "." && basename(inventoryFolder).startsWith("."));
   }
+  const readme = inventoryFolder === "." ? "README.md" : `${inventoryFolder}/README.md`;
   if (!files.has(readme)) {
     errors.push(`${folder}: missing README.md`);
     continue;
   }
-  const destinations = links(markdown.get(readme)).map(link => resolve(root, folder, link.split("#")[0]));
+  const destinations = links(markdown.get(readme)).map(link => resolve(root, inventoryFolder, link.split("#")[0]));
   for (const entry of [...files, ...folders]) {
     if (entry === "." || dirname(entry) !== folder) continue;
     if (!destinations.includes(resolve(root, entry)) && !destinations.includes(resolve(root, entry, "README.md"))) {

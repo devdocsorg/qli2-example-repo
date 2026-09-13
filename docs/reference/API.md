@@ -6,7 +6,7 @@ Public API of the QLI Build Log Summarizer.
 
 ### BuildSummary
 
-Defined in: [summary.ts:6](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L6)
+Defined in: [src/summary.ts:6](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L6)
 
 Aggregated summary of a build log.
 
@@ -16,7 +16,7 @@ Aggregated summary of a build log.
 
 > **failedTasks**: [`TaskRecord`](#taskrecord)[]
 
-Defined in: [summary.ts:10](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L10)
+Defined in: [src/summary.ts:10](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L10)
 
 Tasks whose final event was `Failed`, in log order.
 
@@ -24,7 +24,7 @@ Tasks whose final event was `Failed`, in log order.
 
 > **incompleteTasks**: [`TaskRecord`](#taskrecord)[]
 
-Defined in: [summary.ts:12](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L12)
+Defined in: [src/summary.ts:12](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L12)
 
 Tasks whose latest attempt has no completion event, in first-seen order.
 
@@ -32,7 +32,7 @@ Tasks whose latest attempt has no completion event, in first-seen order.
 
 > **skippedLines**: `number`
 
-Defined in: [summary.ts:18](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L18)
+Defined in: [src/summary.ts:18](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L18)
 
 Number of log lines the parser skipped, copied from the parse result.
 
@@ -40,7 +40,7 @@ Number of log lines the parser skipped, copied from the parse result.
 
 > **slowestTasks**: [`TaskRecord`](#taskrecord)[]
 
-Defined in: [summary.ts:14](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L14)
+Defined in: [src/summary.ts:14](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L14)
 
 The longest-running tasks, slowest first.
 
@@ -48,7 +48,7 @@ The longest-running tasks, slowest first.
 
 > **taskCount**: `number`
 
-Defined in: [summary.ts:8](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L8)
+Defined in: [src/summary.ts:8](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L8)
 
 Total number of tasks found in the log.
 
@@ -56,7 +56,7 @@ Total number of tasks found in the log.
 
 > **totalDurationSeconds**: `number`
 
-Defined in: [summary.ts:16](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L16)
+Defined in: [src/summary.ts:16](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L16)
 
 Sum of measured latest-attempt durations in seconds, not wall-clock time.
 
@@ -64,7 +64,7 @@ Sum of measured latest-attempt durations in seconds, not wall-clock time.
 
 ### ParseResult
 
-Defined in: [parser.ts:32](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L32)
+Defined in: [src/parser.ts:32](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L32)
 
 The result of parsing a build log.
 
@@ -74,7 +74,7 @@ The result of parsing a build log.
 
 > **skippedLines**: `number`
 
-Defined in: [parser.ts:36](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L36)
+Defined in: [src/parser.ts:36](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L36)
 
 Nonblank lines rejected for invalid syntax, dates, or event order.
 
@@ -82,7 +82,7 @@ Nonblank lines rejected for invalid syntax, dates, or event order.
 
 > **tasks**: [`TaskRecord`](#taskrecord)[]
 
-Defined in: [parser.ts:34](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L34)
+Defined in: [src/parser.ts:34](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L34)
 
 Every task found in the log, ordered by its first event.
 
@@ -90,7 +90,7 @@ Every task found in the log, ordered by its first event.
 
 ### TaskRecord
 
-Defined in: [parser.ts:11](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L11)
+Defined in: [src/parser.ts:11](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L11)
 
 The latest attempt at one recipe/task pair, reconstructed in input order.
 
@@ -100,7 +100,7 @@ The latest attempt at one recipe/task pair, reconstructed in input order.
 
 > `optional` **durationSeconds?**: `number`
 
-Defined in: [parser.ts:26](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L26)
+Defined in: [src/parser.ts:26](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L26)
 
 Elapsed time between `startedAt` and `endedAt`, in seconds.
 Absent when either timestamp is missing.
@@ -109,7 +109,7 @@ Absent when either timestamp is missing.
 
 > `optional` **endedAt?**: `Date`
 
-Defined in: [parser.ts:21](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L21)
+Defined in: [src/parser.ts:21](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L21)
 
 When the task finished. Absent for `incomplete` tasks.
 
@@ -117,7 +117,7 @@ When the task finished. Absent for `incomplete` tasks.
 
 > **recipe**: `string`
 
-Defined in: [parser.ts:13](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L13)
+Defined in: [src/parser.ts:13](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L13)
 
 Recipe that the task belongs to, for example `pkg-fastrpc`.
 
@@ -125,7 +125,7 @@ Recipe that the task belongs to, for example `pkg-fastrpc`.
 
 > `optional` **startedAt?**: `Date`
 
-Defined in: [parser.ts:19](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L19)
+Defined in: [src/parser.ts:19](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L19)
 
 When the task started. Absent when the log has no `Started` event for it.
 
@@ -133,7 +133,7 @@ When the task started. Absent when the log has no `Started` event for it.
 
 > **status**: [`TaskStatus`](#taskstatus)
 
-Defined in: [parser.ts:17](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L17)
+Defined in: [src/parser.ts:17](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L17)
 
 Final status of the task.
 
@@ -141,7 +141,7 @@ Final status of the task.
 
 > **task**: `string`
 
-Defined in: [parser.ts:15](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L15)
+Defined in: [src/parser.ts:15](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L15)
 
 Task name, for example `do_compile`.
 
@@ -151,7 +151,7 @@ Task name, for example `do_compile`.
 
 > **TaskStatus** = `"succeeded"` \| `"failed"` \| `"incomplete"`
 
-Defined in: [parser.ts:6](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L6)
+Defined in: [src/parser.ts:6](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L6)
 
 The outcome of a single build task, as recorded in the log.
 
@@ -163,7 +163,7 @@ The outcome of a single build task, as recorded in the log.
 
 > **formatSummary**(`summary`, `format?`): `string`
 
-Defined in: [summary.ts:77](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L77)
+Defined in: [src/summary.ts:77](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L77)
 
 Render a build summary as text or JSON.
 
@@ -206,7 +206,7 @@ console.log(formatSummary(summarizeBuild(parseBuildLog(""))));
 
 > **parseBuildLog**(`text`): [`ParseResult`](#parseresult)
 
-Defined in: [parser.ts:69](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/parser.ts#L69)
+Defined in: [src/parser.ts:69](https://github.com/devdocsorg/qli2-example-repo/blob/main/parser.ts#L69)
 
 Parse the example log format into the latest attempt for each recipe/task pair.
 
@@ -249,7 +249,7 @@ console.log(result.tasks[0]?.durationSeconds); // 54
 
 > **summarizeBuild**(`result`, `options?`): [`BuildSummary`](#buildsummary)
 
-Defined in: [summary.ts:36](https://github.com/devdocsorg/qli2-example-repo/blob/main/src/summary.ts#L36)
+Defined in: [src/summary.ts:36](https://github.com/devdocsorg/qli2-example-repo/blob/main/summary.ts#L36)
 
 Summarize a parsed build log.
 

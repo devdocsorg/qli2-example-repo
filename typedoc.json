@@ -1,13 +1,19 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": ["src/index.ts"],
+  "entryPoints": [
+    "src/index.ts"
+  ],
   "out": "docs/reference",
   "cleanOutputDir": false,
   "readme": "none",
-  "gitRevision": "main",
-  "plugin": ["typedoc-plugin-markdown"],
+  "plugin": [
+    "typedoc-plugin-markdown"
+  ],
   "outputFileStrategy": "modules",
   "entryFileName": "API.md",
   "hidePageHeader": true,
-  "treatWarningsAsErrors": true
+  "treatWarningsAsErrors": true,
+  "disableGit": true,
+  "basePath": ".",
+  "sourceLinkTemplate": "https://github.com/devdocsorg/qli2-example-repo/blob/main/{path}#L{line}"
 }
