@@ -1,45 +1,25 @@
 # Security policy
 
-## Supported versions
+## Supported code
 
-| Version or branch | Supported? | Support ends |
-| --- | --- | --- |
-| `main` | Yes | Not scheduled |
-| `release/1.0` (1.0.x) | Yes | When 1.1.0 is released |
+Fixes target `main`. The frozen `release/1.0` branch and `v1.0.0` tag are historical
+examples and receive no security updates. See [BRANCHES.md](BRANCHES.md).
 
 ## Report a vulnerability
 
-Do not open a public issue or pull request.
+Email [security@devdocs.work](mailto:security@devdocs.work), the private reporting
+address published in [DevDocs' security policy](https://devdocs.work/trust).
+Use the subject "qli2-example-repo security report". Do not disclose vulnerability
+details in an issue or pull request.
 
-Report vulnerabilities privately by email to qli@devdocs.work with "SECURITY" in the
-subject line.
+Include:
 
-Include the following details when available:
+- The affected commit and Node.js version.
+- The problem, likely impact, and smallest safe reproduction.
+- Relevant configuration, with credentials and private data removed.
+- A way to contact you and whether the issue is already public.
 
-- The affected version, branch, or commit.
-- The vulnerability type and likely impact.
-- Minimal reproduction steps or a proof of concept.
-- The required configuration or privileges.
-- Whether the issue is already public.
-- A safe way to contact you.
-
-Never include real credentials, personal data, or production data in a report.
-
-## What happens next
-
-We aim to acknowledge reports within three business days and provide an initial
-assessment within ten business days. These are response targets; they do not guarantee
-a resolution time.
-
-We validate the report, keep you informed throughout the assessment, and coordinate a
-fix on `main` and any affected release branch. Reporters who want credit are named in
-the release notes for the fix. If you have not heard back after the acknowledgement
-window, follow up on the same email thread.
-
-## Scope
-
-The code and documentation in this repository are in scope.
-
-Vulnerabilities in this project's dependencies and in GitHub itself are out of scope.
-Report dependency vulnerabilities through the affected dependency's security reporting
-process, and report GitHub vulnerabilities to [GitHub's security program](https://bounty.github.com/).
+Reports about this repository's code, documentation, or use of dependencies belong
+here. DevDocs' security policy describes report handling. This example does not
+promise a separate response deadline or a fix date; follow up in the same private
+email thread if needed.

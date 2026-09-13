@@ -27,7 +27,8 @@ Delete options that do not apply.
 - [ ] I have updated the affected documentation, including the file and folder lists in each affected `README.md`
 - [ ] My changes generate no new warnings
 - [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing tests pass locally with my changes (`npm test`)
+- [ ] New and existing tests pass locally with my changes (`npm run check`)
+- [ ] Any dependent changes are available; otherwise, I identified the dependency below
 
 Leave checks that do not apply unchecked and explain why under Validation.
 
@@ -37,9 +38,7 @@ For each check, record the environment, exact command, and result. Enter "Not ru
 
 | Check | Environment and command | Result and evidence |
 | --- | --- | --- |
-| Build and tests (`npm test`) | | |
-| Generated reference (`npm run docs`) | | |
-| Documentation accuracy and links | | |
+| Build, tests, reference, and links (`npm run check`) | | |
 | Changed tutorial steps and expected result | | |
 
 **Documentation impact**
@@ -51,6 +50,7 @@ Link each relevant update, or explain why it does not apply:
 - Configuration examples (`.env.example`):
 - Folder `README.md` files:
 - Tutorials and expected results:
+- Documentation reviewer: `@devdocsorg/docs-reviewers`
 
 **Submission checks**
 

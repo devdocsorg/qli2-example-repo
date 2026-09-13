@@ -1,31 +1,25 @@
 # Branches
 
-This file describes every long-lived branch in the QLI Build Log Summarizer. It is
-maintained on `main`. Short-lived contributor branches are omitted.
+This file on `main` describes the repository's long-lived branches. The
+[README's branch table](README.md#choose-a-branch) also lists temporary branches.
 
-Last reviewed: 2026-09-13
-
-## Branch summary
-
-| Branch | Purpose | Status | Build or use this branch? | Contributions | Relationship to `main` |
+| Branch | Purpose | Status | Build or use? | Contributions | Relationship to main |
 | --- | --- | --- | --- | --- | --- |
-| `main` | Development and releases | Active | Yes — always current | Open — base pull requests here | Authoritative branch |
-| `release/1.0` | 1.0.x maintenance line | Maintenance | Yes — for the 1.0.x line without new features | Closed — fixes are merged into `main` and cherry-picked | Maintained separately; receives cherry-picked fixes and is never merged back into `main` |
+| `main` | Current working example | Active | Yes | Open | Authoritative; all changes land here |
+| `release/1.0` | Preserve the initial example | Frozen | Historical comparison only | Closed | Stays at `v1.0.0`; receives no fixes and is not merged back |
 
-## `main`
+## main
 
-- **Audience:** Users and contributors.
-- **What it produces:** The `qli-buildlog-summary` CLI and library, via `npm run build`.
-- **Stability:** `npm test` passes on every commit; the latest commit may contain unreleased changes.
-- **Contribution route:** Pull requests against `main` in this repository, following [`CONTRIBUTING.md`](CONTRIBUTING.md).
-- **Release relationship:** Releases are tagged from `main`; `v1.0.0` is the first.
+Use this branch for the CLI, library, and documentation. Its CI checks compilation,
+behaviour, the tutorial output, generated-reference drift, and local documentation
+links. A passing run applies to that commit, not to later changes.
 
-## `release/1.0`
+Development versions in `package.json` are not release announcements. Release tags
+identify snapshots; a new tag is created only when a release is deliberately cut.
+Send contributions to `main` using [CONTRIBUTING.md](CONTRIBUTING.md).
 
-- **Audience:** Users who need the 1.0.x line without new features.
-- **Why it exists:** Maintains the 1.0.x releases while feature work continues on `main`.
-- **What it produces:** The same CLI and library at 1.0.x versions.
-- **Stability and support window:** Fixes only; supported until 1.1.0 is released.
-- **Contribution route:** Closed. Send fixes to `main`; maintainers cherry-pick applicable fixes.
-- **Relationship to `main`:** Maintained separately; receives cherry-picked fixes from `main` and is never merged back into `main`.
-- **End-of-life condition:** The 1.1.0 release.
+## release/1.0
+
+This branch is retained for readers comparing the current skeleton with the initial
+`v1.0.0` example. It is frozen, unsupported, and has no backport schedule. It remains
+separate from `main`; fixes and documentation updates belong on `main` only.

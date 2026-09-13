@@ -1,78 +1,46 @@
-# Contributing to the QLI Build Log Summarizer
+# Contributing
 
-This guide explains how to prepare, validate, and submit changes and how maintainers
-review them.
+Changes to this example belong in this repository, targeting `main`. Read the
+[Code of Conduct](CODE_OF_CONDUCT.md) and [branch guidance](BRANCHES.md).
+Search existing issues before proposing substantial changes; focused fixes can go
+straight to a pull request. Use [SECURITY.md](SECURITY.md) for vulnerabilities.
 
-## Before you start
+## Build and check
 
-- Read [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
-- For usage questions, [open an issue](https://github.com/devdocsorg/qli2-example-repo/issues/new/choose) instead of a pull request.
-- For a vulnerability, follow [`SECURITY.md`](SECURITY.md) and do not disclose it publicly.
-- Search existing issues and pull requests to avoid duplicating work.
-
-Open an issue before starting substantive work so maintainers can confirm the proposed
-approach. Small fixes, such as typos and broken links, can go straight to a pull request.
-
-## Where changes belong
-
-This repository is authoritative.
-
-| Change | Destination | Base branch |
-| --- | --- | --- |
-| Documentation maintained here | https://github.com/devdocsorg/qli2-example-repo | `main` |
-| Source maintained here | https://github.com/devdocsorg/qli2-example-repo | `main` |
-
-See [`BRANCHES.md`](BRANCHES.md) before choosing a branch.
-
-## Prepare a development environment
+Use Node.js 22 or newer and npm. From a clone of the repository:
 
 ```console
-git clone https://github.com/devdocsorg/qli2-example-repo.git
-cd qli2-example-repo
-npm install
-npm run build
+npm ci
+npm run check
 ```
 
-Expected result: `tsc` completes without errors and creates `dist/src/cli.js`.
+The check compiles TypeScript, runs library and CLI tests, regenerates the API
+reference, and checks folder inventories and local Markdown links. Tests execute the
+sample command and compare its output with the tutorial. CI runs the same check and
+fails if the committed API reference differs from a fresh generation.
 
-## Make and validate a change
+## Make a focused change
 
-1. Create a short-lived branch from `main`.
-2. Make one focused change and update the affected documentation, including the file
-   and folder lists in each affected `README.md`.
-3. Add or update tests in [`test/`](test/README.md).
-4. Run the required checks:
+1. Start from current `main` and create a short-lived branch.
+2. Change the code and its documentation together. Add regression coverage for changed behaviour.
+3. Update each affected folder's README inventory. Dot-prefixed folders themselves take no README.
+4. Run `npm run check` and commit the generated reference with the source change.
+5. Sign commits with `git commit -s` to certify the [Developer Certificate of Origin](https://developercertificate.org/).
 
-   ```console
-   npm test
-   npm run docs
-   ```
+The example stays small: prefer one clear implementation and documented limits to
+extra settings or abstractions. [CONFIGURATION.md](CONFIGURATION.md) explains the toolchain.
 
-   `npm run docs` regenerates [`docs/reference/`](docs/reference/README.md); commit the
-   regenerated output with the change.
+## Submit and follow the review
 
-5. Sign off every commit (`git commit -s`) to certify compliance with the
-   [Developer Certificate of Origin](https://developercertificate.org/).
+[Open a pull request with the template](https://github.com/devdocsorg/qli2-example-repo/compare?expand=1&template=pr_template.md),
+choose `main` as the base, and select your branch as the head. Explain the user-visible
+change and record what you actually tested. Mark omitted checks with a reason.
 
-## Open a pull request
+[CODEOWNERS](.github/CODEOWNERS) routes source and documentation reviews to the
+responsible teams. Maintainers check the results and documentation before merging;
+authorised maintainers may also commit directly to `main`. There is no automated
+approval requirement or guaranteed response window. If a review stalls, follow up
+on the pull request; keep the next action or any blocking issue visible there.
 
-Use the [pull request form](https://github.com/devdocsorg/qli2-example-repo/compare/main...your-branch?quick_pull=1&template=pr_template.md),
-replacing `your-branch` with your branch name. Complete every section, state what you
-did not test, and link the issue or decision that motivated the change.
-
-Maintainers aim to provide a first human response within three business days. If that
-window passes, follow up with a comment on the pull request.
-
-## Review and acceptance
-
-One maintainer approval is required, and `npm test` must pass on the head commit.
-Review requests are routed according to [`.github/CODEOWNERS`](.github/CODEOWNERS);
-documentation changes go to the documentation reviewers. A maintainer merges the pull
-request after approval. Respond to requested changes by pushing new commits to the same
-branch.
-
-## Licence
-
-Contributions are accepted under the repository's [BSD 3-Clause licence](LICENSE). The
-Developer Certificate of Origin sign-off is required; there is no separate contributor
-licence agreement.
+Changes are accepted under the [BSD 3-Clause licence](LICENSE). There is no separate
+contributor licence agreement.

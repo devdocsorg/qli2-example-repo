@@ -35,7 +35,7 @@ Describe what happened instead. Include the exact error and relevant output in a
 - Branch (see [BRANCHES.md](https://github.com/devdocsorg/qli2-example-repo/blob/main/BRANCHES.md)):
 - Node.js version (`node --version`):
 - Operating system:
-- Relevant configuration (`QLI_LOG_DIR`, `SUMMARY_FORMAT`, `LOG_LEVEL`):
+- Relevant configuration (`SUMMARY_FORMAT`, including whether it is unset):
 
 Mark fields that do not apply as "Not applicable".
 

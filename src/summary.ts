@@ -8,11 +8,11 @@ export interface BuildSummary {
   taskCount: number;
   /** Tasks whose final event was `Failed`, in log order. */
   failedTasks: TaskRecord[];
-  /** Tasks with no `Succeeded` or `Failed` event, in log order. */
+  /** Tasks whose latest attempt has no completion event, in first-seen order. */
   incompleteTasks: TaskRecord[];
   /** The longest-running tasks, slowest first. */
   slowestTasks: TaskRecord[];
-  /** Sum of all measured task durations, in seconds. */
+  /** Sum of measured latest-attempt durations in seconds, not wall-clock time. */
   totalDurationSeconds: number;
   /** Number of log lines the parser skipped, copied from the parse result. */
   skippedLines: number;
@@ -25,11 +25,12 @@ export interface BuildSummary {
  * @param options - Optional settings. `slowestCount` limits the number of tasks
  *   in the slowest-task list; it defaults to 3 and must be a non-negative integer.
  * @returns Counts, failures, and the slowest tasks for the build.
+ * @throws RangeError When slowestCount is not a non-negative safe integer.
  *
  * @example
  * ```ts
- * const summary = summarizeBuild(parseBuildLog(logText), { slowestCount: 5 });
- * console.log(summary.failedTasks.length); // 1
+ * const summary = summarizeBuild(parseBuildLog(""), { slowestCount: 0 });
+ * console.log(summary.taskCount); // 0
  * ```
  */
 export function summarizeBuild(
@@ -37,6 +38,9 @@ export function summarizeBuild(
   options: { slowestCount?: number } = {},
 ): BuildSummary {
   const slowestCount = options.slowestCount ?? 3;
+  if (!Number.isSafeInteger(slowestCount) || slowestCount < 0) {
+    throw new RangeError("slowestCount must be a non-negative safe integer");
+  }
   const measured = result.tasks.filter((t) => t.durationSeconds !== undefined);
 
   return {
@@ -61,12 +65,13 @@ export function summarizeBuild(
  * @param format - `text` for a human-readable report or `json` for
  *   machine-readable output. Optional; defaults to `text`.
  * @returns The rendered summary, without a trailing newline.
+ * @throws TypeError When format is neither text nor json.
  *
  * @example
  * ```ts
- * console.log(formatSummary(summary, "text"));
- * // Tasks: 8 (1 failed, 0 incomplete)
- * // ...
+ * console.log(formatSummary(summarizeBuild(parseBuildLog(""))));
+ * // Tasks: 0 (0 failed, 0 incomplete)
+ * // Total task time: 0s
  * ```
  */
 export function formatSummary(
@@ -76,15 +81,24 @@ export function formatSummary(
   if (format === "json") {
     return JSON.stringify(summary, null, 2);
   }
+  if (format !== "text") {
+    throw new TypeError("format must be text or json");
+  }
 
   const lines = [
     `Tasks: ${summary.taskCount} (${summary.failedTasks.length} failed, ` +
       `${summary.incompleteTasks.length} incomplete)`,
-    `Measured build time: ${summary.totalDurationSeconds}s`,
+    `Total task time: ${summary.totalDurationSeconds}s`,
   ];
   if (summary.failedTasks.length > 0) {
     lines.push("Failed tasks:");
     for (const t of summary.failedTasks) {
+      lines.push(`  ${t.recipe} ${t.task}`);
+    }
+  }
+  if (summary.incompleteTasks.length > 0) {
+    lines.push("Incomplete tasks:");
+    for (const t of summary.incompleteTasks) {
       lines.push(`  ${t.recipe} ${t.task}`);
     }
   }
@@ -95,7 +109,7 @@ export function formatSummary(
     }
   }
   if (summary.skippedLines > 0) {
-    lines.push(`Skipped ${summary.skippedLines} unrecognized line(s).`);
+    lines.push(`Skipped ${summary.skippedLines} invalid or unsupported line(s).`);
   }
   return lines.join("\n");
 }

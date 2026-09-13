@@ -1,4 +1,8 @@
+# Installed packages, restored with npm ci.
 node_modules/
+# Compiled JavaScript and declarations, restored with npm run build.
 dist/
+# Local environment configuration; use .env.example for shared defaults.
 .env
+# Incremental TypeScript cache, if enabled locally.
 *.tsbuildinfo

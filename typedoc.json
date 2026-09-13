@@ -2,10 +2,12 @@
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["src/index.ts"],
   "out": "docs/reference",
+  "cleanOutputDir": false,
   "readme": "none",
   "gitRevision": "main",
   "plugin": ["typedoc-plugin-markdown"],
   "outputFileStrategy": "modules",
-  "entryFileName": "README.md",
-  "hidePageHeader": true
+  "entryFileName": "API.md",
+  "hidePageHeader": true,
+  "treatWarningsAsErrors": true
 }

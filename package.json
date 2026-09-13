@@ -1,8 +1,8 @@
 {
   "name": "qli-buildlog-summary",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
-  "description": "Summarize QLI build logs: task counts, failures, and the slowest tasks.",
+  "description": "A small working example of repository documentation, using a sample build-log summarizer.",
   "license": "BSD-3-Clause",
   "bin": {
     "qli-buildlog-summary": "dist/src/cli.js"
@@ -11,14 +11,16 @@
   "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "demo": "npm run build --silent && node dist/src/cli.js examples/sample-build.log",
     "test": "tsc && node --test \"dist/test/*.test.js\"",
-    "docs": "typedoc"
+    "docs": "typedoc",
+    "check": "npm test && npm run docs && node scripts/check-docs.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
+    "@types/node": "^22.20.2",
     "typedoc": "^0.28.0",
     "typedoc-plugin-markdown": "^4.9.0",
     "typescript": "^5.9.0"

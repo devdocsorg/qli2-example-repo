@@ -1,0 +1,26 @@
+# Visible workflow name in the repository's Actions tab.
+name: Check
+# Validate every push and pull request, including direct commits to main.
+on: [push, pull_request]
+# Checks need read access only; they do not publish or change repository contents.
+permissions:
+  contents: read
+jobs:
+  check:
+    # The job display name includes the runtime being tested.
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest # Hosted Linux runner; no device or service required.
+    timeout-minutes: 5 # Fail a hung install or test rather than wait indefinitely.
+    strategy:
+      fail-fast: false # Report each supported runtime's result independently.
+      matrix:
+        node: [22, 24] # Minimum supported major and the following LTS major.
+    steps:
+      - uses: actions/checkout@v4 # Read the exact commit under test.
+      - uses: actions/setup-node@v4 # Select Node and cache npm's download cache.
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm # package-lock.json determines the cache key.
+      - run: npm ci # Install the committed dependency tree.
+      - run: npm run check # Build, behavioural tests, reference generation, and doc links.
+      - run: git diff --exit-code -- docs/reference/API.md # Generated reference must be committed.

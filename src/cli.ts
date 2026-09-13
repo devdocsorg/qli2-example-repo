@@ -1,79 +1,58 @@
 #!/usr/bin/env node
-/**
- * Command-line entry point: `qli-buildlog-summary <log-file>`.
- *
- * Reads the log file, prints a summary to stdout, and exits with status 0.
- * Exits with status 1 and a message on stderr when the file cannot be read
- * or no argument is given.
- * Configuration comes from the environment variables documented in
- * `.env.example`: `QLI_LOG_DIR`, `SUMMARY_FORMAT`, and `LOG_LEVEL`.
- */
+/** Command-line entry point for the sample build-log summarizer. */
 import { readFileSync } from "node:fs";
-import { isAbsolute, resolve } from "node:path";
 import { parseBuildLog } from "./parser";
 import { formatSummary, summarizeBuild } from "./summary";
 
 /**
- * Resolve a log file path against `QLI_LOG_DIR`.
+ * Print a summary of one log file, or explain an invalid invocation on stderr.
  *
- * @param file - Path given on the command line. Absolute paths are returned
- *   unchanged; relative paths resolve against `QLI_LOG_DIR` or the current
- *   working directory when `QLI_LOG_DIR` is unset.
- * @returns The absolute path to read.
+ * Relative paths resolve from the working directory. SUMMARY_FORMAT selects
+ * text (the default) or json. Exit status 0 means a report was produced, even
+ * when it describes failed tasks; status 1 means invalid input or a read error.
+ * An empty file or a file without recognized tasks is invalid CLI input.
  *
- * @example
- * ```ts
- * process.env.QLI_LOG_DIR = "/var/log/qli";
- * resolveLogPath("build.log"); // "/var/log/qli/build.log"
- * ```
- */
-export function resolveLogPath(file: string): string {
-  if (isAbsolute(file)) {
-    return file;
-  }
-  return resolve(process.env.QLI_LOG_DIR ?? process.cwd(), file);
-}
-
-/**
- * Run the command line: read the log named by `process.argv[2]`, print its
- * summary to stdout, and set the exit status.
- *
- * Sets `process.exitCode` to 1 when no argument is given or the file cannot
- * be read; otherwise leaves it 0.
+ * @param args - Command-line arguments; defaults to the process arguments.
+ * @returns Nothing; writes stdout/stderr and sets process.exitCode on failure.
  *
  * @example
  * ```console
- * $ qli-buildlog-summary examples/sample-build.log
- * Tasks: 5 (1 failed, 0 incomplete)
+ * node dist/src/cli.js --help
+ * Usage: qli-buildlog-summary <log-file>
  * ```
  */
-function main(): void {
-  const file = process.argv[2];
-  if (file === undefined) {
+function main(args: string[] = process.argv.slice(2)): void {
+  if (args.length === 1 && (args[0] === "--help" || args[0] === "-h")) {
+    process.stdout.write(
+      "Usage: qli-buildlog-summary <log-file>\n" +
+      "Read the example log format; see docs/tutorials/summarize-a-build-log.md.\n" +
+      "Set SUMMARY_FORMAT=text (default) or json.\n",
+    );
+    return;
+  }
+  const file = args[0];
+  if (args.length !== 1 || file === undefined || file.startsWith("-")) {
     process.stderr.write("Usage: qli-buildlog-summary <log-file>\n");
     process.exitCode = 1;
     return;
   }
 
-  const path = resolveLogPath(file);
-  let text: string;
   try {
-    text = readFileSync(path, "utf8");
+    const format = process.env.SUMMARY_FORMAT ?? "text";
+    if (format !== "text" && format !== "json") {
+      throw new Error("SUMMARY_FORMAT must be text or json");
+    }
+    const parsed = parseBuildLog(readFileSync(file, "utf8"));
+    if (parsed.tasks.length === 0) {
+      throw new Error("No tasks found. Use the sample log format shown in the tutorial.");
+    }
+    process.stdout.write(formatSummary(summarizeBuild(parsed), format) + "\n");
   } catch (error) {
-    process.stderr.write(`Cannot read ${path}: ${String(error)}\n`);
+    process.stderr.write(`Error: ${error instanceof Error ? error.message : String(error)}\n`);
     process.exitCode = 1;
-    return;
   }
-
-  const parsed = parseBuildLog(text);
-  if (process.env.LOG_LEVEL === "debug") {
-    process.stderr.write(
-      `Parsed ${parsed.tasks.length} task(s), skipped ${parsed.skippedLines} line(s) from ${path}\n`,
-    );
-  }
-
-  const format = process.env.SUMMARY_FORMAT === "json" ? "json" : "text";
-  process.stdout.write(formatSummary(summarizeBuild(parsed), format) + "\n");
 }
 
-main();
+if (require.main === module) {
+  main();
+}

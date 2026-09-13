@@ -46,10 +46,72 @@ test("formatSummary renders text and JSON", () => {
   const text = formatSummary(summary);
   assert.match(text, /^Tasks: 4 \(1 failed, 1 incomplete\)/);
   assert.match(text, /meta-qcom do_configure/);
-  assert.match(text, /Skipped 1 unrecognized line\(s\)\./);
+  assert.match(text, /Skipped 1 invalid or unsupported line\(s\)\./);
 
   const json = JSON.parse(formatSummary(summary, "json")) as {
     taskCount: number;
   };
   assert.equal(json.taskCount, 4);
+});
+
+
+test("a restarted task cannot retain the previous attempt's result or duration", () => {
+  const result = parseBuildLog([
+    "2026-09-10T00:00:00Z recipe do_build Started",
+    "2026-09-10T00:01:00Z recipe do_build Failed",
+    "2026-09-10T00:02:00Z recipe do_build Started",
+  ].join("\n"));
+  assert.equal(result.tasks.length, 1);
+  assert.equal(result.tasks[0]?.status, "incomplete");
+  assert.equal(result.tasks[0]?.endedAt, undefined);
+  assert.equal(result.tasks[0]?.durationSeconds, undefined);
+  assert.equal(summarizeBuild(result).totalDurationSeconds, 0);
+});
+
+test("invalid calendar dates, backwards events, and duplicate completions are skipped", () => {
+  const result = parseBuildLog([
+    "2026-02-30T00:00:00Z recipe do_build Started",
+    "2026-09-10T00:01:00Z recipe do_build Started",
+    "2026-09-10T00:00:00Z recipe do_build Failed",
+    "2026-09-10T00:02:00Z recipe do_build Succeeded",
+    "2026-09-10T00:03:00Z recipe do_build Failed",
+    "123 recipe do_other Started",
+  ].join("\r\n"));
+  assert.equal(result.skippedLines, 4);
+  assert.equal(result.tasks.length, 1);
+  assert.equal(result.tasks[0]?.status, "succeeded");
+  assert.equal(result.tasks[0]?.durationSeconds, 60);
+});
+
+test("missing starts and millisecond timestamps retain only measurable durations", () => {
+  const result = parseBuildLog([
+    "2026-09-10T00:00:00Z recipe do_configure Succeeded",
+    "2026-09-10T00:00:00.100Z recipe do_build Started",
+    "2026-09-10T00:00:01.350Z recipe do_build Succeeded",
+    "",
+  ].join("\n"));
+  assert.equal(result.skippedLines, 0);
+  assert.equal(result.tasks[0]?.durationSeconds, undefined);
+  assert.equal(result.tasks[1]?.durationSeconds, 1.25);
+  assert.equal(summarizeBuild(result).totalDurationSeconds, 1.25);
+});
+
+test("empty library input and zero slowest count have defined results", () => {
+  const empty = summarizeBuild(parseBuildLog(" \n"));
+  assert.equal(empty.taskCount, 0);
+  assert.equal(empty.totalDurationSeconds, 0);
+  assert.deepEqual(empty.slowestTasks, []);
+  const parsed = parseBuildLog(LOG);
+  const before = JSON.stringify(parsed);
+  assert.deepEqual(summarizeBuild(parsed, { slowestCount: 0 }).slowestTasks, []);
+  assert.equal(JSON.stringify(parsed), before);
+});
+
+test("JavaScript callers receive errors for invalid summary options and formats", () => {
+  const parsed = parseBuildLog(LOG);
+  for (const slowestCount of [-1, 1.5, NaN, Infinity, Number.MAX_SAFE_INTEGER + 1]) {
+    assert.throws(() => summarizeBuild(parsed, { slowestCount }), RangeError);
+  }
+  // Simulate a JavaScript caller bypassing the TypeScript union.
+  assert.throws(() => formatSummary(summarizeBuild(parsed), "yaml" as "text"), TypeError);
 });

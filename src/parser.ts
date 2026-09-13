@@ -1,13 +1,12 @@
 /**
  * The outcome of a single build task, as recorded in the log.
  *
- * `incomplete` means the log contains a `Started` event with no matching
- * `Succeeded` or `Failed` event, usually because the build was interrupted.
+ * `incomplete` means the latest attempt has started but has no completion event.
  */
 export type TaskStatus = "succeeded" | "failed" | "incomplete";
 
 /**
- * One build task reconstructed from the log.
+ * The latest attempt at one recipe/task pair, reconstructed in input order.
  */
 export interface TaskRecord {
   /** Recipe that the task belongs to, for example `pkg-fastrpc`. */
@@ -33,22 +32,27 @@ export interface TaskRecord {
 export interface ParseResult {
   /** Every task found in the log, ordered by its first event. */
   tasks: TaskRecord[];
-  /** Number of lines skipped because they did not match the expected format. */
+  /** Nonblank lines rejected for invalid syntax, dates, or event order. */
   skippedLines: number;
 }
 
 /**
- * Matches one log line: `<ISO-8601 timestamp> <recipe> <task> <event>`.
+ * Matches the example's UTC log format, with optional millisecond precision.
  * Example: `2026-09-10T14:02:11Z pkg-fastrpc do_compile Started`.
  */
-const LINE_PATTERN = /^(\S+)\s+(\S+)\s+(do_\w+)\s+(Started|Succeeded|Failed)$/;
+const LINE_PATTERN = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z)\s+([\w.+:-]+)\s+(do_\w+)\s+(Started|Succeeded|Failed)$/;
 
 /**
- * Parse a QLI build log into per-task records.
+ * Parse the example log format into the latest attempt for each recipe/task pair.
  *
- * Each log line must have the form `<ISO-8601 timestamp> <recipe> <task>
- * <Started|Succeeded|Failed>`. Blank lines are ignored. Lines that do not match
- * are counted in {@link ParseResult.skippedLines}; parsing continues.
+ * Each line contains a UTC timestamp, recipe, task, and Started/Succeeded/Failed.
+ * Timestamps use YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ. This is
+ * the repository's sample format; raw BitBake output requires conversion.
+ *
+ * A new Started event resets that task's previous attempt. A completion without
+ * a start is retained without a duration. Invalid dates, out-of-order events
+ * for the same task, and repeated completion events increment skippedLines.
+ * Blank lines are ignored. Different tasks may overlap in time.
  *
  * @param text - Full contents of the build log.
  * @returns The reconstructed tasks and the number of skipped lines.
@@ -59,7 +63,7 @@ const LINE_PATTERN = /^(\S+)\s+(\S+)\s+(do_\w+)\s+(Started|Succeeded|Failed)$/;
  *   "2026-09-10T14:02:11Z pkg-fastrpc do_compile Started\n" +
  *     "2026-09-10T14:03:05Z pkg-fastrpc do_compile Succeeded\n",
  * );
- * console.log(result.tasks[0].durationSeconds); // 54
+ * console.log(result.tasks[0]?.durationSeconds); // 54
  * ```
  */
 export function parseBuildLog(text: string): ParseResult {
@@ -77,13 +81,22 @@ export function parseBuildLog(text: string): ParseResult {
     }
     const [, timestamp = "", recipe = "", task = "", event = ""] = match;
     const at = new Date(timestamp);
-    if (Number.isNaN(at.getTime())) {
+    const canonicalTimestamp = timestamp.includes(".") ? timestamp : timestamp.replace("Z", ".000Z");
+    if (Number.isNaN(at.getTime()) || at.toISOString() !== canonicalTimestamp) {
       skippedLines += 1;
       continue;
     }
 
     const key = `${recipe} ${task}`;
     let record = tasks.get(key);
+    const previousTime = record?.endedAt ?? record?.startedAt;
+    if (
+      (previousTime !== undefined && at < previousTime) ||
+      (event !== "Started" && record?.endedAt !== undefined)
+    ) {
+      skippedLines += 1;
+      continue;
+    }
     if (record === undefined) {
       record = { recipe, task, status: "incomplete" };
       tasks.set(key, record);
@@ -91,6 +104,9 @@ export function parseBuildLog(text: string): ParseResult {
 
     if (event === "Started") {
       record.startedAt = at;
+      record.status = "incomplete";
+      delete record.endedAt;
+      delete record.durationSeconds;
     } else {
       record.endedAt = at;
       record.status = event === "Succeeded" ? "succeeded" : "failed";
