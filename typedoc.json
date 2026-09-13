@@ -3,6 +3,7 @@
   "entryPoints": ["src/index.ts"],
   "out": "docs/reference",
   "readme": "none",
+  "gitRevision": "main",
   "plugin": ["typedoc-plugin-markdown"],
   "outputFileStrategy": "modules",
   "entryFileName": "README.md",

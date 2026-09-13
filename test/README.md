@@ -2,7 +2,7 @@
 
 ## Description
 
-Automated tests, written with the Node.js built-in test runner. `npm test` compiles the
+Automated tests use the built-in Node.js test runner. `npm test` compiles the
 project and runs every `*.test.js` file in the compiled output.
 
 ## Files

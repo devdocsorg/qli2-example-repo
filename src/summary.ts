@@ -1,18 +1,18 @@
 import type { ParseResult, TaskRecord } from "./parser";
 
 /**
- * Aggregated view of one build log.
+ * Aggregated summary of a build log.
  */
 export interface BuildSummary {
   /** Total number of tasks found in the log. */
   taskCount: number;
   /** Tasks whose final event was `Failed`, in log order. */
   failedTasks: TaskRecord[];
-  /** Tasks with no terminal event, in log order. */
+  /** Tasks with no `Succeeded` or `Failed` event, in log order. */
   incompleteTasks: TaskRecord[];
   /** The longest-running tasks, slowest first. */
   slowestTasks: TaskRecord[];
-  /** Sum of every measured task duration, in seconds. */
+  /** Sum of all measured task durations, in seconds. */
   totalDurationSeconds: number;
   /** Number of log lines the parser skipped, copied from the parse result. */
   skippedLines: number;
@@ -22,8 +22,8 @@ export interface BuildSummary {
  * Summarize a parsed build log.
  *
  * @param result - Output of {@link parseBuildLog}.
- * @param options - `slowestCount` caps the slowest-task list. Optional;
- *   defaults to 3. Must be a non-negative integer.
+ * @param options - Optional settings. `slowestCount` limits the number of tasks
+ *   in the slowest-task list; it defaults to 3 and must be a non-negative integer.
  * @returns Counts, failures, and the slowest tasks for the build.
  *
  * @example
@@ -58,7 +58,7 @@ export function summarizeBuild(
  * Render a build summary as text or JSON.
  *
  * @param summary - Output of {@link summarizeBuild}.
- * @param format - `text` for a human-readable report, `json` for
+ * @param format - `text` for a human-readable report or `json` for
  *   machine-readable output. Optional; defaults to `text`.
  * @returns The rendered summary, without a trailing newline.
  *

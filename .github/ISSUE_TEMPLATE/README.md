@@ -2,8 +2,8 @@
 
 ## Description
 
-Issue templates. GitHub offers these as forms when a reader opens a new issue, so
-maintainers receive the details they need at intake.
+Issue templates. GitHub offers these templates when a reader opens a new issue, so
+maintainers receive the details they need to assess the report or request.
 
 ## Files
 

@@ -3,7 +3,7 @@
 ## Description
 
 Pull request templates. [CONTRIBUTING.md](../../CONTRIBUTING.md) links to the pull
-request form with a `template` URL parameter, so contributors reach the intended file.
+request form using a `template` URL parameter to select the intended template.
 
 ## Files
 

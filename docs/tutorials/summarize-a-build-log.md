@@ -14,22 +14,23 @@ canonical_destination: repository local
 
 # Summarize a build log
 
-Produce a text summary of a QLI build log — task counts, failures, and the slowest
-tasks — using the sample log shipped with this repository.
+Use the sample log in this repository to produce a text summary of a QLI build log,
+including task counts, failures, and the slowest tasks.
 
 ## Prerequisites
 
 - A Linux, macOS, or Windows host with a shell
 - Node.js 20 or newer (check with `node --version`) and npm
-- Git, and access to this repository
+- Git and access to this repository
 
 ## Inputs
 
 - **Log file**: [`examples/sample-build.log`](../../examples/sample-build.log). Every
-  line must have the form documented in
+  line must follow the format documented in
   [`parseBuildLog`](../reference/README.md#parsebuildlog).
 - **Output format**: the [`SUMMARY_FORMAT`](../../.env.example) environment variable.
-  This tutorial uses the default, `text`; set `json` for machine-readable output.
+  This tutorial uses the default, `text`; set the variable to `json` for machine-readable
+  output.
 
 ## Steps
 
@@ -60,12 +61,12 @@ tasks — using the sample log shipped with this repository.
    # Expected result: the summary shown under "Verify the result"
    ```
 
-   If the command prints `Cannot read …`, the path did not resolve — see
+   If the command prints `Cannot read …`, the path did not resolve. See
    "Recover from failure".
 
 ## Verify the result
 
-Step 3 prints exactly:
+Step 3 prints the following output exactly:
 
 ```text
 Tasks: 5 (1 failed, 0 incomplete)
@@ -78,23 +79,23 @@ Slowest tasks:
   kernel-modules do_configure — 49s
 ```
 
-and exits with status 0 (check with `echo $?`).
+The command exits with status 0 (check with `echo $?`).
 
 ## Recover from failure
 
 | Signal | Action |
 | --- | --- |
 | `Usage: qli-buildlog-summary <log-file>` | No log file was given. Pass a path as the first argument. |
-| `Cannot read <path>: … ENOENT …` | The path did not resolve. Check the spelling, and unset `QLI_LOG_DIR` — relative paths resolve against it when it is set. |
+| `Cannot read <path>: … ENOENT …` | The path did not resolve. Check the spelling and unset `QLI_LOG_DIR`. Relative paths resolve against `QLI_LOG_DIR` when it is set. |
 | `Skipped N unrecognized line(s).` in the output | Lines that do not match `<ISO-8601 timestamp> <recipe> <task> <event>` were skipped. Compare the log against the format in [`parseBuildLog`](../reference/README.md#parsebuildlog). |
-| `tsc` errors during `npm run build` | Confirm Node.js 20 or newer, delete `node_modules/`, and re-run `npm install`. |
+| `tsc` errors during `npm run build` | Confirm that Node.js 20 or newer is installed, delete `node_modules/`, and rerun `npm install`. |
 
 ## Related reference
 
-- [`parseBuildLog`](../reference/README.md#parsebuildlog) — the accepted log-line format
-- [`summarizeBuild`](../reference/README.md#summarizebuild) — what the summary contains
-- [`formatSummary`](../reference/README.md#formatsummary) — text and JSON rendering
-- [`.env.example`](../../.env.example) — the configuration reference
+- [`parseBuildLog`](../reference/README.md#parsebuildlog) — the accepted log-line format.
+- [`summarizeBuild`](../reference/README.md#summarizebuild) — the summary's contents.
+- [`formatSummary`](../reference/README.md#formatsummary) — text and JSON rendering.
+- [`.env.example`](../../.env.example) — the configuration reference.
 
 ## Source and review record
 

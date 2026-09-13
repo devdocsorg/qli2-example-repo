@@ -15,19 +15,19 @@ assignees: ''
 - Remove credentials, personal data, and confidential information from commands, configuration, logs, and screenshots.
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+Describe the bug.
 
 **To reproduce**
-The exact commands, the smallest log file (or safe excerpt) that reproduces the problem, and the steps in order:
+List the steps in order. Include the exact commands and the smallest log file (or safe excerpt) that reproduces the problem:
 
 1. ...
 2. ...
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
+Describe what you expected to happen.
 
 **Actual behavior and diagnostics**
-Describe what happened instead. Include the exact error and relevant output in a fenced code block. State how often it happens and the last working version or commit, if known.
+Describe what happened instead. Include the exact error and relevant output in a fenced code block. State how often the problem occurs and identify the last working version or commit, if known.
 
 **Environment (complete applicable fields):**
 
@@ -40,4 +40,4 @@ Describe what happened instead. Include the exact error and relevant output in a
 Mark fields that do not apply as "Not applicable".
 
 **Additional context**
-Add any other context about the problem here.
+Add relevant context that is not covered above.

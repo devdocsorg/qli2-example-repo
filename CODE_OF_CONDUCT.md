@@ -8,18 +8,18 @@ governed by the
 
 ## Scope
 
-This policy applies to this repository, its issue tracker, and its pull request
-discussions, and to anyone representing the project in other public spaces.
+This policy applies to participation in this repository, its issue tracker, and its
+pull request discussions. It also applies to anyone representing the project in other
+public spaces.
 
 ## Report a concern
 
 Report conduct concerns privately by email to qli@devdocs.work. Do not use a public
 issue.
 
-Reports are received by the DevDocs QLI 2.0 team. You can expect an acknowledgement
-within three business days, and reports are handled confidentially. If your concern
-involves someone who receives that address, say so in your report and it will be routed
-away from them.
+The DevDocs QLI 2.0 team receives reports and handles them confidentially. You can expect
+an acknowledgement within three business days. If your concern involves someone who
+receives email at that address, say so in your report; it will be routed to someone else.
 
 ## Enforcement
 

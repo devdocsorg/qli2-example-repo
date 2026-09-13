@@ -2,7 +2,7 @@
  * The outcome of a single build task, as recorded in the log.
  *
  * `incomplete` means the log contains a `Started` event with no matching
- * `Succeeded` or `Failed` event — usually a build that was interrupted.
+ * `Succeeded` or `Failed` event, usually because the build was interrupted.
  */
 export type TaskStatus = "succeeded" | "failed" | "incomplete";
 
@@ -10,7 +10,7 @@ export type TaskStatus = "succeeded" | "failed" | "incomplete";
  * One build task reconstructed from the log.
  */
 export interface TaskRecord {
-  /** Recipe the task belongs to, for example `pkg-fastrpc`. */
+  /** Recipe that the task belongs to, for example `pkg-fastrpc`. */
   recipe: string;
   /** Task name, for example `do_compile`. */
   task: string;
@@ -21,7 +21,7 @@ export interface TaskRecord {
   /** When the task finished. Absent for `incomplete` tasks. */
   endedAt?: Date;
   /**
-   * Wall-clock duration in seconds, `endedAt - startedAt`.
+   * Elapsed time between `startedAt` and `endedAt`, in seconds.
    * Absent when either timestamp is missing.
    */
   durationSeconds?: number;
@@ -31,9 +31,9 @@ export interface TaskRecord {
  * The result of parsing a build log.
  */
 export interface ParseResult {
-  /** Every task found in the log, in the order its first event appears. */
+  /** Every task found in the log, ordered by its first event. */
   tasks: TaskRecord[];
-  /** Number of lines that did not match the expected format and were skipped. */
+  /** Number of lines skipped because they did not match the expected format. */
   skippedLines: number;
 }
 
@@ -47,11 +47,11 @@ const LINE_PATTERN = /^(\S+)\s+(\S+)\s+(do_\w+)\s+(Started|Succeeded|Failed)$/;
  * Parse a QLI build log into per-task records.
  *
  * Each log line must have the form `<ISO-8601 timestamp> <recipe> <task>
- * <Started|Succeeded|Failed>`. Blank lines are ignored. Any other line is
- * counted in {@link ParseResult.skippedLines} and does not stop the parse.
+ * <Started|Succeeded|Failed>`. Blank lines are ignored. Lines that do not match
+ * are counted in {@link ParseResult.skippedLines}; parsing continues.
  *
  * @param text - Full contents of the build log.
- * @returns The reconstructed tasks and the count of skipped lines.
+ * @returns The reconstructed tasks and the number of skipped lines.
  *
  * @example
  * ```ts

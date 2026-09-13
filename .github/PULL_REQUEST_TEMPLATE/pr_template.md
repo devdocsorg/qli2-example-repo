@@ -1,17 +1,17 @@
 ## Pull Request
 
 **Description**
-A clear and concise description of what this pull request does.
+Describe the change and its purpose.
 
 **Related Issue**
 Link to the issue that this pull request addresses (e.g., `Fixes #123`).
 
 **Type of Change**
-Please delete options that are not relevant.
+Delete options that do not apply.
 
-- Bug fix (non-breaking change which fixes an issue)
-- New feature (non-breaking change which adds functionality)
-- Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- Bug fix (non-breaking change that fixes an issue)
+- New feature (non-breaking change that adds functionality)
+- Breaking change (fix or feature that would prevent existing functionality from working as expected)
 - Documentation update
 
 **Target branch**
@@ -22,9 +22,9 @@ Please delete options that are not relevant.
 **Checklist**
 
 - [ ] My code follows the style of this project
-- [ ] I have performed a self-review of my own change
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation, including the folder README.md lists
+- [ ] I have reviewed my changes
+- [ ] I have commented my code, particularly where it is difficult to understand
+- [ ] I have updated the affected documentation, including the file and folder lists in each affected `README.md`
 - [ ] My changes generate no new warnings
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing tests pass locally with my changes (`npm test`)
@@ -33,7 +33,7 @@ Leave checks that do not apply unchecked and explain why under Validation.
 
 **Validation**
 
-Record the exact command, environment, and result. Use "Not run" with a reason for checks you did not perform, or "Not applicable" with a reason.
+For each check, record the environment, exact command, and result. Enter "Not run" and a reason for checks you did not perform, or "Not applicable" and a reason for checks that do not apply.
 
 | Check | Environment and command | Result and evidence |
 | --- | --- | --- |
@@ -49,7 +49,7 @@ Link each relevant update, or explain why it does not apply:
 - README and branch guidance:
 - Function comments and generated reference:
 - Configuration examples (`.env.example`):
-- Folder README.md files:
+- Folder `README.md` files:
 - Tutorials and expected results:
 
 **Submission checks**
@@ -59,4 +59,4 @@ Link each relevant update, or explain why it does not apply:
 - [ ] I used the private [SECURITY.md](https://github.com/devdocsorg/qli2-example-repo/blob/main/SECURITY.md) route for any suspected vulnerability instead of disclosing it in this pull request
 
 **Additional Context**
-Add any other context or screenshots about the pull request here.
+Add relevant context or screenshots that are not covered above.

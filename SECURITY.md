@@ -11,34 +11,35 @@
 
 Do not open a public issue or pull request.
 
-Report privately by email to qli@devdocs.work with "SECURITY" in the subject line.
+Report vulnerabilities privately by email to qli@devdocs.work with "SECURITY" in the
+subject line.
 
-Include, when available:
+Include the following details when available:
 
-- the affected version, branch, or commit;
-- the vulnerability type and likely impact;
-- minimal reproduction steps or a proof of concept;
-- the required configuration or privileges;
-- whether the issue is already public; and
-- a safe way to contact you.
+- The affected version, branch, or commit.
+- The vulnerability type and likely impact.
+- Minimal reproduction steps or a proof of concept.
+- The required configuration or privileges.
+- Whether the issue is already public.
+- A safe way to contact you.
 
 Never include real credentials, personal data, or production data in a report.
 
 ## What happens next
 
 We aim to acknowledge reports within three business days and provide an initial
-assessment within ten business days. These are response targets, not a promise of
-resolution time.
+assessment within ten business days. These are response targets; they do not guarantee
+a resolution time.
 
-The team validates the report, keeps you informed as the assessment progresses, and
-coordinates a fix on `main` and any affected release branch. Reporters who want credit
-are named in the fix's release notes. If you have not heard back after the
-acknowledgement window, follow up on the same email thread.
+We validate the report, keep you informed throughout the assessment, and coordinate a
+fix on `main` and any affected release branch. Reporters who want credit are named in
+the release notes for the fix. If you have not heard back after the acknowledgement
+window, follow up on the same email thread.
 
 ## Scope
 
-In scope: the code and documentation in this repository.
+The code and documentation in this repository are in scope.
 
-Out of scope: vulnerabilities in this project's dependencies — report those through the
-affected dependency's own security route — and vulnerabilities in GitHub itself, which
-belong to [GitHub's security program](https://bounty.github.com/).
+Vulnerabilities in this project's dependencies and in GitHub itself are out of scope.
+Report dependency vulnerabilities through the affected dependency's security reporting
+process, and report GitHub vulnerabilities to [GitHub's security program](https://bounty.github.com/).
