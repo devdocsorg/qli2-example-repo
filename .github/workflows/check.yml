@@ -16,8 +16,10 @@ jobs:
       matrix:
         node: [22, 24] # Minimum supported major and the following LTS major.
     steps:
-      - uses: actions/checkout@v4 # Read the exact commit under test.
-      - uses: actions/setup-node@v4 # Select Node and cache npm's download cache.
+      # actions/checkout v7.0.1; pin the implementation and read the commit under test.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      # actions/setup-node v7.0.0; select Node and cache npm downloads.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: ${{ matrix.node }}
           cache: npm # package-lock.json determines the cache key.
