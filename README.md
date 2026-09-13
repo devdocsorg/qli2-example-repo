@@ -9,7 +9,7 @@ Choose the implementation language and build tools in the project you create.
 
 [Use this template](https://github.com/devdocsorg/qli2-example-repo/generate)
 to create a repository from `main`, then follow the
-[adoption tutorial](docs/tutorials/use-this-skeleton.md) to personalise its
+[adoption tutorial](docs/README.md) to personalise its
 purpose, ownership, reporting routes, and documentation.
 
 Prerequisites: a GitHub account with access to this repository and permission to
@@ -28,13 +28,13 @@ describes branch maintenance.
 
 ## Documentation
 
-- [Adoption tutorial](docs/tutorials/use-this-skeleton.md) — Create a repository and make these files specific to it.
-- [Reference documentation](docs/reference/README.md) — Add function and configuration documentation with the implementation.
+- [Adoption tutorial](docs/README.md) — Create a repository and make these files specific to it.
+- [Configuration reference](docs/README.md#configuration-reference) — Understand the skeleton's environment stub, ignore rules, owners, and issue-template fields.
 - [Contributing](CONTRIBUTING.md) — Improve the skeleton and review changes against the checklist.
 
 ## Folders
 
-- [docs/](docs/README.md) — Holds reference guidance and usage tutorials.
+- [docs/](docs/README.md) — Contains the required usage tutorial and configuration reference.
 - [.github/](.github/) — Holds [CODEOWNERS](.github/CODEOWNERS), [issue templates](.github/ISSUE_TEMPLATE/README.md), and the [pull request template](.github/PULL_REQUEST_TEMPLATE/README.md).
 
 ## Files

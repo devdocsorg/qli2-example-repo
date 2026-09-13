@@ -7,10 +7,12 @@ Follow the [Code of Conduct](CODE_OF_CONDUCT.md). Use
 ## Scope
 
 Keep the skeleton reusable across implementation languages and projects.
-Each file should serve a requirement in the
-[checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/a462ebf8ebff6b45f9659349fd725ccca0e19908/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md)
-or help someone adopt the structure. Application code, sample products, and their
-toolchains belong in repositories created from the skeleton.
+Tie each file to an explicit requirement in the
+[checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/a462ebf8ebff6b45f9659349fd725ccca0e19908/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+`.gitignore` is the supporting exception: it keeps local environment settings out
+of commits. Consolidate guidance where one file can satisfy multiple requirements.
+Application code, sample products, and their toolchains belong in repositories
+created from the skeleton.
 
 ## Review a change
 
