@@ -1,0 +1,11 @@
+# Default reviewers for anything not matched below.
+* @devdocsorg/devdocsai-devs
+
+# Protect ownership and community-health configuration.
+/.github/ @devdocsorg/devdocsai-devs
+
+# Documentation reviewers. The team must be visible and have write access.
+*.md @devdocsorg/docs-reviewers
+/docs/ @devdocsorg/docs-reviewers
+/README.md @devdocsorg/docs-reviewers @devdocsorg/devdocsai-devs
+/BRANCHES.md @devdocsorg/docs-reviewers @devdocsorg/devdocsai-devs
