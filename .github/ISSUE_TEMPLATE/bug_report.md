@@ -1,43 +1,27 @@
 ---
 name: Bug report
-about: Report a problem with the QLI Build Log Summarizer
-title: ''
-labels: ''
-assignees: ''
-
+about: Report a problem with the repository or its documentation
 ---
 
-**Before submitting**
+For vulnerabilities, use the private route in
+[SECURITY.md](https://github.com/devdocsorg/qli2-example-repo/blob/main/SECURITY.md).
+Search existing issues before submitting and remove confidential information.
 
-- Search existing issues and link related reports.
-- Check the [README](https://github.com/devdocsorg/qli2-example-repo/blob/main/README.md) and [CONTRIBUTING](https://github.com/devdocsorg/qli2-example-repo/blob/main/CONTRIBUTING.md) for the correct repository and branch.
-- Report suspected vulnerabilities privately through [SECURITY.md](https://github.com/devdocsorg/qli2-example-repo/blob/main/SECURITY.md). Do not disclose vulnerability details in this issue.
-- Remove credentials, personal data, and confidential information from commands, configuration, logs, and screenshots.
+## Problem
 
-**Describe the bug**
-Describe the bug.
+Describe the problem and identify the affected file, branch, or commit.
 
-**To reproduce**
-List the steps in order. Include the exact commands and the smallest log file (or safe excerpt) that reproduces the problem:
+## Reproduction
 
-1. ...
-2. ...
+Give the smallest sequence of steps that shows the problem. Include exact commands
+or links when relevant.
 
-**Expected behavior**
-Describe what you expected to happen.
+## Expected and actual result
 
-**Actual behavior and diagnostics**
-Describe what happened instead. Include the exact error and relevant output in a fenced code block. State how often the problem occurs and identify the last working version or commit, if known.
+Explain what should happen and what happens instead. Include error messages as
+text, and screenshots only when they help explain the problem.
 
-**Environment (complete applicable fields):**
+## Context
 
-- Package version or commit:
-- Branch (see [BRANCHES.md](https://github.com/devdocsorg/qli2-example-repo/blob/main/BRANCHES.md)):
-- Node.js version (`node --version`):
-- Operating system:
-- Relevant configuration (`SUMMARY_FORMAT`, including whether it is unset):
-
-Mark fields that do not apply as "Not applicable".
-
-**Additional context**
-Add relevant context that is not covered above.
+Include related issues and the relevant environment or configuration. Omit fields
+that do not apply to the problem.

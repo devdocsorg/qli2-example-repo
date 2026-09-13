@@ -1,18 +1,14 @@
-# Index
+# Pull request template
 
-## Description
-
-Pull request templates. [CONTRIBUTING.md](../../CONTRIBUTING.md) links to the pull
-request form using a `template` URL parameter to select the intended template.
+[CONTRIBUTING.md](../../CONTRIBUTING.md) links to GitHub's compare form using
+`template=pr_template.md` to select the template. Keep that parameter when updating
+the link for a new repository; otherwise GitHub may not select this named file.
 
 ## Files
 
-- [README.md](README.md) — Describes this folder and lists its files.
-- [`pr_template.md`](pr_template.md) — Collects the change description, target branch, validation evidence, and documentation impact.
+- [README.md](README.md) — Explains template selection and lists the files.
+- [pr_template.md](pr_template.md) — Requests the change's purpose, destination, validation evidence, and documentation impact.
 
-## Template source
-
-These forms adapt the
-[Qualcomm Linux pkg-fastrpc templates](https://github.com/qualcomm-linux/pkg-fastrpc/tree/9b1a916be3d29fa184feb16995a4db403d91aa59/.github)
-to this example's CLI and contribution process. The upstream notice is retained
-in [LICENSE](../../LICENSE).
+The form adapts the
+[Qualcomm Linux pkg-fastrpc template](https://github.com/qualcomm-linux/pkg-fastrpc/blob/9b1a916be3d29fa184feb16995a4db403d91aa59/.github/PULL_REQUEST_TEMPLATE/pr_template.md)
+to the skeleton's scope. The upstream notice is retained in [LICENSE](../../LICENSE).

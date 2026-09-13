@@ -1,8 +1,6 @@
-# Installed packages, restored with npm ci.
-node_modules/
-# Compiled JavaScript and declarations, restored with npm run build.
-dist/
-# Local environment configuration; use .env.example for shared defaults.
+# Ignore local environment settings at any folder depth.
 .env
-# Incremental TypeScript cache, if enabled locally.
-*.tsbuildinfo
+# Ignore named environment files, such as .env.local.
+.env.*
+# Keep the documented, safe settings file in version control.
+!.env.example

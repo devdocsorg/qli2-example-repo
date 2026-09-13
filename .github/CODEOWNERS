@@ -1,11 +1,15 @@
-# Default reviewers for anything not matched below.
+# Each rule is a path pattern followed by GitHub users or teams.
+# The last matching rule selects the owners; no match means no automatic owner.
+# These visible teams have write access to this skeleton repository.
+# When adopting the skeleton, use the destination project's actual reviewers.
+
+# Default: the repository maintainers review all paths.
 * @devdocsorg/devdocsai-devs
 
-# Protect ownership and community-health configuration.
-/.github/ @devdocsorg/devdocsai-devs
-
-# Documentation reviewers. The team must be visible and have write access.
+# Documentation paths are reviewed by the documentation team.
 *.md @devdocsorg/docs-reviewers
 /docs/ @devdocsorg/docs-reviewers
+
+# Both teams review the repository introduction and branch guidance.
 /README.md @devdocsorg/docs-reviewers @devdocsorg/devdocsai-devs
 /BRANCHES.md @devdocsorg/docs-reviewers @devdocsorg/devdocsai-devs

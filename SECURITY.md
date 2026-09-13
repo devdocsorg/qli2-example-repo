@@ -1,25 +1,18 @@
 # Security policy
 
-## Supported code
+## Scope
 
-Fixes target `main`. The frozen `release/1.0` branch and `v1.0.0` tag are historical
-examples and receive no security updates. See [BRANCHES.md](BRANCHES.md).
+Security reports about this skeleton's files or contribution process are handled
+on `main`. Repositories created from the skeleton must identify their own
+supported versions and reporting route.
 
-## Report a vulnerability
+## Report privately
 
-Email [security@devdocs.work](mailto:security@devdocs.work), the private reporting
-address published in [DevDocs' security policy](https://devdocs.work/trust).
-Use the subject "qli2-example-repo security report". Do not disclose vulnerability
-details in an issue or pull request.
+Email [security@devdocs.work](mailto:security@devdocs.work), the address published
+in [DevDocs' security policy](https://devdocs.work/trust). Identify this repository
+in the subject. Include the affected file or commit, likely impact, safe
+reproduction steps, and a way to contact you.
 
-Include:
-
-- The affected commit and Node.js version.
-- The problem, likely impact, and smallest safe reproduction.
-- Relevant configuration, with credentials and private data removed.
-- A way to contact you and whether the issue is already public.
-
-Reports about this repository's code, documentation, or use of dependencies belong
-here. DevDocs' security policy describes report handling. This example does not
-promise a separate response deadline or a fix date; follow up in the same private
-email thread if needed.
+Keep vulnerability details out of issues and pull requests. Remove credentials
+and unnecessary personal information from the report. DevDocs' security policy
+describes report handling; follow up in the same private email thread if needed.
