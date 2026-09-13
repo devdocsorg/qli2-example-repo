@@ -50,7 +50,7 @@ for every long-lived branch, its lifecycle, and its relationship to `main`.
 - [`examples/`](examples/README.md) — Provides the sample build log used by the tutorial.
 - [`src/`](src/README.md) — Contains the TypeScript source for the library and the CLI.
 - [`test/`](test/README.md) — Contains automated tests, run with `npm test`.
-- [`.github/`](.github/README.md) — Defines code ownership and provides issue and pull request templates.
+- [`.github/`](.github/) — Defines code ownership ([`CODEOWNERS`](.github/CODEOWNERS)) and provides the [issue](.github/ISSUE_TEMPLATE/README.md) and [pull request](.github/PULL_REQUEST_TEMPLATE/README.md) templates. This folder carries no `README.md` of its own: GitHub displays `.github/README.md` in place of the repository front page, so the folder's index lives in this entry instead.
 
 ## Files
 
