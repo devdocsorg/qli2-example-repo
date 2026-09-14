@@ -1,7 +1,7 @@
 # QLI 2.0 repository skeleton
 
 Starting files for a repository that follows the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/a462ebf8ebff6b45f9659349fd725ccca0e19908/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/95b860fa3ed603ca32ee5aa4b1e766384d9c8b4d/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 The scope is repository structure, documentation, and contribution guidance.
 Choose the implementation language and build tools in the project you create.
 
@@ -35,7 +35,7 @@ describes branch maintenance.
 ## Folders
 
 - [docs/](docs/README.md) — Contains the required usage tutorial and configuration reference.
-- [.github/](.github/) — Holds [CODEOWNERS](.github/CODEOWNERS), [issue templates](.github/ISSUE_TEMPLATE/README.md), and the [pull request template](.github/PULL_REQUEST_TEMPLATE/README.md).
+- [.github/](.github/) — Holds [CODEOWNERS](.github/CODEOWNERS), [issue templates](.github/ISSUE_TEMPLATE/), and the [pull request template](.github/PULL_REQUEST_TEMPLATE/pr_template.md).
 
 ## Files
 

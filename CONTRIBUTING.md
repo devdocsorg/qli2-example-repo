@@ -8,7 +8,7 @@ Follow the [Code of Conduct](CODE_OF_CONDUCT.md). Use
 
 Keep the skeleton reusable across implementation languages and projects.
 Tie each file to an explicit requirement in the
-[checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/a462ebf8ebff6b45f9659349fd725ccca0e19908/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/95b860fa3ed603ca32ee5aa4b1e766384d9c8b4d/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 `.gitignore` is the supporting exception: it keeps local environment settings out
 of commits. Consolidate guidance where one file can satisfy multiple requirements.
 Application code, sample products, and their toolchains belong in repositories
@@ -17,8 +17,8 @@ created from the skeleton.
 ## Review a change
 
 - Check the wording against the requirement it implements and the actual repository state.
-- Check local links and every affected README's file and folder inventory.
-- Use exactly `README.md`; dot-prefixed folders themselves take no README.
+- Check local links and every affected README's index: link every immediate file and subfolder in its Files and Folders sections, with a one-sentence purpose.
+- Use exactly `README.md`; dot-prefixed folders and their descendants take no README. Generated website output keeps its generated navigation.
 - Confirm that owner teams and private reporting routes are appropriate.
 - Walk through any changed adoption instructions and record the result.
 
