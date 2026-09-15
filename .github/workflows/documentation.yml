@@ -18,5 +18,7 @@ jobs:
           version: '0.12.3'
       - name: Install pinned documentation tools
         run: make -f docs/source/Makefile setup
+      - name: Install the browser and its CI dependencies
+        run: .venv/bin/playwright install --with-deps chromium
       - name: Build, validate reference coverage, and check committed output
         run: make -f docs/source/Makefile check

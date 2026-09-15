@@ -77,3 +77,9 @@ reference coverage after code is added.
 The [Makefile](../Makefile) owns dependency installation and build commands for
 both local use and CI. After committing regenerated output, run
 `make -f docs/source/Makefile check` to verify it reproduces.
+
+The shared `check` target also opens a copied site with Playwright and networking
+disabled. It checks navigation, anchors, resources, and a search-result click.
+It uses system Chromium when available; otherwise run
+`make -f docs/source/Makefile browser` to install Playwright's user-local browser.
+CI installs its browser before invoking the same check target.

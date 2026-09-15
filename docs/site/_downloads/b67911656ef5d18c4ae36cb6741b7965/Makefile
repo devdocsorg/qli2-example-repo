@@ -2,7 +2,7 @@
 # setup installs only the pinned documentation toolchain in the local .venv.
 # html removes stale generated pages and builds the complete site strictly.
 # check verifies output is committed and direct-file search avoids fetch().
-.PHONY: setup html check
+.PHONY: setup html check browser
 
 setup:
 	uv venv --python 3.12 .venv
@@ -12,7 +12,12 @@ html:
 	rm -rf docs/site
 	.venv/bin/sphinx-build -W --keep-going -E -a -b html -d docs/.doctrees docs/source docs/site
 
+# Install a user-local browser only when system Chromium is unavailable.
+browser:
+	.venv/bin/playwright install chromium
+
 check: html
+	.venv/bin/python .github/check_offline.py docs/site environment
 	test -f docs/site/index.html
 	grep -q 'SHOW_SEARCH_SUMMARY: false' docs/site/_static/documentation_options.js
 	git diff --exit-code -- docs/site
