@@ -63,6 +63,15 @@ Follow [development environment setup](../contributing/DEVELOPMENT.md) to instal
 the documentation toolchain, build the site, and add the project's language-specific
 reference generator. Keep each procedure in one authoritative page and link to it.
 
+For a Qualcomm repository, register its verified relationships in the
+[Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map),
+then follow that map's export procedure to generate the repository's nearby view.
+Link the view from the root README and relevant contributor/user guides, include
+it in site navigation, and verify it under `file://`. Preserve the recorded central
+revision and dataset digest; update relationships in the shared map and regenerate.
+The skeleton itself is a reusable template, not a Qualcomm software component,
+so it does not invent an ecosystem position or dependency graph.
+
 Replace this adoption tutorial with a walkthrough of the project's real output,
 including prerequisites, ordered steps, and an observed expected result. Update
 the root README's links and the documentation navigation when doing so.

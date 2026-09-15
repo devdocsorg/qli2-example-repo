@@ -23,3 +23,5 @@ contributing/README
 - [README.md](README.md) — Introduces the guides and supplies the site's homepage.
 - [conf.py](conf.py) — Configures Markdown rendering, local navigation, and search.
 - [requirements.txt](requirements.txt) — Pins the documentation packages.
+
+- [requirements.lock](requirements.lock) — Locks direct and transitive documentation dependencies for reproducible builds.

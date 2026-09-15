@@ -6,7 +6,7 @@
 
 setup:
 	uv venv --python 3.12 .venv
-	uv pip install --python .venv/bin/python -r docs/source/requirements.txt
+	uv pip install --python .venv/bin/python -r docs/source/requirements.lock
 
 html:
 	rm -rf docs/site

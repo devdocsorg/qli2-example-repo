@@ -83,3 +83,9 @@ disabled. It checks navigation, anchors, resources, and a search-result click.
 It uses system Chromium when available; otherwise run
 `make -f docs/source/Makefile browser` to install Playwright's user-local browser.
 CI installs its browser before invoking the same check target.
+
+Direct documentation dependencies are declared in `docs/source/requirements.txt`;
+`docs/source/requirements.lock` also pins their transitive dependencies. After an
+intentional tool update, regenerate the lock with
+`uv pip compile --python-version 3.12 docs/source/requirements.txt -o docs/source/requirements.lock`,
+run setup, and rebuild before committing both source and output.

@@ -27,6 +27,9 @@ adding the project's implementation toolchain.
 - Use exactly `README.md`; dot-prefixed folders and their descendants take no README. Generated website output keeps its generated navigation.
 - Confirm that owner teams and private reporting routes are appropriate.
 - Walk through any changed adoption instructions and record the result.
+- Preserve existing guide content and notices when moving pages; keep one authoritative home for each procedure.
+- When adding implementation functions, install the native extractor, integrate its reference, and add a failing coverage check for undocumented or omitted functions.
+- For a Qualcomm component, generate its nearby view from the shared ecosystem map and verify the recorded source revision.
 
 The skeleton contains documentation and repository configuration. Rebuild its
 documentation and check navigation and search from `docs/site/index.html` before

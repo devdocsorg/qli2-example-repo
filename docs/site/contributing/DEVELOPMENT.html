@@ -107,6 +107,11 @@ disabled. It checks navigation, anchors, resources, and a search-result click.
 It uses system Chromium when available; otherwise run
 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-f</span> <span class="pre">docs/source/Makefile</span> <span class="pre">browser</span></code> to install Playwright’s user-local browser.
 CI installs its browser before invoking the same check target.</p>
+<p>Direct documentation dependencies are declared in <code class="docutils literal notranslate"><span class="pre">docs/source/requirements.txt</span></code>;
+<code class="docutils literal notranslate"><span class="pre">docs/source/requirements.lock</span></code> also pins their transitive dependencies. After an
+intentional tool update, regenerate the lock with
+<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">pip</span> <span class="pre">compile</span> <span class="pre">--python-version</span> <span class="pre">3.12</span> <span class="pre">docs/source/requirements.txt</span> <span class="pre">-o</span> <span class="pre">docs/source/requirements.lock</span></code>,
+run setup, and rebuild before committing both source and output.</p>
 </section>
 </section>
 
