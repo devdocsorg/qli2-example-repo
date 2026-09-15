@@ -8,7 +8,7 @@ Follow the {download}`Code of Conduct <../../../CODE_OF_CONDUCT.md>`. Use
 
 Keep the skeleton reusable across implementation languages and projects.
 Tie each file to an explicit requirement in the
-[checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/d64a7e14ffaf3b3632b63e6ee5e1b32f3c2bd17b/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/6989ddebef04d4ea7b9b67e5b98ca12d130a9bc0/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 `.gitignore` is the supporting exception: it keeps local environment settings out
 of commits. Consolidate guidance where one file can satisfy multiple requirements.
 Application code, sample products, and their toolchains belong in repositories

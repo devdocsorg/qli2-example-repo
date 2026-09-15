@@ -50,7 +50,7 @@ Document each function, including internal helpers, using the language's standar
 comments: purpose, parameter and return types, an example, and relevant failure
 behaviour. Choose the language's documentation generator, document its command,
 and link the generated reference from the root README. The
-[function-documentation requirement](https://github.com/devdocsorg/qli2-deliverables-portal/blob/d64a7e14ffaf3b3632b63e6ee5e1b32f3c2bd17b/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md)
+[function-documentation requirement](https://github.com/devdocsorg/qli2-deliverables-portal/blob/6989ddebef04d4ea7b9b67e5b98ca12d130a9bc0/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md)
 provides the format. Function documentation becomes applicable when functions exist.
 
 For every configuration setting, document its purpose, type, required or optional
@@ -65,7 +65,10 @@ reference generator. Keep each procedure in one authoritative page and link to i
 
 For a Qualcomm repository, register its verified relationships in the
 [Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map),
-then follow that map's export procedure to generate the repository's nearby view.
+then follow that private map's export procedure to generate the repository's nearby
+view. Use linked repository names and labelled connections in the map itself;
+pictures do not satisfy the navigation requirement. State the shared map's access
+requirement while keeping public repository and evidence links usable independently.
 Link the view from the root README and relevant contributor/user guides, include
 it in site navigation, and verify it under `file://`. Preserve the recorded central
 revision and dataset digest; update relationships in the shared map and regenerate.
@@ -82,7 +85,7 @@ The new repository identifies its purpose and maintainers, routes contributions
 and private reports correctly, and contains the required documentation structure.
 Before presenting it as checklist-complete, verify its documented first-use steps,
 reference for any implemented functions, file inventories, and links against the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/d64a7e14ffaf3b3632b63e6ee5e1b32f3c2bd17b/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/6989ddebef04d4ea7b9b67e5b98ca12d130a9bc0/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 
 ## Configuration reference
 
