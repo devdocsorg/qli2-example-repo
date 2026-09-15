@@ -89,3 +89,6 @@ Direct documentation dependencies are declared in `docs/source/requirements.txt`
 intentional tool update, regenerate the lock with
 `uv pip compile --python-version 3.12 docs/source/requirements.txt -o docs/source/requirements.lock`,
 run setup, and rebuild before committing both source and output.
+
+The setup target recreates the documentation-only `.venv` from the lockfile.
+Keep project dependencies and custom tools in their own environments.

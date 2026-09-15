@@ -112,6 +112,8 @@ CI installs its browser before invoking the same check target.</p>
 intentional tool update, regenerate the lock with
 <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">pip</span> <span class="pre">compile</span> <span class="pre">--python-version</span> <span class="pre">3.12</span> <span class="pre">docs/source/requirements.txt</span> <span class="pre">-o</span> <span class="pre">docs/source/requirements.lock</span></code>,
 run setup, and rebuild before committing both source and output.</p>
+<p>The setup target recreates the documentation-only <code class="docutils literal notranslate"><span class="pre">.venv</span></code> from the lockfile.
+Keep project dependencies and custom tools in their own environments.</p>
 </section>
 </section>
 

@@ -7,6 +7,10 @@ Edit the [source](source/README.md), follow the contributor
 [development environment and build walkthrough](source/contributing/DEVELOPMENT.md),
 and commit the source and regenerated site together.
 
+Generated [third-party asset notices](site/THIRD_PARTY_LICENSES.txt) preserve the
+licences supplied by the locked documentation packages. The build attaches the
+upstream notices to redistributed JavaScript without changing its behaviour.
+
 ## Folders
 
 - [source/](source/README.md) — Contains the authoritative guides and documentation build configuration.
