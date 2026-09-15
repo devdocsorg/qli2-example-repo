@@ -50,7 +50,7 @@ Document each function, including internal helpers, using the language's standar
 comments: purpose, parameter and return types, an example, and relevant failure
 behaviour. Choose the language's documentation generator, document its command,
 and link the generated reference from the root README. The
-[function-documentation requirement](https://github.com/devdocsorg/qli2-deliverables-portal/blob/95b860fa3ed603ca32ee5aa4b1e766384d9c8b4d/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md)
+[function-documentation requirement](https://github.com/devdocsorg/qli2-deliverables-portal/blob/d64a7e14ffaf3b3632b63e6ee5e1b32f3c2bd17b/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md)
 provides the format. Function documentation becomes applicable when functions exist.
 
 For every configuration setting, document its purpose, type, required or optional
@@ -82,7 +82,7 @@ The new repository identifies its purpose and maintainers, routes contributions
 and private reports correctly, and contains the required documentation structure.
 Before presenting it as checklist-complete, verify its documented first-use steps,
 reference for any implemented functions, file inventories, and links against the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/95b860fa3ed603ca32ee5aa4b1e766384d9c8b4d/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/d64a7e14ffaf3b3632b63e6ee5e1b32f3c2bd17b/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 
 ## Configuration reference
 
