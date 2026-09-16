@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contributing &#8212; QLI 2.0 repository skeleton  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=748769dd"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Set up your development environment" href="DEVELOPMENT.html" />
+    <link rel="prev" title="Contributor documentation" href="README.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">¶</a></h1>
+<p>Improvements to this skeleton belong in this repository, targeting <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+Follow the <a class="reference download internal" download="" href="../_downloads/2e7955674502227d52eac12f33460c6c/CODE_OF_CONDUCT.md"><code class="xref download docutils literal notranslate"><span class="pre">Code</span> <span class="pre">of</span> <span class="pre">Conduct</span></code></a>. Use
+<a class="reference download internal" download="" href="../_downloads/4009e7840d6774722c0456eb984c09b3/SECURITY.md"><code class="xref download docutils literal notranslate"><span class="pre">SECURITY.md</span></code></a> for private vulnerability reports.</p>
+<section id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Link to this heading">¶</a></h2>
+<p>Keep the skeleton reusable across implementation languages and projects.
+Tie each file to an explicit requirement in the
+<a class="reference external" href="https://github.com/devdocsorg/qli2-deliverables-portal/blob/c9d0490abed729ad482bb4b916ae08ec85f29b25/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md">checklist</a>.
+<code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> is the supporting exception: it keeps local environment settings out
+of commits. Consolidate guidance where one file can satisfy multiple requirements.
+Application code, sample products, and their toolchains belong in repositories
+created from the skeleton.</p>
+</section>
+<section id="set-up-your-development-environment">
+<h2>Set up your development environment<a class="headerlink" href="#set-up-your-development-environment" title="Link to this heading">¶</a></h2>
+<p>Follow <a class="reference internal" href="DEVELOPMENT.html"><span class="std std-doc">DEVELOPMENT.md</span></a> for the concrete clone, dependency, build,
+and local-browser validation walkthrough. Use it as the example to adapt when
+adding the project’s implementation toolchain.</p>
+</section>
+<section id="review-a-change">
+<h2>Review a change<a class="headerlink" href="#review-a-change" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Check the wording against the requirement it implements and the actual repository state.</p></li>
+<li><p>Check local links and every affected README’s index: link every immediate file and subfolder in its Files and Folders sections, with a one-sentence purpose.</p></li>
+<li><p>Use exactly <code class="docutils literal notranslate"><span class="pre">README.md</span></code>; dot-prefixed folders and their descendants take no README. Generated website output keeps its generated navigation.</p></li>
+<li><p>Confirm that owner teams and private reporting routes are appropriate.</p></li>
+<li><p>Walk through any changed adoption instructions and record the result.</p></li>
+<li><p>Preserve existing guide content and notices when moving pages; keep one authoritative home for each procedure.</p></li>
+<li><p>When adding implementation functions, install the native extractor, integrate its reference, and add a failing coverage check for undocumented or omitted functions.</p></li>
+<li><p>For a Qualcomm component, generate its nearby view from the shared ecosystem map and verify the recorded source revision.</p></li>
+</ul>
+<p>The skeleton contains documentation and repository configuration. Rebuild its
+documentation and check navigation and search from <code class="docutils literal notranslate"><span class="pre">docs/site/index.html</span></code> before
+submitting. It has no application build or application test command.</p>
+</section>
+<section id="submit-a-change">
+<h2>Submit a change<a class="headerlink" href="#submit-a-change" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/devdocsorg/qli2-example-repo/compare?expand=1&amp;template=pr_template.md">Open a pull request with the template</a>.
+Choose <code class="docutils literal notranslate"><span class="pre">main</span></code> as the base and your change branch as the head. Explain the reason
+for the change and what you verified. Maintainers may also commit directly to <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+<a class="reference download internal" download="" href="../_downloads/e82d6e2895e34137027e576cbe722dd8/CODEOWNERS"><span class="xref download myst">CODEOWNERS</span></a> identifies the source and documentation reviewers.</p>
+<p>Changes to the skeleton use the <a class="reference download internal" download="" href="../_downloads/16e66d320f6335cc82caaeebd16c1334/LICENSE"><span class="xref download myst">repository’s licence</span></a>.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../README.html">QLI 2.0 repository skeleton</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/README.html">User documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="README.html">Contributor documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scope">Scope</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-your-development-environment">Set up your development environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review-a-change">Review a change</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submit-a-change">Submit a change</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DEVELOPMENT.html">Set up your development environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#files">Files</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../README.html">Documentation overview</a><ul>
+  <li><a href="README.html">Contributor documentation</a><ul>
+      <li>Previous: <a href="README.html" title="previous chapter">Contributor documentation</a></li>
+      <li>Next: <a href="DEVELOPMENT.html" title="next chapter">Set up your development environment</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/contributing/CONTRIBUTING.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
