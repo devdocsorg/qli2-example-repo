@@ -50,7 +50,7 @@ Document each function, including internal helpers, using the language's standar
 comments: purpose, parameter and return types, an example, and relevant failure
 behaviour. Choose the language's documentation generator, document its command,
 and link the generated reference from the root README. The
-[function-documentation requirement](https://github.com/devdocsorg/qli2-deliverables-portal/blob/5bce0bf14c4f583cff4a493a8496737bcc5aaca0/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md)
+[function-documentation requirement](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md)
 provides the format. Function documentation becomes applicable when functions exist.
 
 For every configuration setting, document its purpose, type, required or optional
@@ -65,18 +65,23 @@ reference generator. Keep each procedure in one authoritative page and link to i
 
 For a Qualcomm repository, register verified relationships in the
 [shared map](https://github.com/devdocsorg/qualcomm-repository-map) and export a
-compact Mermaid view at the bottom of the root README, after all other sections. Name the
-current repo once, make each repository node clickable, and label arrows to briefly
-explain each direct dependency or build input and whether it is required or optional. Keep dependencies
-supplied by those repos, evidence, and CI relationships in the full map, linked
-once. If a nested dependency is needed for the task, show it under its parent.
-Document access prerequisites in contributor setup rather than map labels.
-The map lives only in the root README. Do not add it to Sphinx sources or the
-generated website. Use the shared map exporter to update the marked README block
-directly; Sphinx must not read or write that block. Keep the source revision and
-dataset digest in a source comment, not the visible map.
-The root README includes a minimal example for a Yocto BSP layer. Replace that
-example with the project's generated map during adoption.
+compact Mermaid view at the bottom of the root README. Cover every recorded
+build/component connection in both directions, including optional integrations
+and verified indirect paths through their providers. Use short verbs explaining
+what the repositories provide, and make each node clickable. Keep detailed
+sources centrally and link once to the full map.
+
+Follow the [map update and validation procedure](https://github.com/devdocsorg/qualcomm-repository-map/blob/main/data/README.md):
+audit build references and included configurations, run the source and coverage
+checks, and export directly into the marked README block. Record the source
+revision and digest in a source comment. Access to the private shared repository
+is needed for updates. Standalone automation diagrams and their text can be
+omitted; build tools and component connections must remain.
+
+The map lives only in the root README. Sphinx must not read, copy, or write it.
+The root README includes a small, generated example for boot-assets, showing its
+incoming connection. Replace the example with the project's generated map during
+adoption.
 
 Replace this adoption tutorial with a walkthrough of the project's real output,
 including prerequisites, ordered steps, and an observed expected result. Update
@@ -88,7 +93,7 @@ The new repository identifies its purpose and maintainers, routes contributions
 and private reports correctly, and contains the required documentation structure.
 Before presenting it as checklist-complete, verify its documented first-use steps,
 reference for any implemented functions, file inventories, and links against the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/5bce0bf14c4f583cff4a493a8496737bcc5aaca0/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 
 ## Configuration reference
 
