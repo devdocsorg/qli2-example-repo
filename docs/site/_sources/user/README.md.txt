@@ -1,6 +1,8 @@
 # User documentation
 
-Follow the adoption tutorial to create and configure a project from the skeleton.
+Follow the [adoption tutorial](USAGE.md) to create a project from the skeleton.
+Its [configuration reference](USAGE.md#configuration-reference) explains the
+environment stub, ignore rules, ownership, and contribution forms.
 
 ```{toctree}
 :hidden:

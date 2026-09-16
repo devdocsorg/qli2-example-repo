@@ -23,18 +23,24 @@ to use the skeleton.
 | `main` | Active repository skeleton | Starting point for a new repository | Submit changes here |
 
 This table lists every current branch.
-[BRANCHES.md on main](https://github.com/devdocsorg/qli2-example-repo/blob/main/BRANCHES.md)
-describes branch maintenance.
+[BRANCHES.md](BRANCHES.md) describes branch maintenance.
 
 ## Documentation
 
-Open `docs/site/index.html` directly in a browser for the generated site.
+Open [docs/site/index.html](docs/site/index.html) directly in a browser for the
+generated site. The [documentation guide](docs/README.md) explains where its
+source lives and how to rebuild it.
 
 - [Development setup](docs/source/contributing/DEVELOPMENT.md) — Clone, install the documentation tools, build, and validate locally.
 
 - [Adoption tutorial](docs/source/user/USAGE.md) — Create a repository and make these files specific to it.
 - [Configuration reference](docs/source/user/USAGE.md#configuration-reference) — Understand the skeleton's environment stub, ignore rules, owners, and issue-template fields.
-- [Contributing](CONTRIBUTING.md) — Improve the skeleton and review changes against the checklist.
+
+## Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) to improve the skeleton and review changes
+against the checklist. Follow the [Code of Conduct](CODE_OF_CONDUCT.md) when
+participating.
 
 ## Folders
 

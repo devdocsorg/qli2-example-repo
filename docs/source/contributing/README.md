@@ -1,6 +1,7 @@
 # Contributor documentation
 
-Use these guides to prepare, validate, and submit a change.
+Follow [development setup](DEVELOPMENT.md) to prepare and validate a change, then
+use the [contribution guidelines](CONTRIBUTING.md) to submit it.
 
 ```{toctree}
 :hidden:
