@@ -73,8 +73,8 @@ once. If a nested dependency is needed for the task, show it under its parent.
 Document access prerequisites in contributor setup rather than map labels.
 Reuse the generated view in the docs site and check it under `file://`. Keep the
 source revision and dataset digest in a source comment, not the visible map.
-The skeleton itself is a reusable template, not a Qualcomm software component,
-so it does not invent an ecosystem position or dependency graph.
+The root README includes a minimal example for a Yocto BSP layer. Replace that
+example with the project's generated map during adoption.
 
 Replace this adoption tutorial with a walkthrough of the project's real output,
 including prerequisites, ordered steps, and an observed expected result. Update

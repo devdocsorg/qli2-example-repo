@@ -58,6 +58,20 @@ participating.
 - [.env.example](.env.example) — Reserves the required location for documented, safe environment settings.
 - [.gitignore](.gitignore) — Keeps local environment files out of version control.
 
+## Repository map (example)
+
+A minimal example for a Yocto BSP layer; replace it with your project's relationships.
+
+You are here: **your-layer**.
+
+| Repository | Used for |
+| --- | --- |
+| [openembedded-core](https://github.com/openembedded/openembedded-core) | Required: base OpenEmbedded layer. |
+| [meta-qcom](https://github.com/qualcomm-linux/meta-qcom) | Required: Qualcomm BSP layer. |
+| [meta-qcom-distro](https://github.com/qualcomm-linux/meta-qcom-distro) | Optional: Qualcomm reference distro. |
+
+[Full Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map).
+
 ## Support and licence
 
 For questions or improvements to this skeleton,
