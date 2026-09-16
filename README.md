@@ -1,7 +1,7 @@
 # QLI 2.0 repository skeleton
 
 Starting files for a repository that follows the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/5bce0bf14c4f583cff4a493a8496737bcc5aaca0/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 The scope is repository structure, documentation, and contribution guidance.
 Choose the implementation language and build tools in the project you create.
 
@@ -69,24 +69,20 @@ The skeleton is distributed under the [BSD 3-Clause licence](LICENSE).
 
 ## Repository map (example)
 
-Example for a Yocto BSP layer. Replace this with your repository's generated map.
+Example for boot-assets. Replace with your repository’s generated map during adoption.
 
 ```mermaid
 flowchart LR
-    here["meta-qcom-3rdparty (you are here)"]
-    core["openembedded-core"]
-    bsp["meta-qcom"]
-    distro["meta-qcom-distro"]
-    here -->|"Required: base layer"| core
-    here -->|"Required: Qualcomm BSP"| bsp
-    here -->|"Optional: reference distro"| distro
-    click here href "https://github.com/qualcomm-linux/meta-qcom-3rdparty" _blank
-    click core href "https://github.com/openembedded/openembedded-core" _blank
-    click bsp href "https://github.com/qualcomm-linux/meta-qcom" _blank
-    click distro href "https://github.com/qualcomm-linux/meta-qcom-distro" _blank
-    style here fill:#e6f3ff,stroke:#0969da,stroke-width:3px,color:#182c43
+    r0["boot-assets (you are here)"]
+    click r0 href "https://github.com/rubikpi-ai/boot-assets" _blank
+    r1["meta-qcom-3rdparty"]
+    click r1 href "https://github.com/qualcomm-linux/meta-qcom-3rdparty" _blank
+    r1 -->|"fetches RUBIK Pi boot firmware from"| r0
+    style r0 fill:#e6f3ff,stroke:#0969da,stroke-width:3px,color:#182c43
 ```
 
 [Full Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map).
+
+<!-- Generated from https://github.com/devdocsorg/qualcomm-repository-map at 4b5d5eec666b23eb76e5ecb42d94185f75542d09; dataset SHA-256: cb5079d4a57391600aa45ccbfb03b7d6c7124c4528a2d3976604cb11b8bdf015. -->
 
 <!-- repository-map:end -->
