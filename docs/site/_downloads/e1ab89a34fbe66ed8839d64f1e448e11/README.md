@@ -1,7 +1,7 @@
 # QLI 2.0 repository skeleton
 
 Starting files for a repository that follows the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/6989ddebef04d4ea7b9b67e5b98ca12d130a9bc0/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/e93f3fdc2859c7bf441fb40af8df2b3f360fc3ff/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 The scope is repository structure, documentation, and contribution guidance.
 Choose the implementation language and build tools in the project you create.
 
