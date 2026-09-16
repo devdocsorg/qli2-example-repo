@@ -62,7 +62,7 @@ history. See <a class="reference external" href="https://docs.github.com/en/repo
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference download internal" download="" href="../_downloads/e1ab89a34fbe66ed8839d64f1e448e11/README.md"><code class="xref download docutils literal notranslate"><span class="pre">README.md</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/devdocsorg/qli2-example-repo/blob/main/README.md">README.md</a></p></td>
 <td><p>Project name, purpose, actual first-use steps, support channel, branch table, and file inventory.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference download internal" download="" href="../_downloads/f1df9724e004c17f822af856bb966222/BRANCHES.md"><code class="xref download docutils literal notranslate"><span class="pre">BRANCHES.md</span></code></a></p></td>
@@ -104,7 +104,7 @@ link the output folder and rebuild instructions from its parent’s README.</p>
 comments: purpose, parameter and return types, an example, and relevant failure
 behaviour. Choose the language’s documentation generator, document its command,
 and link the generated reference from the root README. The
-<a class="reference external" href="https://github.com/devdocsorg/qli2-deliverables-portal/blob/c9d0490abed729ad482bb4b916ae08ec85f29b25/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md">function-documentation requirement</a>
+<a class="reference external" href="https://github.com/devdocsorg/qli2-deliverables-portal/blob/5bce0bf14c4f583cff4a493a8496737bcc5aaca0/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md">function-documentation requirement</a>
 provides the format. Function documentation becomes applicable when functions exist.</p>
 <p>For every configuration setting, document its purpose, type, required or optional
 status, behaviour when unset, and a safe value. Use commented
@@ -116,14 +116,16 @@ the documentation toolchain, build the site, and add the project’s language-sp
 reference generator. Keep each procedure in one authoritative page and link to it.</p>
 <p>For a Qualcomm repository, register verified relationships in the
 <a class="reference external" href="https://github.com/devdocsorg/qualcomm-repository-map">shared map</a> and export a
-compact nearby view below the root README’s folder and file indexes. Name the
-current repo once, link its direct dependencies and build inputs, and briefly
-explain what each is for and whether it is required or optional. Keep dependencies
+compact Mermaid view at the bottom of the root README, after all other sections. Name the
+current repo once, make each repository node clickable, and label arrows to briefly
+explain each direct dependency or build input and whether it is required or optional. Keep dependencies
 supplied by those repos, evidence, and CI relationships in the full map, linked
 once. If a nested dependency is needed for the task, show it under its parent.
 Document access prerequisites in contributor setup rather than map labels.
-Reuse the generated view in the docs site and check it under <code class="docutils literal notranslate"><span class="pre">file://</span></code>. Keep the
-source revision and dataset digest in a source comment, not the visible map.
+The map lives only in the root README. Do not add it to Sphinx sources or the
+generated website. Use the shared map exporter to update the marked README block
+directly; Sphinx must not read or write that block. Keep the source revision and
+dataset digest in a source comment, not the visible map.
 The root README includes a minimal example for a Yocto BSP layer. Replace that
 example with the project’s generated map during adoption.</p>
 <p>Replace this adoption tutorial with a walkthrough of the project’s real output,
@@ -136,7 +138,7 @@ the root README’s links and the documentation navigation when doing so.</p>
 and private reports correctly, and contains the required documentation structure.
 Before presenting it as checklist-complete, verify its documented first-use steps,
 reference for any implemented functions, file inventories, and links against the
-<a class="reference external" href="https://github.com/devdocsorg/qli2-deliverables-portal/blob/c9d0490abed729ad482bb4b916ae08ec85f29b25/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md">Required Files Checklist</a>.</p>
+<a class="reference external" href="https://github.com/devdocsorg/qli2-deliverables-portal/blob/5bce0bf14c4f583cff4a493a8496737bcc5aaca0/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md">Required Files Checklist</a>.</p>
 </section>
 <section id="configuration-reference">
 <h2>Configuration reference<a class="headerlink" href="#configuration-reference" title="Link to this heading">¶</a></h2>
