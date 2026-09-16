@@ -1,7 +1,7 @@
 # QLI 2.0 repository skeleton
 
 Starting files for a repository that follows the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/c9d0490abed729ad482bb4b916ae08ec85f29b25/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/5bce0bf14c4f583cff4a493a8496737bcc5aaca0/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
 The scope is repository structure, documentation, and contribution guidance.
 Choose the implementation language and build tools in the project you create.
 
@@ -58,23 +58,35 @@ participating.
 - [.env.example](.env.example) — Reserves the required location for documented, safe environment settings.
 - [.gitignore](.gitignore) — Keeps local environment files out of version control.
 
-## Repository map (example)
-
-A minimal example for a Yocto BSP layer; replace it with your project's relationships.
-
-You are here: **your-layer**.
-
-| Repository | Used for |
-| --- | --- |
-| [openembedded-core](https://github.com/openembedded/openembedded-core) | Required: base OpenEmbedded layer. |
-| [meta-qcom](https://github.com/qualcomm-linux/meta-qcom) | Required: Qualcomm BSP layer. |
-| [meta-qcom-distro](https://github.com/qualcomm-linux/meta-qcom-distro) | Optional: Qualcomm reference distro. |
-
-[Full Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map).
-
 ## Support and licence
 
 For questions or improvements to this skeleton,
 [open an issue](https://github.com/devdocsorg/qli2-example-repo/issues/new/choose).
 Report vulnerabilities through [SECURITY.md](SECURITY.md).
 The skeleton is distributed under the [BSD 3-Clause licence](LICENSE).
+
+<!-- repository-map:start -->
+
+## Repository map (example)
+
+Example for a Yocto BSP layer. Replace this with your repository's generated map.
+
+```mermaid
+flowchart LR
+    here["meta-qcom-3rdparty (you are here)"]
+    core["openembedded-core"]
+    bsp["meta-qcom"]
+    distro["meta-qcom-distro"]
+    here -->|"Required: base layer"| core
+    here -->|"Required: Qualcomm BSP"| bsp
+    here -->|"Optional: reference distro"| distro
+    click here href "https://github.com/qualcomm-linux/meta-qcom-3rdparty" _blank
+    click core href "https://github.com/openembedded/openembedded-core" _blank
+    click bsp href "https://github.com/qualcomm-linux/meta-qcom" _blank
+    click distro href "https://github.com/qualcomm-linux/meta-qcom-distro" _blank
+    style here fill:#e6f3ff,stroke:#0969da,stroke-width:3px,color:#182c43
+```
+
+[Full Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map).
+
+<!-- repository-map:end -->
