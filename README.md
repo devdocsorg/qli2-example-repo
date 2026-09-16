@@ -67,22 +67,23 @@ The skeleton is distributed under the [BSD 3-Clause licence](LICENSE).
 
 <!-- repository-map:start -->
 
-## Repository map (example)
+## Repository map
 
-Example for boot-assets. Replace with your repository’s generated map during adoption.
+<!-- Replace the REPLACE_* fields with verified repositories, links, and connections during adoption. -->
 
 ```mermaid
 flowchart LR
-    r0["boot-assets (you are here)"]
-    click r0 href "https://github.com/rubikpi-ai/boot-assets" _blank
-    r1["meta-qcom-3rdparty"]
-    click r1 href "https://github.com/qualcomm-linux/meta-qcom-3rdparty" _blank
-    r1 -->|"fetches RUBIK Pi boot firmware from"| r0
+    r0["REPLACE_REPO (you are here)"]
+    click r0 href "https://github.com/REPLACE_ORG/REPLACE_REPO" _blank
+    r1["REPLACE_PROVIDER_REPO"]
+    click r1 href "https://github.com/REPLACE_PROVIDER_ORG/REPLACE_PROVIDER_REPO" _blank
+    r2["REPLACE_CONSUMER_REPO"]
+    click r2 href "https://github.com/REPLACE_CONSUMER_ORG/REPLACE_CONSUMER_REPO" _blank
+    r0 -->|"uses REPLACE_INPUT from"| r1
+    r2 -->|"uses REPLACE_OUTPUT from"| r0
     style r0 fill:#e6f3ff,stroke:#0969da,stroke-width:3px,color:#182c43
 ```
 
 [Full Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map).
-
-<!-- Generated from https://github.com/devdocsorg/qualcomm-repository-map at 4b5d5eec666b23eb76e5ecb42d94185f75542d09; dataset SHA-256: cb5079d4a57391600aa45ccbfb03b7d6c7124c4528a2d3976604cb11b8bdf015. -->
 
 <!-- repository-map:end -->
