@@ -30,7 +30,7 @@ history. See [GitHub's template instructions](https://docs.github.com/en/reposit
 | [LICENSE](../../../LICENSE) | The project's approved licence, retaining notices required for material you reuse. |
 | [Issue templates](https://github.com/devdocsorg/qli2-example-repo/tree/main/.github/ISSUE_TEMPLATE) and {download}`PR template <../../../.github/PULL_REQUEST_TEMPLATE/pr_template.md>` | Questions suited to the project and links to its contribution and security policies. |
 
-Search the copied files for `qli2-example-repo`, `DevDocs`, `devdocsorg`, and
+Search the copied files for `REPLACE_`, `qli2-example-repo`, `DevDocs`, `devdocsorg`, and
 `devdocs.work`. Update project identity, contribution links, owner teams, and
 reporting contacts to their real destinations. Preserve applicable source
 attribution and licence notices. Keep `template=pr_template.md` in the contribution
@@ -79,9 +79,11 @@ is needed for updates. Standalone automation diagrams and their text can be
 omitted; build tools and component connections must remain.
 
 The map lives only in the root README. Sphinx must not read, copy, or write it.
-The root README includes a small, generated example for boot-assets, showing its
-incoming connection. Replace the example with the project's generated map during
-adoption.
+The root README provides a map block with `REPLACE_*` fields for the new repository,
+a repository that supplies an input, and one that uses its output. Replace the
+names, links, and connection labels with the project's verified relationships;
+remove inapplicable placeholders and include all recorded neighbours. Export the
+completed map from the shared dataset during adoption.
 
 Replace this adoption tutorial with a walkthrough of the project's real output,
 including prerequisites, ordered steps, and an observed expected result. Update
