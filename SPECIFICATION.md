@@ -25,6 +25,38 @@ known repository connections. This specification does not require changing produ
 behaviour, building an entire OS image for a documentation change, introducing
 another documentation framework, or publishing a website.
 
+## Reference implementation
+
+The established upgrade is [meta-qcom-3rdparty PR #5](https://github.com/devdocsorg/meta-qcom-3rdparty/pull/5),
+recorded at [e83b032](https://github.com/devdocsorg/meta-qcom-3rdparty/tree/e83b032257bd917ddeb4b2e7e40d5b12aa98f1ca)
+against upstream `8927b428bcaea0c47186beeb9d9446061c785e9c`.
+This specification captures that approach. Read its actual files and diff when
+implementing or testing an upgrade; checklist compliance alone is insufficient.
+
+Reuse the established structure and working implementation wherever the target
+repository permits. Adapt repository facts, existing content, languages, source
+paths, and relationships. A different implementation requires a concrete target
+requirement or verified defect; stylistic preference and a passing build are not
+reasons to replace working files, tools, or procedures.
+
+| Area | Established approach |
+| --- | --- |
+| Content and navigation | Preserve existing prose and headings. Move contributor/agent guides into `docs/source/contributing/` with root pointers; retain the `skills/ALL_SKILLS_IN_DOCS_FOLDER.md` discovery pointer and its folder index. Use the existing tutorial and configuration pages instead of creating overlapping topic pages. |
+| Policies and templates | Preserve approved policy text and ownership. Use the required discovery filenames and `pr_template.md` with its matching contribution link. Reuse the working templates and folder-index format; aliases or renamed templates need an actual compatibility reason. |
+| Site build | Reuse `docs/source/Makefile`, the dependency declarations/lock, Sphinx/MyST configuration, entry template, offline check, finalisation script, and documentation workflow. Keep the shared `setup`, `html`, `browser`, and `check` commands and the generated output layout. |
+| Native reference | For the reference layer's shell functions and BitBake shell tasks, use pinned shdoc through `docs/source/conf.py`, `.generated/<source-path-with-slashes-replaced-by-hyphens>.md`, and the contributor README's reference toctree. Reuse `.github/test_reference_coverage.py`. Configure another native extractor when the target actually has definitions needing it; do not add a second parser or rewrite tooling merely to create another reference system. |
+| Links and bundled files | Preserve working links and existing download choices. Repair broken destinations and link relevant README sections. Adding a download copy needs a documented offline use; do not turn every source-path mention into a bundled attachment. Generated files must follow an independently justified source change. |
+| Map | Reuse the shared map exporter and final README block. Repository facts can change after source review; the map remains independent of Sphinx. |
+
+When reproducing an upgrade on the same repository and base, compare the candidate
+with this recorded reference. File placement, authored content, tooling, tool
+versions, configuration, and generated page/download structure should match except
+for individually explained requirement or defect corrections. Account for added,
+removed, renamed, and changed files, including derived output. A similar file count
+does not establish a match. For a different repository, record the actual differences
+that require adaptation. Never change the specification merely to legitimise an
+unexplained result from a skill test.
+
 ## Required files checklist
 
 The table below copies the complete required-files checklist from the
@@ -234,6 +266,7 @@ Record justified inapplicability explicitly; do not report an unrun check as pas
 
 | Check | Required evidence |
 | --- | --- |
+| Reference fidelity | Compare against the recorded implementation separately from functional tests. Explain every substantive difference by a target fact, stated requirement, or verified defect; trace generated differences to those source changes. Same-input tests retain the established approach. Unexplained differences fail the test and require correcting the skill or missing specification guidance. |
 | Preservation and scope | Compare original content with named final homes; retain policies, notices, routing, and build behaviour. Review moves/deletions and meaningful source changes. |
 | Scaffolding and links | Account for every checklist row, folder index, actual branch, policy/default, and placeholder. Resolve local links and anchors and verify intended external owners/destinations. |
 | Contributor and user paths | Exercise documented setup and applicable first-use/check commands, with observable results. Distinguish metadata/build checks from full image or hardware testing. |
@@ -246,4 +279,4 @@ Record justified inapplicability explicitly; do not report an unrun check as pas
 
 The [skeleton adoption tutorial](docs/source/user/USAGE.md) provides the working procedure. The
 [meta-qcom-3rdparty proposal](https://github.com/devdocsorg/meta-qcom-3rdparty/pull/5)
-is an implementation reference, not a second specification.
+provides the established implementation linked above; requirements remain in this file.
