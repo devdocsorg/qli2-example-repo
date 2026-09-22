@@ -14,6 +14,9 @@ Other repositories, portal pages, skills, and PRs must link here instead of copy
 it. A repository created from the template must remove its copied
 `SPECIFICATION.md` and retain a link to this canonical version. Record the spec
 commit used in the upgrade PR so the result can be reviewed against a fixed version.
+Requirements describe the adopted repository. A review proposal uses working links
+to its proposed files; it does not link to files that do not yet exist on `main` or
+change another branch merely to satisfy their eventual placement.
 
 Keep the implementation small: reuse working documentation and tools, add only
 applicable scaffolding, and give each subject and command one maintained home.
