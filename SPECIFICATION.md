@@ -6,7 +6,10 @@ This is the canonical specification for upgrading Qualcomm implementation
 repositories and adopting this skeleton. It defines the minimum useful result:
 readers can understand, use, and contribute to a repository, browse its generated
 documentation locally, and understand its place in the Qualcomm ecosystem.
-**Must** identifies an acceptance requirement; examples illustrate implementations.
+The checklist and acceptance criteria below are mandatory. Conditional requirements,
+such as native extraction for a language, apply when the repository contains that
+language. Reusable template placeholders must be replaced with verified project
+facts when adopted.
 
 Maintain this file only in
 [the skeleton repository](https://github.com/devdocsorg/qli2-example-repo/blob/main/SPECIFICATION.md).
@@ -25,63 +28,30 @@ known repository connections. This specification does not require changing produ
 behaviour, building an entire OS image for a documentation change, introducing
 another documentation framework, or publishing a website.
 
-## Reference implementation
-
-The established upgrade is [meta-qcom-3rdparty PR #5](https://github.com/devdocsorg/meta-qcom-3rdparty/pull/5),
-recorded at [e83b032](https://github.com/devdocsorg/meta-qcom-3rdparty/tree/e83b032257bd917ddeb4b2e7e40d5b12aa98f1ca)
-against upstream `8927b428bcaea0c47186beeb9d9446061c785e9c`.
-This specification captures that approach. Read its actual files and diff when
-implementing or testing an upgrade; checklist compliance alone is insufficient.
-
-Reuse the established structure and working implementation wherever the target
-repository permits. Adapt repository facts, existing content, languages, source
-paths, and relationships. A different implementation requires a concrete target
-requirement or verified defect; stylistic preference and a passing build are not
-reasons to replace working files, tools, or procedures.
-
-| Area | Established approach |
-| --- | --- |
-| Content and navigation | Preserve existing prose and headings. Move contributor/agent guides into `docs/source/contributing/` with root pointers; retain the `skills/ALL_SKILLS_IN_DOCS_FOLDER.md` discovery pointer and its folder index. Use the existing tutorial and configuration pages instead of creating overlapping topic pages. |
-| Policies and templates | Preserve approved policy text and ownership. Use the required discovery filenames and `pr_template.md` with its matching contribution link. Reuse the working templates and folder-index format; aliases or renamed templates need an actual compatibility reason. |
-| Site build | Reuse `docs/source/Makefile`, the dependency declarations/lock, Sphinx/MyST configuration, entry template, offline check, finalisation script, and documentation workflow. Keep the shared `setup`, `html`, `browser`, and `check` commands and the generated output layout. |
-| Native reference | For the reference layer's shell functions and BitBake shell tasks, use pinned shdoc through `docs/source/conf.py`, `.generated/<source-path-with-slashes-replaced-by-hyphens>.md`, and the contributor README's reference toctree. Reuse `.github/test_reference_coverage.py`. Configure another native extractor when the target actually has definitions needing it; do not add a second parser or rewrite tooling merely to create another reference system. |
-| Links and bundled files | Preserve working links and existing download choices. Repair broken destinations and link relevant README sections. Adding a download copy needs a documented offline use; do not turn every source-path mention into a bundled attachment. Generated files must follow an independently justified source change. |
-| Map | Reuse the shared map exporter and final README block. Repository facts can change after source review; the map remains independent of Sphinx. |
-
-When reproducing an upgrade on the same repository and base, compare the candidate
-with this recorded reference. File placement, authored content, tooling, tool
-versions, configuration, and generated page/download structure should match except
-for individually explained requirement or defect corrections. Account for added,
-removed, renamed, and changed files, including derived output. A similar file count
-does not establish a match. For a different repository, record the actual differences
-that require adaptation. Never change the specification merely to legitimise an
-unexplained result from a skill test.
-
 ## Required files checklist
 
-The table below copies the complete required-files checklist from the
-[Required Files Checklist in the deliverables portal](https://qli2-deliverables-portal.vercel.app/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist/).
-Its [source revision](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md)
-identifies the incorporated text. Template links are examples; the requirements
-are maintained here.
+Every repository must satisfy the following checklist. The sections below define
+placement, behaviour, and validation. An applicable, verified organisation default
+may supply the policy or template content described under
+[Organisation defaults and upstream projects](#organisation-defaults-and-upstream-projects).
 
 | Required File | Purpose and required content |
 | --- | --- |
-| [Overall README](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/readme.md) | Introduce the repository: its purpose, first build or run step, and support channel. Explain **every branch**, including its purpose, status, and whether to build from it or send contributions to it. Link to `BRANCHES.md` on `main`, reference documentation and tutorial. Include the root folder's index in Folders and Files sections, linking every root item with a one-sentence purpose. |
-| [Folder index in `README.md`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/folder-readme.md) in every eligible folder | Describe the folder and include its index in Folders and Files sections. Link to every immediate file and subfolder and explain its purpose in one sentence. Update the index when contents change. At the root, include it in the project README. Folders prefixed with `.`, such as `.github/`, and their descendants take no README; list the hidden folder in its parent's README instead. |
-| [`BRANCHES.md`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/branches.md) on `main` | List each long-lived branch, why it exists, and whether it is intended to merge back into `main` or be maintained separately. Link to `BRANCHES.md` from the README. |
-| [Function documentation](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md) | Document each function using the language's standard documentation-comment format, such as JSDoc for JavaScript. Give the function's purpose in one sentence, the relevant parameter and return types, and an example. Install and configure the language-specific extractor and its runtime, then generate a browsable reference from these comments. Pin the toolchain, include internal functions, and make local/CI validation fail on missing documentation or missing reference entries. A prose-only site build does not satisfy this requirement. |
-| [Locally browsable documentation site](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/documentation-site.md) | Keep authoritative source and generated output separate. A reader must be able to open the generated `index.html` directly and navigate the site without a local HTTP server. Bundle assets and any search functionality; validate a copied site under `file://` with networking disabled. |
-| [Repository ecosystem map and nearby view](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/repository-map.md) | Maintain the full Qualcomm ecosystem Mermaid map in a dedicated private repository's README. At the bottom of each implementation repository's root README, show a Mermaid view with clickable nodes covering every recorded incoming, outgoing, optional, and indirect build/component relationship. Omit standalone automation diagrams and their corresponding text; automation connections may remain in mixed component diagrams. Draw indirect paths through their actual intermediates and use plain-language connection verbs. Audit source references against the dataset; concise presentation must not omit known connections. Keep detailed evidence centrally and link to it once. Record export provenance in metadata. Keep maps out of Sphinx sources and generated websites. |
-| [Configuration documentation](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/configuration.md) | Document each configuration line with its purpose, type, optional/default behaviour, and a safe example value. Include a commented `.env.example`. Use an adjacent documented schema or example for formats that do not support comments. |
+| Overall README | Introduce the repository: its purpose, first build or run step, and support channel. Explain **every branch**, including its purpose, status, and whether to build from it or send contributions to it. Link to `BRANCHES.md` on `main`, reference documentation and tutorial. Include the root folder's index in Folders and Files sections, linking every root item with a one-sentence purpose. |
+| Folder index in `README.md` in every eligible folder | Describe the folder and include its index in Folders and Files sections. Link to every immediate file and subfolder and explain its purpose in one sentence. Update the index when contents change. At the root, include it in the project README. Folders prefixed with `.`, such as `.github/`, and their descendants take no README; list the hidden folder in its parent's README instead. |
+| `BRANCHES.md` on `main` | List each long-lived branch, why it exists, and whether it is intended to merge back into `main` or be maintained separately. Link to `BRANCHES.md` from the README. |
+| Function documentation | Document each function using the language's standard documentation-comment format, such as JSDoc for JavaScript. Give the function's purpose in one sentence, the relevant parameter and return types, and an example. Install and configure the language-specific extractor and its runtime, then generate a browsable reference from these comments. Pin the toolchain, include internal functions, and make local/CI validation fail on missing documentation or missing reference entries. A prose-only site build does not satisfy this requirement. |
+| Locally browsable documentation site | Keep authoritative source and generated output separate. A reader must be able to open the generated `index.html` directly and navigate the site without a local HTTP server. Bundle assets and any search functionality; validate a copied site under `file://` with networking disabled. |
+| Repository ecosystem map and nearby view | Maintain the full Qualcomm ecosystem Mermaid map in a dedicated private repository's README. At the bottom of each implementation repository's root README, show a Mermaid view with clickable nodes covering every recorded incoming, outgoing, optional, and indirect build/component relationship. Omit standalone automation diagrams and their corresponding text; automation connections may remain in mixed component diagrams. Draw indirect paths through their actual intermediates and use plain-language connection verbs. Audit source references against the dataset; concise presentation must not omit known connections. Keep detailed evidence centrally and link to it once. Record export provenance in metadata. Keep maps out of Sphinx sources and generated websites. |
+| Configuration documentation | Document each configuration line with its purpose, type, optional/default behaviour, and a safe example value. Include a commented `.env.example`. Use an adjacent documented schema or example for formats that do not support comments. |
 | **At least one usage tutorial per repository** | Show how to use the repository's output, with prerequisites, ordered steps, and an expected result. The tutorial can live in the product's technical documentation or the repository. |
-| [`LICENSE`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/license.md) | Give readers the project's approved licence text. Keep the file at the repository root. |
-| [`CODEOWNERS`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/codeowners.md) | Identify who reviews documentation changes. Assign the appropriate maintainers to documentation paths. |
-| [`CONTRIBUTING.md`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/contributing.md) | Explain how to contribute and where contributions should be submitted. Link a concrete development-environment walkthrough in the contributor area: checkout, prerequisites and versions, dependency and documentation-tool installation, configuration, build/check commands, and observable expected results. |
-| [`CODE_OF_CONDUCT.md`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/code-of-conduct.md) | State the expected behaviour for participants and how to report conduct concerns. |
-| [`SECURITY.md`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/security.md) | Give readers a private route for reporting vulnerabilities. |
-| [`.github/ISSUE_TEMPLATE/`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/issue-templates.md) | Ask issue reporters for the information maintainers need to understand the problem or request. |
-| [`.github/PULL_REQUEST_TEMPLATE/`](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/pull-request-templates.md) | Provide pull request templates that ask contributors for the information needed to review a change. Use a pull request creation link with the `template` URL parameter to select the appropriate file. |
+| `LICENSE` | Give readers the project's approved licence text. Keep the file at the repository root. |
+| `CODEOWNERS` | Identify who reviews documentation changes. Assign the appropriate maintainers to documentation paths. |
+| `CONTRIBUTING.md` | Explain how to contribute and where contributions should be submitted. Link a concrete development-environment walkthrough in the contributor area: checkout, prerequisites and versions, dependency and documentation-tool installation, configuration, build/check commands, and observable expected results. |
+| `CODE_OF_CONDUCT.md` | State the expected behaviour for participants and how to report conduct concerns. |
+| `SECURITY.md` | Give readers a private route for reporting vulnerabilities. |
+| `.github/ISSUE_TEMPLATE/` | Ask issue reporters for the information maintainers need to understand the problem or request. |
+| `.github/PULL_REQUEST_TEMPLATE/` | Provide pull request templates that ask contributors for the information needed to review a change. Use a pull request creation link with the `template` URL parameter to select the appropriate file. |
 
 Verify that contacts, reporting forms, owner teams, and contribution destinations
 belong to the actual project. Template placeholders are valid in the reusable
@@ -98,15 +68,20 @@ revision; an added-file list alone does not demonstrate preservation.
 Preserve existing titles and unaffected wording; move content and repair links
 without unrelated cosmetic rewrites.
 
-Use this layout unless an established, better-maintained documentation home
-already serves the project:
+Use the following layout. Retain an established documentation home when it already
+provides a maintained site and a reproducible build that satisfies these requirements;
+record the corresponding paths and ownership instead of creating a competing home.
 
 | Home | Responsibility |
 | --- | --- |
 | Root `README.md` | Project orientation, first use, navigation, folder/file indexes, and the nearby map. |
 | `docs/source/` | Authoritative documentation and its build configuration. |
-| `docs/source/contributing/` | Contributor setup, contribution procedures, agent instructions, skills, and implementation reference navigation. |
-| `docs/source/user/` | Use of the project's output, configuration, and user tutorials. A developer-only tutorial may live with contributor guidance. |
+| `docs/source/contributing/CONTRIBUTING.md` | Authoritative contribution procedure, linked from root `CONTRIBUTING.md`. |
+| `docs/source/contributing/DEVELOPMENT.md` | Concrete development-environment setup and shared build/check commands. |
+| `docs/source/contributing/AGENTS.md` and `skills/` | Existing agent guidance and project skills, with discovery pointers at their required entry paths. |
+| `docs/source/contributing/README.md` | Contributor navigation and the generated function-reference toctree. |
+| `docs/source/user/USAGE.md` | Tutorial for using the project's output. A developer-only tutorial may use `docs/source/contributing/USAGE.md`. |
+| `docs/source/user/CONFIGURATION.md` | Configuration reference when the maintained settings need a separate page. Inline documentation or an existing complete reference can serve this responsibility. |
 | `docs/site/` | Generated Sphinx HTML and bundled assets, committed with their sources. |
 | Required discovery/policy paths | Root governance files, `.github` templates/owners, and concise contribution/agent/skill pointers. |
 
@@ -116,10 +91,15 @@ machine support to its folder, licence text to `LICENSE`, and so on. A path show
 only as code is not a navigation link. Do not duplicate a folder index in `INDEX.md`
 or maintain a second API manual beside generated reference pages.
 
-Keep useful existing documentation sites and native reference sites when they are
-the better home. Link them and document ownership plus the reproducible build or
-export route; do not create a competing site. Generated HTML, API pages, and README
-map blocks are derived artifacts, not separate authored responsibilities.
+Move existing contributor and agent guides without changing their titles or
+unaffected text. Preserve required discovery paths as concise links. When moving
+existing root skill documentation, use `skills/ALL_SKILLS_IN_DOCS_FOLDER.md` as a
+pointer to its contributor home. Keep the skills folder's README index.
+
+Use the existing tutorial and configuration home before adding a page. Each new
+authored file must supply a required discovery path or content that has no suitable
+existing home. Aliases need a concrete compatibility requirement. Generated HTML,
+API pages, and README map blocks derive from their maintained sources.
 
 ### Folder and branch navigation
 
@@ -144,6 +124,13 @@ not present in a clone. Local versions override inherited defaults. Keep root
 licence content and valid documentation ownership. Preserve upstream routes for
 mirrors and forks; review-only work in a fork does not transfer project ownership.
 
+Preserve approved policy text when adopting the required filenames. Retain working
+issue and PR templates. When adding templates, use `bug_report.md` and
+`feature_request.md` under `.github/ISSUE_TEMPLATE/`, and `pr_template.md` under
+`.github/PULL_REQUEST_TEMPLATE/`. The contribution link must select the actual PR
+template filename using the `template` parameter. A filename change alone does
+not justify rewriting a template or maintaining a duplicate policy.
+
 ## Documentation and contributor setup
 
 Use Sphinx for the scaffolded site, with source and output kept separate. The
@@ -153,10 +140,42 @@ configuration, build/check commands, and observable expected results. Link exist
 project build procedures instead of rewriting them. Include at least one ordered
 usage tutorial for the actual repository output; setup alone is not a user tutorial.
 
-Use one executable build/check entry point locally and in CI. Pin documentation
-tools and dependencies, remove stale output during regeneration, retain third-party
-asset notices, and commit regenerated output with source changes. Do not hand-edit
-HTML or introduce duplicate local/CI command implementations.
+### Build layout and commands
+
+The scaffolded site uses Sphinx with MyST Markdown and the following build layout.
+Adapt project metadata, source paths, languages, and search checks to the target.
+Pin documentation runtimes, extractors, and dependencies. Retain compatible build
+files and pins; replace tools or add wrappers only to satisfy a concrete target
+requirement or correct a verified defect.
+
+| Path | Responsibility |
+| --- | --- |
+| `docs/source/README.md` | Authored site homepage and documentation navigation. The root project README remains outside the Sphinx source tree. |
+| `docs/source/conf.py` | Sphinx/MyST settings and applicable native-extraction integration. |
+| `docs/source/requirements.txt` and `requirements.lock` | Declared Python documentation dependencies and their pinned resolved versions. |
+| `docs/source/Makefile` | The shared local and CI entry point. |
+| `docs/source/.templates/index.html` | Generated-site entry template leading to the homepage. |
+| `.github/finalise_site.py` | Deterministic output finalisation and bundled third-party asset notices. |
+| `.github/check_offline.py` | Copied-site browser validation without networking. |
+| `.github/workflows/documentation.yml` | CI invocation of the shared setup/check commands. |
+
+Run `make -f docs/source/Makefile <target>` from the repository root. `setup`
+installs the locked documentation dependencies and applicable pinned extractors in
+a local environment; `html` clears stale output and builds `docs/site/` with
+warnings treated as errors; `browser` installs a user-local test browser when
+needed; `check` regenerates the site, checks applicable reference coverage and
+offline behaviour, and rejects changed or untracked generated output.
+
+CI and contributor instructions must use these same executable targets. Keep caches,
+installed tools, and intermediate reference files out of the committed site. Commit
+regenerated output with source changes. Do not hand-edit HTML or maintain separate
+local and CI command implementations.
+
+Preserve working links and intentional download attachments. Bundle a source file
+only when readers need its contents offline, such as a configuration example used
+by a tutorial. A source-path mention alone does not require a download copy. Each
+generated page or attachment must derive from a required authored page, a native
+reference, or an identified offline use.
 
 ### Direct-file browsing
 
@@ -169,8 +188,10 @@ links to their authoritative online homes.
 
 The generated `index.html` may redirect locally to a homepage produced from
 `README.md`, with a visible fallback link. That entry point is generated navigation,
-not a second authored folder index. For the skeleton's Sphinx setup, disabling
-search excerpts avoids fetching local pages while retaining searchable titles.
+not a second authored folder index. Set `root_doc = "README"` and generate the
+entry through `html_additional_pages`. Set `html_show_search_summary = False` to
+keep Sphinx search from fetching local pages for excerpts; searchable titles and
+links must remain usable.
 
 ### Native function reference
 
@@ -182,9 +203,19 @@ contributor setup, pin them, generate reference entries, and link those entries
 from the documentation. Sphinx/MyST rendering prose is not native extraction.
 
 Examples include TypeDoc/JSDoc, Python autodoc, Doxygen, rustdoc, Javadoc, and shdoc.
-Choose only tools applicable to the repository. Shell tasks and Python definitions
-in BitBake need appropriate handling; calls to upstream functions are not local
-definitions. Extraction must not execute build tasks or unsafe module side effects.
+Choose only tools applicable to the repository. For shell functions and BitBake
+shell tasks, use pinned shdoc from the Sphinx configuration. Generate one Markdown
+reference per source file under `docs/source/contributing/.generated/`, naming it
+from the repository-relative source path with slashes replaced by hyphens and
+`.md` appended. Link those pages through the contributor README's toctree. This
+intermediate directory is ignored and regenerated; its HTML belongs in the site.
+Use `.github/test_reference_coverage.py` for coverage regression checks.
+
+Configure native extraction for Python definitions in BitBake or other languages
+when those definitions exist. Calls to upstream functions are not local definitions.
+Extraction must not execute build tasks or unsafe module side effects. Reuse an
+appropriate existing extractor or parser; add custom parsing only where the actual
+source syntax cannot be covered by the configured tools.
 
 Compare an independently discovered function inventory with the extracted entries;
 check both missing comments and missing output. Unsupported definitions must fail
@@ -263,10 +294,12 @@ repositories replace these with verified facts rather than a fictional identity.
 An upgrade is complete when the applicable checks below pass and its PR records
 the base revision, specification revision, changes, results, and any real limits.
 Record justified inapplicability explicitly; do not report an unrun check as passed.
+Structural review and functional checks are both required: a successful site build
+does not establish content preservation, correct file placement, or minimal scope.
 
 | Check | Required evidence |
 | --- | --- |
-| Reference fidelity | Compare against the recorded implementation separately from functional tests. Explain every substantive difference by a target fact, stated requirement, or verified defect; trace generated differences to those source changes. Same-input tests retain the established approach. Unexplained differences fail the test and require correcting the skill or missing specification guidance. |
+| Structure and minimal scope | Review every added, removed, renamed, or changed path against the checklist and layout above. Give each authored page one responsibility; justify added tools, changed pins, and alternate homes by an actual target need or verified defect. Trace generated pages and downloads to their source changes. Unexplained additions or duplicate responsibilities fail acceptance. |
 | Preservation and scope | Compare original content with named final homes; retain policies, notices, routing, and build behaviour. Review moves/deletions and meaningful source changes. |
 | Scaffolding and links | Account for every checklist row, folder index, actual branch, policy/default, and placeholder. Resolve local links and anchors and verify intended external owners/destinations. |
 | Contributor and user paths | Exercise documented setup and applicable first-use/check commands, with observable results. Distinguish metadata/build checks from full image or hardware testing. |
@@ -275,8 +308,4 @@ Record justified inapplicability explicitly; do not report an unrun check as pas
 | Offline browser | Copy only the generated site outside the checkout; open `index.html` in a headless browser with networking disabled. Check navigation, anchors, assets, search when present, browser errors, and network requests. A hosted preview alone is insufficient. |
 | Nearby map | Reproduce from its recorded central commit/digest; independently check all incident component relations and indirect paths, source-audit coverage, Mermaid rendering, node links, final README placement, and absence from Sphinx sources/output. |
 | Map regressions | Shared checks reject missing incoming, build-tool, optional, and indirect connections, invented edges, and unlinked nodes. A new neighbour appears without an allowlist change. Omitted standalone automation presentation preserves component coverage and retained mixed diagrams. Reuse these checks during recipient updates. |
-| Repository checks | Run applicable existing repository/CI checks and report hosted checks separately from local results. Complete test upgrades remain unmerged, reviewable PRs in the authorised fork. |
-
-The [skeleton adoption tutorial](docs/source/user/USAGE.md) provides the working procedure. The
-[meta-qcom-3rdparty proposal](https://github.com/devdocsorg/meta-qcom-3rdparty/pull/5)
-provides the established implementation linked above; requirements remain in this file.
+| Repository checks | Run applicable existing repository/CI checks and report hosted checks separately from local results. Report any checks that could not run and their concrete limits. |
