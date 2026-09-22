@@ -1,7 +1,7 @@
 # QLI 2.0 repository skeleton
 
 Starting files for a repository that follows the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[repository documentation specification](SPECIFICATION.md).
 The scope is repository structure, documentation, and contribution guidance.
 Choose the implementation language and build tools in the project you create.
 
@@ -31,6 +31,7 @@ Open [docs/site/index.html](docs/site/index.html) directly in a browser for the
 generated site. The [documentation guide](docs/README.md) explains where its
 source lives and how to rebuild it.
 
+
 - [Development setup](docs/source/contributing/DEVELOPMENT.md) — Clone, install the documentation tools, build, and validate locally.
 
 - [Adoption tutorial](docs/source/user/USAGE.md) — Create a repository and make these files specific to it.
@@ -49,6 +50,7 @@ participating.
 
 ## Files
 
+- [SPECIFICATION.md](SPECIFICATION.md) — Defines the canonical requirements, copied checklist, and acceptance checks.
 - [README.md](README.md) — Introduces the skeleton, its branches, and its contents.
 - [BRANCHES.md](BRANCHES.md) — Describes the purpose and maintenance of each long-lived branch.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — Explains contribution routing and review expectations.
