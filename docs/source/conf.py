@@ -1,3 +1,4 @@
+# Copyright (c) 2026 DevDocs
 # SPDX-License-Identifier: BSD-3-Clause
 """Configure the skeleton's Markdown site for hosted and direct-file browsing."""
 
