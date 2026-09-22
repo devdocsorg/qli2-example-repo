@@ -79,8 +79,7 @@ sources centrally and link once to the full map.
 Follow the [map update and validation procedure](https://github.com/devdocsorg/qualcomm-repository-map/blob/main/data/README.md):
 audit build references and included configurations, run the source and coverage
 checks, and export directly into the marked README block. Record the source
-revision and digest in a source comment. Access to the private shared repository
-is needed for updates. Standalone automation diagrams and their text can be
+revision and digest in a source comment. Standalone automation diagrams and their text can be
 omitted; build tools and component connections must remain.
 
 The map lives only in the root README. Sphinx must not read, copy, or write it.

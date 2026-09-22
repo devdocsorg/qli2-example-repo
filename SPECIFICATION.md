@@ -42,7 +42,7 @@ may supply the policy or template content described under
 | `BRANCHES.md` on `main` | List each long-lived branch, why it exists, and whether it is intended to merge back into `main` or be maintained separately. Link to `BRANCHES.md` from the README. |
 | Function documentation | Document each function using the language's standard documentation-comment format, such as JSDoc for JavaScript. Give the function's purpose in one sentence, the relevant parameter and return types, and an example. Install and configure the language-specific extractor and its runtime, then generate a browsable reference from these comments. Pin the toolchain, include internal functions, and make local/CI validation fail on missing documentation or missing reference entries. A prose-only site build does not satisfy this requirement. |
 | Locally browsable documentation site | Keep authoritative source and generated output separate. A reader must be able to open the generated `index.html` directly and navigate the site without a local HTTP server. Bundle assets and any search functionality; validate a copied site under `file://` with networking disabled. |
-| Repository ecosystem map and nearby view | Maintain the full Qualcomm ecosystem Mermaid map in a dedicated private repository's README. At the bottom of each implementation repository's root README, show a Mermaid view with clickable nodes covering every recorded incoming, outgoing, optional, and indirect build/component relationship. Omit standalone automation diagrams and their corresponding text; automation connections may remain in mixed component diagrams. Draw indirect paths through their actual intermediates and use plain-language connection verbs. Audit source references against the dataset; concise presentation must not omit known connections. Keep detailed evidence centrally and link to it once. Record export provenance in metadata. Keep maps out of Sphinx sources and generated websites. |
+| Repository ecosystem map and nearby view | Maintain the full Qualcomm ecosystem Mermaid map in a dedicated repository's README. At the bottom of each implementation repository's root README, show a Mermaid view with clickable nodes covering every recorded incoming, outgoing, optional, and indirect build/component relationship. Omit standalone automation diagrams and their corresponding text; automation connections may remain in mixed component diagrams. Draw indirect paths through their actual intermediates and use plain-language connection verbs. Audit source references against the dataset; concise presentation must not omit known connections. Keep detailed evidence centrally and link to it once. Record export provenance in metadata. Keep maps out of Sphinx sources and generated websites. |
 | Configuration documentation | Document each configuration line with its purpose, type, optional/default behaviour, and a safe example value. Include a commented `.env.example`. Use an adjacent documented schema or example for formats that do not support comments. |
 | **At least one usage tutorial per repository** | Show how to use the repository's output, with prerequisites, ordered steps, and an expected result. The tutorial can live in the product's technical documentation or the repository. |
 | `LICENSE` | Give readers the project's approved licence text. Keep the file at the repository root. |
@@ -237,7 +237,7 @@ configuration and secrets handling rather than inventing new runtime controls.
 ### Shared ecosystem map
 
 The [Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map)
-is a private, map-only repository covering Qualcomm repositories and relevant
+is a map-only repository covering Qualcomm repositories and relevant
 external/upstream neighbours. It owns one dataset of repository identities,
 relationships, applicability, and evidence. It is not limited to QLI deliverables.
 Identify its maintainer and update route; do not apply the implementation-site
@@ -262,7 +262,7 @@ Each implementation repository's local map is the final section of its root
 `README.md`, after the file/folder indexes and all other sections. Generate it from
 the shared dataset into a marked block, preserving surrounding authored content.
 Use clickable Mermaid nodes, highlight the current repository, and link once to
-the full map. Do not add a “(private)” suffix to that link.
+the full map.
 
 Include every recorded build/component connection touching the current repository,
 in both directions, including optional integrations, consumers, build tools, and
