@@ -68,6 +68,10 @@ revision; an added-file list alone does not demonstrate preservation.
 Account for symlinks as links, recording their targets and the content they expose.
 Preserve existing titles and unaffected wording; move content and repair links
 without unrelated cosmetic rewrites.
+Retain the copyright notices, licence conditions, and disclaimers for reused
+material, including scaffold tools. An SPDX identifier alone does not replace a
+required full notice. Keep the project's approved licence unchanged and retain
+applicable imported-source notices in one linked home.
 
 Use the following layout. Retain an established documentation home when it already
 provides a maintained site and a reproducible build that satisfies these requirements;
