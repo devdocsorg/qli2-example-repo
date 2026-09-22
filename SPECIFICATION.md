@@ -65,6 +65,7 @@ item in the upgrade's review record: retained, moved with links repaired, or
 consolidated into a named authoritative home. Preserve meaning, useful detail,
 licence notices, and correct contribution routing. Compare against the base
 revision; an added-file list alone does not demonstrate preservation.
+Account for symlinks as links, recording their targets and the content they expose.
 Preserve existing titles and unaffected wording; move content and repair links
 without unrelated cosmetic rewrites.
 
@@ -123,6 +124,9 @@ Record the owning link and applicable default in the review; inherited files are
 not present in a clone. Local versions override inherited defaults. Keep root
 licence content and valid documentation ownership. Preserve upstream routes for
 mirrors and forks; review-only work in a fork does not transfer project ownership.
+An existing `CODEOWNERS` wildcard that assigns the correct reviewers already covers
+new documentation paths. Add ownership rules only where the effective reviewers
+need to differ; do not repeat the same assignment for individual paths.
 
 Preserve approved policy text when adopting the required filenames. Retain working
 issue and PR templates. When adding templates, use `bug_report.md` and
@@ -139,6 +143,11 @@ checkout, prerequisites and tested versions, dependency/runtime/extractor setup,
 configuration, build/check commands, and observable expected results. Link existing
 project build procedures instead of rewriting them. Include at least one ordered
 usage tutorial for the actual repository output; setup alone is not a user tutorial.
+The walkthrough's checkout URL and branch must contain the tools and files its
+commands use. A proposal in a fork must identify its runnable checkout while
+preserving the project's upstream contribution destination. Preserve the triggers
+and ordering of existing required checks, including checks required before every
+PR; documentation-only scope does not narrow those requirements.
 
 ### Build layout and commands
 
@@ -218,7 +227,9 @@ appropriate existing extractor or parser; add custom parsing only where the actu
 source syntax cannot be covered by the configured tools.
 
 Compare an independently discovered function inventory with the extracted entries;
-check both missing comments and missing output. Unsupported definitions must fail
+check both missing comments and missing rendered entries. Literal directive text
+or a function name appearing in prose does not establish reference coverage.
+Unsupported definitions must fail
 with an actionable setup error, not disappear silently. A repository with no
 functions can record extraction as inapplicable after inspection and must reassess
 when code is added. Do not shape implementation code merely to avoid documentation.
