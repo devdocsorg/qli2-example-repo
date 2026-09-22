@@ -63,6 +63,8 @@ item in the upgrade's review record: retained, moved with links repaired, or
 consolidated into a named authoritative home. Preserve meaning, useful detail,
 licence notices, and correct contribution routing. Compare against the base
 revision; an added-file list alone does not demonstrate preservation.
+Preserve existing titles and unaffected wording; move content and repair links
+without unrelated cosmetic rewrites.
 
 Use this layout unless an established, better-maintained documentation home
 already serves the project:
