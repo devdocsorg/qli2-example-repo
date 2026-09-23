@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file MD041 -->
 ## Change and purpose
 
 Describe what changes, why it is needed, and any compatibility impact.

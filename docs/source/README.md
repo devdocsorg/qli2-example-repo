@@ -14,14 +14,12 @@ contributing/README
 
 - [user/](user/README.md) — Explains adoption and the skeleton's configuration.
 - [contributing/](contributing/README.md) — Owns contribution guidance and development setup.
-- [.templates/](.templates/index.html) — Supplies the generated site's entry-point redirect.
+- [.templates/](https://github.com/devdocsorg/qli2-example-repo/tree/main/docs/source/.templates) — Supplies the generated site's entry-point redirect.
 
 ## Files
 
-- [Makefile](Makefile): Provides the shared local and CI setup, build, and reproducibility commands.
-
+- [Makefile](https://github.com/devdocsorg/qli2-example-repo/blob/main/docs/source/Makefile) — Provides the shared local and CI setup, build, and reproducibility commands.
 - [README.md](README.md) — Introduces the guides and supplies the site's homepage.
-- [conf.py](conf.py) — Configures Markdown rendering, local navigation, and search.
-- [requirements.txt](requirements.txt) — Pins the documentation packages.
-
-- [requirements.lock](requirements.lock) — Locks direct and transitive documentation dependencies for reproducible builds.
+- [conf.py](https://github.com/devdocsorg/qli2-example-repo/blob/main/docs/source/conf.py) — Configures Markdown rendering, local navigation, and search.
+- [requirements.txt](https://github.com/devdocsorg/qli2-example-repo/blob/main/docs/source/requirements.txt) — Pins the documentation packages.
+- [requirements.lock](https://github.com/devdocsorg/qli2-example-repo/blob/main/docs/source/requirements.lock) — Locks direct and transitive documentation dependencies for reproducible builds.

@@ -3,6 +3,8 @@ name: Feature request
 about: Propose an improvement to the repository
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 Search existing proposals and check
 [CONTRIBUTING.md](https://github.com/devdocsorg/qli2-example-repo/blob/main/CONTRIBUTING.md)
 for scope and contribution routing.

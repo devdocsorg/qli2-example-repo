@@ -74,7 +74,7 @@ The skeleton has no application functions to extract. `conf.py` configures Sphin
 without defining functions. A passing prose build alone does not prove function
 reference coverage after code is added.
 
-The [Makefile](../Makefile) owns dependency installation and build commands for
+The [Makefile](https://github.com/devdocsorg/qli2-example-repo/blob/main/docs/source/Makefile) owns dependency installation and build commands for
 both local use and CI. After committing regenerated output, run
 `make -f docs/source/Makefile check` to verify it reproduces.
 

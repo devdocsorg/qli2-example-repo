@@ -1,8 +1,8 @@
 # Contributing
 
 Improvements to this skeleton belong in this repository, targeting `main`.
-Follow the {download}`Code of Conduct <../../../CODE_OF_CONDUCT.md>`. Use
-{download}`SECURITY.md <../../../SECURITY.md>` for private vulnerability reports.
+Follow the [Code of Conduct](https://github.com/devdocsorg/qli2-example-repo/blob/main/CODE_OF_CONDUCT.md). Use
+[SECURITY.md](https://github.com/devdocsorg/qli2-example-repo/blob/main/SECURITY.md) for private vulnerability reports.
 
 ## Scope
 
@@ -40,6 +40,6 @@ submitting. It has no application build or application test command.
 [Open a pull request with the template](https://github.com/devdocsorg/qli2-example-repo/compare?expand=1&template=pr_template.md).
 Choose `main` as the base and your change branch as the head. Explain the reason
 for the change and what you verified. Maintainers may also commit directly to `main`.
-[CODEOWNERS](../../../.github/CODEOWNERS) identifies the source and documentation reviewers.
+[CODEOWNERS](https://github.com/devdocsorg/qli2-example-repo/blob/main/.github/CODEOWNERS) identifies the source and documentation reviewers.
 
-Changes to the skeleton use the [repository's licence](../../../LICENSE).
+Changes to the skeleton use the [repository's licence](https://github.com/devdocsorg/qli2-example-repo/blob/main/LICENSE).

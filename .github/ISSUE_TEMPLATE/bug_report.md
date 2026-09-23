@@ -3,6 +3,8 @@ name: Bug report
 about: Report a problem with the repository or its documentation
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 For vulnerabilities, use the private route in
 [SECURITY.md](https://github.com/devdocsorg/qli2-example-repo/blob/main/SECURITY.md).
 Search existing issues before submitting and remove confidential information.

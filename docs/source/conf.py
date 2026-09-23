@@ -20,3 +20,5 @@ templates_path = [".templates"]
 html_additional_pages = {"index": "index.html"}
 # Optional boolean; default True. Avoid fetch() of local files for search excerpts.
 html_show_search_summary = False
+# Optional boolean; default True. Page sources stay in the repository, not the site.
+html_copy_source = False
