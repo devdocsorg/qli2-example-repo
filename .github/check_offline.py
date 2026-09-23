@@ -1,3 +1,5 @@
+# Copyright (c) 2026 DevDocs
+# SPDX-License-Identifier: BSD-3-Clause
 """Verify a copied Sphinx site through file:// with networking disabled.
 
 Run with the generated site path and a search term known to occur in its content.
