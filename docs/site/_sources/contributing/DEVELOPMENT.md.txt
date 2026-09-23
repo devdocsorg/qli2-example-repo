@@ -60,7 +60,7 @@ without fetching page excerpts, so search also works under `file://`.
 
 Sphinx/MyST renders prose; it does not automatically extract every language's
 function comments. When implementation code is added, follow the checklist's
-[function documentation setup](https://github.com/devdocsorg/qli2-deliverables-portal/blob/main/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md):
+[function documentation setup](https://github.com/devdocsorg/qli2-example-repo/blob/main/SPECIFICATION.md#native-function-reference):
 choose the native extractor, pin its version and runtime, install it in this
 setup, and add its build and coverage checks to local validation and CI.
 

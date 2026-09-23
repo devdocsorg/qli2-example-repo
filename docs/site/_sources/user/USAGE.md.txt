@@ -15,6 +15,11 @@ Open [Use this template](https://github.com/devdocsorg/qli2-example-repo/generat
 choose the owner, repository name, and appropriate visibility, then select
 **Create repository from template**. Use `main` as the starting point.
 
+Remove the copied `SPECIFICATION.md`, updating its index entry.
+Link the [canonical specification](https://github.com/devdocsorg/qli2-example-repo/blob/main/SPECIFICATION.md)
+from the new README; the specification is maintained only in the skeleton.
+Keep applicable project-specific skills in the contributor area.
+
 GitHub creates a separate repository with the skeleton's files and a fresh commit
 history. See [GitHub's template instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
 
@@ -50,7 +55,7 @@ Document each function, including internal helpers, using the language's standar
 comments: purpose, parameter and return types, an example, and relevant failure
 behaviour. Choose the language's documentation generator, document its command,
 and link the generated reference from the root README. The
-[function-documentation requirement](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md)
+[function-documentation requirement](https://github.com/devdocsorg/qli2-example-repo/blob/main/SPECIFICATION.md#native-function-reference)
 provides the format. Function documentation becomes applicable when functions exist.
 
 For every configuration setting, document its purpose, type, required or optional
@@ -74,8 +79,7 @@ sources centrally and link once to the full map.
 Follow the [map update and validation procedure](https://github.com/devdocsorg/qualcomm-repository-map/blob/main/data/README.md):
 audit build references and included configurations, run the source and coverage
 checks, and export directly into the marked README block. Record the source
-revision and digest in a source comment. Access to the private shared repository
-is needed for updates. Standalone automation diagrams and their text can be
+revision and digest in a source comment. Standalone automation diagrams and their text can be
 omitted; build tools and component connections must remain.
 
 The map lives only in the root README. Sphinx must not read, copy, or write it.
@@ -95,7 +99,7 @@ The new repository identifies its purpose and maintainers, routes contributions
 and private reports correctly, and contains the required documentation structure.
 Before presenting it as checklist-complete, verify its documented first-use steps,
 reference for any implemented functions, file inventories, and links against the
-[Required Files Checklist](https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md).
+[Required Files Checklist](https://github.com/devdocsorg/qli2-example-repo/blob/main/SPECIFICATION.md#required-files-checklist).
 
 ## Configuration reference
 

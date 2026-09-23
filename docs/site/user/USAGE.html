@@ -50,6 +50,10 @@ structure, ready for the project’s implementation.</p>
 <p>Open <a class="reference external" href="https://github.com/devdocsorg/qli2-example-repo/generate">Use this template</a>,
 choose the owner, repository name, and appropriate visibility, then select
 <strong>Create repository from template</strong>. Use <code class="docutils literal notranslate"><span class="pre">main</span></code> as the starting point.</p>
+<p>Remove the copied <code class="docutils literal notranslate"><span class="pre">SPECIFICATION.md</span></code>, updating its index entry.
+Link the <a class="reference external" href="https://github.com/devdocsorg/qli2-example-repo/blob/main/SPECIFICATION.md">canonical specification</a>
+from the new README; the specification is maintained only in the skeleton.
+Keep applicable project-specific skills in the contributor area.</p>
 <p>GitHub creates a separate repository with the skeleton’s files and a fresh commit
 history. See <a class="reference external" href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template">GitHub’s template instructions</a>.</p>
 </section>
@@ -104,7 +108,7 @@ link the output folder and rebuild instructions from its parent’s README.</p>
 comments: purpose, parameter and return types, an example, and relevant failure
 behaviour. Choose the language’s documentation generator, document its command,
 and link the generated reference from the root README. The
-<a class="reference external" href="https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/required-file-templates/function-documentation.md">function-documentation requirement</a>
+<a class="reference external" href="https://github.com/devdocsorg/qli2-example-repo/blob/main/SPECIFICATION.md#native-function-reference">function-documentation requirement</a>
 provides the format. Function documentation becomes applicable when functions exist.</p>
 <p>For every configuration setting, document its purpose, type, required or optional
 status, behaviour when unset, and a safe value. Use commented
@@ -124,8 +128,7 @@ sources centrally and link once to the full map.</p>
 <p>Follow the <a class="reference external" href="https://github.com/devdocsorg/qualcomm-repository-map/blob/main/data/README.md">map update and validation procedure</a>:
 audit build references and included configurations, run the source and coverage
 checks, and export directly into the marked README block. Record the source
-revision and digest in a source comment. Access to the private shared repository
-is needed for updates. Standalone automation diagrams and their text can be
+revision and digest in a source comment. Standalone automation diagrams and their text can be
 omitted; build tools and component connections must remain.</p>
 <p>The map lives only in the root README. Sphinx must not read, copy, or write it.
 The root README provides a map block with <code class="docutils literal notranslate"><span class="pre">REPLACE_*</span></code> fields for the new repository,
@@ -143,7 +146,7 @@ the root README’s links and the documentation navigation when doing so.</p>
 and private reports correctly, and contains the required documentation structure.
 Before presenting it as checklist-complete, verify its documented first-use steps,
 reference for any implemented functions, file inventories, and links against the
-<a class="reference external" href="https://github.com/devdocsorg/qli2-deliverables-portal/blob/8c358c87e35a25615bfb9703bc7fce7353f40be8/docs/qualcomm-developer-ecosystem/github-repositories/audits/required-files-checklist.md">Required Files Checklist</a>.</p>
+<a class="reference external" href="https://github.com/devdocsorg/qli2-example-repo/blob/main/SPECIFICATION.md#required-files-checklist">Required Files Checklist</a>.</p>
 </section>
 <section id="configuration-reference">
 <h2>Configuration reference<a class="headerlink" href="#configuration-reference" title="Link to this heading">¶</a></h2>
