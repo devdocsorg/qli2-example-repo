@@ -42,7 +42,7 @@ may supply the policy or template content described under
 | `BRANCHES.md` on `main` | List each long-lived branch, why it exists, and whether it is intended to merge back into `main` or be maintained separately. Link to `BRANCHES.md` from the README. |
 | Function documentation | Document each function using the language's standard documentation-comment format, such as JSDoc for JavaScript. Give the function's purpose in one sentence, the relevant parameter and return types, and an example. Install and configure the language-specific extractor and its runtime, then generate a browsable reference from these comments. Pin the toolchain, include internal functions, and make local/CI validation fail on missing documentation or missing reference entries. A prose-only site build does not satisfy this requirement. |
 | Locally browsable documentation site | Keep authoritative source and generated output separate. A reader must be able to open the generated `index.html` directly and navigate the site without a local HTTP server. Bundle assets and any search functionality; validate a copied site under `file://` with networking disabled. |
-| Repository ecosystem map and nearby view | Maintain the full Qualcomm ecosystem Mermaid map in a dedicated repository's README. At the bottom of each implementation repository's root README, show a Mermaid view with clickable nodes covering every recorded incoming, outgoing, optional, and indirect build/component relationship. Documentation, lint, and development-environment tools are not map repositories. Omit standalone automation diagrams and their corresponding text; automation connections may remain in mixed component diagrams. Draw indirect paths through their actual intermediates and use plain-language connection verbs. Audit source references against the dataset; concise presentation must not omit known connections. Keep detailed evidence centrally and link to it once. Record export provenance in metadata. Keep maps out of Sphinx sources and generated websites. |
+| Repository ecosystem map and nearby view | Maintain the full Qualcomm ecosystem Mermaid map in a dedicated repository's README. At the bottom of each implementation repository's root README, show a Mermaid view with clickable nodes covering every recorded incoming, outgoing, optional, and indirect build/component relationship. Map only Qualcomm repositories: those owned by Qualcomm's GitHub organisations. Omit standalone automation diagrams and their corresponding text; automation connections may remain in mixed component diagrams. Draw indirect paths through their actual intermediates and use plain-language connection verbs. Audit source references against the dataset; concise presentation must not omit known connections. Keep detailed evidence centrally and link to it once. Record export provenance in metadata. Keep maps out of Sphinx sources and generated websites. |
 | Configuration documentation | Document each configuration line with its purpose, type, optional/default behaviour, and a safe example value. Include a commented `.env.example`. Use an adjacent documented schema or example for formats that do not support comments. |
 | **At least one usage tutorial per repository** | Show how to use the repository's output, with prerequisites, ordered steps, and an expected result. The tutorial can live in the product's technical documentation or the repository. |
 | `LICENSE` | Give readers the project's approved licence text. Keep the file at the repository root. |
@@ -256,13 +256,11 @@ configuration and secrets handling rather than inventing new runtime controls.
 ### Shared ecosystem map
 
 The [Qualcomm repository map](https://github.com/devdocsorg/qualcomm-repository-map)
-is a map-only repository covering Qualcomm repositories and relevant
-external/upstream neighbours. It owns one dataset of repository identities,
-relationships, applicability, and evidence. It is not limited to QLI deliverables.
-It records repositories that make up or connect to a repository's product: layers,
-sources, build systems, and consumers. Tools used only to build or check a
-repository's own documentation, lint its files, or set up a development environment
-are not map repositories or relationships.
+is a map-only repository covering Qualcomm repositories: those owned by Qualcomm's
+GitHub organisations, such as `qualcomm-linux` and `qualcomm`. It owns one dataset
+of repository identities, relationships, applicability, and evidence. It is not
+limited to QLI deliverables. Upstream projects, board vendors, and tools are not map
+repositories, even when a Qualcomm repository builds with them.
 Identify its maintainer and update route; do not apply the implementation-site
 scaffold to it or add a docs website.
 
@@ -288,18 +286,19 @@ Use clickable Mermaid nodes, highlight the current repository, and link once to
 the full map.
 
 Include every recorded build/component connection touching the current repository,
-in both directions, including optional integrations, consumers, the tools that
-build the product (such as BitBake and kas), and verified indirect paths. Show
-indirect connections through their actual providers; each path step must be
-recorded and evidenced. Do not add a redundant shortcut
-arrow when the existing parent path already explains the connection. The scope is
-the repository's evidenced neighbourhood, not every dependency of every neighbour.
+in both directions, including optional integrations, consumers, and verified
+indirect paths through other Qualcomm repositories. Show indirect connections
+through their actual providers; each path step must be recorded and evidenced. Do
+not add a redundant shortcut arrow when the existing parent path already explains
+the connection. The scope is the repository's evidenced neighbourhood, not every
+dependency of every neighbour.
 
 Audit manifests, included build configurations, selected recipes, workflow
 references, and maintained guidance against the dataset before exporting. Follow
-includes that determine the build composition, including external hosts. Add missing
-verified relationships centrally. Record audited revisions, applicability, and
-unresolved coverage; agreement with an incomplete dataset is not source completeness.
+includes that determine the build composition to the Qualcomm repositories they
+select. Add missing verified relationships centrally. Record audited revisions,
+applicability, and unresolved coverage; agreement with an incomplete dataset is not
+source completeness.
 
 Use short verbs describing what endpoints provide, rather than “required” or
 “optional” alone. Name each node once per diagram, adding an owner only to resolve
@@ -331,5 +330,5 @@ does not establish content preservation, correct file placement, or minimal scop
 | Native extraction | Compare discovered functions to documentation and generated entries, including internal/mixed-language definitions. Removing documentation or an entry must fail; newly unsupported definitions must not be silently skipped. |
 | Offline browser | Copy only the generated site outside the checkout; open `index.html` in a headless browser with networking disabled. Check navigation, anchors, assets, search when present, browser errors, and network requests. A hosted preview alone is insufficient. |
 | Nearby map | Reproduce from its recorded central commit/digest; independently check all incident component relations and indirect paths, source-audit coverage, Mermaid rendering, node links, final README placement, and absence from Sphinx sources/output. |
-| Map regressions | Shared checks reject missing incoming, build-tool, optional, and indirect connections, invented edges, and unlinked nodes. A new neighbour appears without an allowlist change. Omitted standalone automation presentation preserves component coverage and retained mixed diagrams. Reuse these checks during recipient updates. |
+| Map regressions | Shared checks reject missing incoming, optional, and indirect connections, invented edges, unlinked nodes, and repositories outside Qualcomm's organisations. A new neighbour appears without an allowlist change. Omitted standalone automation presentation preserves component coverage and retained mixed diagrams. Reuse these checks during recipient updates. |
 | Repository checks | Run applicable existing repository/CI checks and report hosted checks separately from local results. Report any checks that could not run and their concrete limits. |
