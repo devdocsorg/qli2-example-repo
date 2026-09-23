@@ -80,7 +80,8 @@ Follow the [map update and validation procedure](https://github.com/devdocsorg/q
 audit build references and included configurations, run the source and coverage
 checks, and export directly into the marked README block. Record the source
 revision and digest in a source comment. Standalone automation diagrams and their text can be
-omitted; build tools and component connections must remain.
+omitted; the tools that build the product and component connections must remain.
+Documentation and development tooling is not mapped.
 
 The map lives only in the root README. Sphinx must not read, copy, or write it.
 The root README provides a map block with `REPLACE_*` fields for the new repository,
