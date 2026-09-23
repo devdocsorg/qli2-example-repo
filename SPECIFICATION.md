@@ -243,7 +243,11 @@ when code is added. Do not shape implementation code merely to avoid documentati
 Document every maintained setting's purpose, type/allowed format, required or
 optional status, default/unset behaviour, and safe value. Describe loading and
 precedence. Use inline comments or one linked reference; formats without comments
-need an adjacent schema or example. `.env.example` must contain safe documented
+need an adjacent schema or example. Authoritative upstream documentation may supply
+standard field definitions, syntax, and inherited defaults; link the relevant
+sections and document this repository's choices, overrides, and safe examples
+locally instead of maintaining a second general-purpose manual.
+`.env.example` must contain safe documented
 settings, or state that the project has no environment settings. Preserve actual
 configuration and secrets handling rather than inventing new runtime controls.
 
