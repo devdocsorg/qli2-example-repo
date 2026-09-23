@@ -45,7 +45,7 @@ may supply the policy or template content described under
 | Repository ecosystem map and nearby view | Maintain the full Qualcomm ecosystem Mermaid map in a dedicated repository's README. At the bottom of each implementation repository's root README, show a Mermaid view with clickable nodes covering every recorded incoming, outgoing, optional, and indirect build/component relationship. Map only Qualcomm repositories: those owned by Qualcomm's GitHub organisations. Omit standalone automation diagrams and their corresponding text; automation connections may remain in mixed component diagrams. Draw indirect paths through their actual intermediates and use plain-language connection verbs. Audit source references against the dataset; concise presentation must not omit known connections. Keep detailed evidence centrally and link to it once. Record export provenance in metadata. Keep maps out of Sphinx sources and generated websites. |
 | Configuration documentation | Document each configuration line with its purpose, type, optional/default behaviour, and a safe example value. Include a commented `.env.example`. Use an adjacent documented schema or example for formats that do not support comments. |
 | **At least one usage tutorial per repository** | Show how to use the repository's output, with prerequisites, ordered steps, and an expected result. The tutorial can live in the product's technical documentation or the repository. |
-| `LICENSE` | Give readers the project's approved licence text. Keep the file at the repository root. |
+| `LICENSE` | Give readers the project's approved licence text in a file named exactly `LICENSE` at the repository root. When the project keeps its licence under another name, such as `COPYING.MIT`, rename it to `LICENSE` with identical text and update links to it. |
 | `CODEOWNERS` | Identify who reviews documentation changes. Assign the appropriate maintainers to documentation paths. |
 | `CONTRIBUTING.md` | Explain how to contribute and where contributions should be submitted. Link a concrete development-environment walkthrough in the contributor area: checkout, prerequisites and versions, dependency and documentation-tool installation, configuration, build/check commands, and observable expected results. |
 | `CODE_OF_CONDUCT.md` | State the expected behaviour for participants and how to report conduct concerns. |
@@ -70,7 +70,7 @@ Preserve existing titles and unaffected wording; move content and repair links
 without unrelated cosmetic rewrites.
 Retain the copyright notices, licence conditions, and disclaimers for reused
 material, including scaffold tools. An SPDX identifier alone does not replace a
-required full notice. Keep the project's approved licence unchanged and retain
+required full notice. Keep the project's approved licence text unchanged and retain
 applicable imported-source notices in one linked home.
 
 Use the following layout. Retain an established documentation home when it already
