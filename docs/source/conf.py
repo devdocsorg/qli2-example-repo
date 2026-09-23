@@ -22,3 +22,5 @@ html_additional_pages = {"index": "index.html"}
 html_show_search_summary = False
 # Optional boolean; default True. Page sources stay in the repository, not the site.
 html_copy_source = False
+# Optional boolean; default True. No copyright holder is configured, so omit the empty notice.
+html_show_copyright = False
