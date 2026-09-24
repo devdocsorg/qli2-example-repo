@@ -93,7 +93,8 @@ record the corresponding paths and ownership instead of creating a competing hom
 Keep each procedure and policy in one authored home. Discovery files and relevant
 README sections link naturally to that home: contribution text to `CONTRIBUTING.md`,
 machine support to its folder, licence text to `LICENSE`, and so on. A path shown
-only as code is not a navigation link. Do not duplicate a folder index in `INDEX.md`
+only as code is not a navigation link, and every other repository named in prose
+links to its repository page. Do not duplicate a folder index in `INDEX.md`
 or maintain a second API manual beside generated reference pages.
 
 Move existing contributor and agent guides without changing their titles or
@@ -301,7 +302,8 @@ applicability, and unresolved coverage; agreement with an incomplete dataset is 
 source completeness.
 
 Use short verbs describing what endpoints provide, rather than “required” or
-“optional” alone. Name each node once per diagram, adding an owner only to resolve
+“optional” alone. A connection that holds only on some branches names them in its
+label. Name each node once per diagram, adding an owner only to resolve
 ambiguity. Split large views without dropping known connections. Keep revision and
 dataset-digest provenance in a source comment and access/setup details in contributor
 guidance. Use the shared repository's existing export and validation commands.
