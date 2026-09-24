@@ -302,8 +302,10 @@ applicability, and unresolved coverage; agreement with an incomplete dataset is 
 source completeness.
 
 Use short verbs describing what endpoints provide, rather than “required” or
-“optional” alone. A connection that holds only on some branches names them in its
-label. Name each node once per diagram, adding an owner only to resolve
+“optional” alone. Map the default branch and maintained release branches, not trial
+or staging branches. A connection that does not hold on the default branch names the
+branches where it does in its label; connections on the default branch carry no
+branch label. Name each node once per diagram, adding an owner only to resolve
 ambiguity. Split large views without dropping known connections. Keep revision and
 dataset-digest provenance in a source comment and access/setup details in contributor
 guidance. Use the shared repository's existing export and validation commands.
