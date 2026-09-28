@@ -45,7 +45,8 @@ runs “check” after the HTML build: it fails when a function has no rendered
 reference entry.</p>
 <p>Functions are found in tracked and staged files with parsers, independently of
 the renderers; nothing is executed. Python’s ast module reads Python files,
-and bashlex reads shell scripts, workflow run steps, and Makefile recipes.
+and tree-sitter-bash reads shell scripts, workflow run steps, and Makefile
+recipes.
 Adapting a repository means adding its source formats to discover() and a
 renderer for each language that defines functions to RENDERERS.</p>
 <dl class="py class">
