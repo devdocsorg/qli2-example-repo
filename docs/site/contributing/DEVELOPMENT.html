@@ -14,6 +14,7 @@
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title=".github/test_reference_coverage.py" href=".generated/.github-test_reference_coverage.py.html" />
     <link rel="prev" title="Contributing" href="CONTRIBUTING.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -96,9 +97,12 @@ package manifest, generates reference from source comments, and links that outpu
 from the site. Keep comments authoritative; do not rewrite the same API entries
 by hand. A project with an established reference site can link to its authoritative
 reference and retain that site’s build procedure.</p>
-<p>The skeleton has no application functions to extract. <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> configures Sphinx
-without defining functions. A passing prose build alone does not prove function
-reference coverage after code is added.</p>
+<p><a class="reference external" href="https://github.com/devdocsorg/qli2-example-repo/blob/main/.github/test_reference_coverage.py">test_reference_coverage.py</a>
+finds every function in the tracked sources and fails the build on formats it
+cannot read, on functions without a documentation comment or a configured
+renderer, and on missing rendered entries. Extend it with the project’s formats
+and renderers. The skeleton’s own functions are its documentation helpers, rendered
+with Python autodoc.</p>
 <p>The <a class="reference external" href="https://github.com/devdocsorg/qli2-example-repo/blob/main/docs/source/Makefile">Makefile</a> owns dependency installation and build commands for
 both local use and CI. After committing regenerated output, run
 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-f</span> <span class="pre">docs/source/Makefile</span> <span class="pre">check</span></code> to verify it reproduces.</p>
@@ -156,6 +160,7 @@ Keep project dependencies and custom tools in their own environments.</p>
 <li class="toctree-l3"><a class="reference internal" href="#add-the-implementation-s-reference-tooling">5. Add the implementation’s reference tooling</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#function-reference">Function reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="README.html#files">Files</a></li>
 </ul>
 </li>
@@ -167,6 +172,7 @@ Keep project dependencies and custom tools in their own environments.</p>
   <li><a href="../README.html">Documentation overview</a><ul>
   <li><a href="README.html">Contributor documentation</a><ul>
       <li>Previous: <a href="CONTRIBUTING.html" title="previous chapter">Contributing</a></li>
+      <li>Next: <a href=".generated/.github-test_reference_coverage.py.html" title="next chapter">.github/test_reference_coverage.py</a></li>
   </ul></li>
   </ul></li>
 </ul>

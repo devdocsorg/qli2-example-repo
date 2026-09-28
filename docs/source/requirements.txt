@@ -3,3 +3,6 @@ Sphinx==9.1.0
 myst-parser==5.1.0
 # Browser validation used by the shared check target.
 playwright==1.62.0
+# Shell parser and YAML reader for the function-reference coverage check.
+bashlex==0.18
+pyyaml==6.0.3
