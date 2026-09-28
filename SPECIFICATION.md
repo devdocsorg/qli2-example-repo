@@ -38,7 +38,7 @@ may supply the policy or template content described under
 | Required File | Purpose and required content |
 | --- | --- |
 | Overall README | Introduce the repository: its purpose, first build or run step, and support channel. Explain **every branch**, including its purpose, status, and whether to build from it or send contributions to it. Link to `BRANCHES.md` on `main`, reference documentation and tutorial. Include the root folder's index in Folders and Files sections, linking every root item with a one-sentence purpose. |
-| Folder index in `README.md` in every eligible folder | Describe the folder and include its index in Folders and Files sections. Link to every immediate file and subfolder and explain its purpose in one sentence. Update the index when contents change. At the root, include it in the project README. Folders prefixed with `.`, such as `.github/`, and their descendants take no README; list the hidden folder in its parent's README instead. |
+| Folder index in `README.md` in every eligible folder | Describe the folder and include its index in Folders and Files sections. Link to every immediate file and subfolder and explain its purpose in one sentence. Update the index when contents change. At the root, include it in the project README. Excepted folders take no README; list each in its parent's README instead. The exceptions are folders prefixed with `.`, such as `.github/`, and their descendants. |
 | `BRANCHES.md` on `main` | List each long-lived branch, why it exists, and whether it is intended to merge back into `main` or be maintained separately. Link to `BRANCHES.md` from the README. |
 | Function documentation | Document each function using the language's standard documentation-comment format, such as JSDoc for JavaScript. Give the function's purpose in one sentence, the relevant parameter and return types, and an example. Install and configure the language-specific extractor and its runtime, then generate a browsable reference from these comments. Pin the toolchain, include internal functions, and make local/CI validation fail on missing documentation or missing reference entries. A prose-only site build does not satisfy this requirement. |
 | Locally browsable documentation site | Keep authoritative source and generated output separate. A reader must be able to open the generated `index.html` directly and navigate the site without a local HTTP server. Bundle assets and any search functionality; validate a copied site under `file://` with networking disabled. |
@@ -171,6 +171,7 @@ requirement or correct a verified defect.
 | `docs/source/.templates/index.html` | Generated-site entry template leading to the homepage. |
 | `.github/finalise_site.py` | Deterministic output finalisation and bundled third-party asset notices. |
 | `.github/check_offline.py` | Copied-site browser validation without networking. |
+| `.github/test_reference_coverage.py` | Function inventory, per-source-file reference pages, and reference coverage checks. |
 | `.github/workflows/documentation.yml` | CI invocation of the shared setup/check commands. |
 
 Run `make -f docs/source/Makefile <target>` from the repository root. `setup`
@@ -223,7 +224,9 @@ reference per source file under `docs/source/contributing/.generated/`, naming i
 from the repository-relative source path with slashes replaced by hyphens and
 `.md` appended. Link those pages through the contributor README's toctree. This
 intermediate directory is ignored and regenerated; its HTML belongs in the site.
-Use `.github/test_reference_coverage.py` for coverage regression checks.
+Extend the skeleton's `.github/test_reference_coverage.py` for coverage regression
+checks: add the repository's source formats to its discovery and a renderer for
+each language that defines functions.
 
 Configure native extraction for Python definitions in BitBake or other languages
 when those definitions exist. Calls to upstream functions are not local definitions.

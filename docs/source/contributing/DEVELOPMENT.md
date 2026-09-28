@@ -70,9 +70,12 @@ from the site. Keep comments authoritative; do not rewrite the same API entries
 by hand. A project with an established reference site can link to its authoritative
 reference and retain that site's build procedure.
 
-The skeleton has no application functions to extract. `conf.py` configures Sphinx
-without defining functions. A passing prose build alone does not prove function
-reference coverage after code is added.
+[test_reference_coverage.py](https://github.com/devdocsorg/qli2-example-repo/blob/main/.github/test_reference_coverage.py)
+finds every function in the tracked sources and fails the build on formats it
+cannot read, on functions without a documentation comment or a configured
+renderer, and on missing rendered entries. Extend it with the project's formats
+and renderers. The skeleton's own functions are its documentation helpers, rendered
+with Python autodoc.
 
 The [Makefile](https://github.com/devdocsorg/qli2-example-repo/blob/main/docs/source/Makefile) owns dependency installation and build commands for
 both local use and CI. After committing regenerated output, run

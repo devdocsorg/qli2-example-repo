@@ -5,7 +5,8 @@
 # Keep the documented, safe settings file in version control.
 !.env.example
 
-# Local documentation environment and build caches.
+# Local documentation environment, build caches, and generated reference pages.
 .venv/
 docs/.doctrees/
+docs/source/contributing/.generated/
 __pycache__/
