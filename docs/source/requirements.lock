@@ -4,8 +4,6 @@ alabaster==1.0.0
     # via sphinx
 babel==2.18.0
     # via sphinx
-bashlex==0.18
-    # via -r docs/source/requirements.txt
 certifi==2026.7.22
     # via requests
 charset-normalizer==3.5.1
@@ -70,6 +68,10 @@ sphinxcontrib-qthelp==2.0.0
     # via sphinx
 sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
+tree-sitter==0.26.0
+    # via -r docs/source/requirements.txt
+tree-sitter-bash==0.25.1
+    # via -r docs/source/requirements.txt
 typing-extensions==4.16.0
     # via pyee
 urllib3==2.8.0

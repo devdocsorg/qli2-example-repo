@@ -13,7 +13,8 @@ reference entry.
 
 Functions are found in tracked and staged files with parsers, independently of
 the renderers; nothing is executed. Python's ast module reads Python files,
-and bashlex reads shell scripts, workflow run steps, and Makefile recipes.
+and tree-sitter-bash reads shell scripts, workflow run steps, and Makefile
+recipes.
 Adapting a repository means adding its source formats to discover() and a
 renderer for each language that defines functions to RENDERERS.
 """
@@ -23,12 +24,14 @@ import subprocess
 import sys
 from pathlib import Path
 
-import bashlex
+import tree_sitter_bash
 import yaml
+from tree_sitter import Language, Parser
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ROOT / "docs/source/contributing/.generated"
 SITE = ROOT / "docs/site/contributing/.generated"
+SHELL = Parser(Language(tree_sitter_bash.language()))
 # Formats verified to hold no function definitions.
 PLAIN_SUFFIXES = (".md", ".txt", ".lock")
 PLAIN_NAMES = ("LICENSE", "CODEOWNERS", ".gitignore", ".env.example")
@@ -66,21 +69,17 @@ def shell_functions(path, where, text):
     Example:
         ``shell_functions("ci/build.sh", "", "f() { :; }")`` finds ``f``.
     """
-    try:
-        trees = bashlex.parse(text) if text.strip() else []
-    except Exception as error:
-        raise ValueError(f"{path}{where}: the shell parser cannot read it ({error})") from error
-    found, stack = [], list(trees)
+    tree = SHELL.parse(text.encode())
+    if tree.root_node.has_error:
+        raise ValueError(f"{path}{where}: the shell parser cannot read it")
+    found, stack = [], [tree.root_node]
     while stack:
         node = stack.pop()
-        if node.kind == "function":
-            found.append((node.pos[0], node.name.word))
-        for value in vars(node).values():
-            children = value if isinstance(value, list) else [value]
-            stack.extend(child for child in children if isinstance(child, bashlex.ast.node))
+        if node.type == "function_definition":
+            found.append((node.start_point[0], node.child_by_field_name("name").text.decode()))
+        stack.extend(node.children)
     lines, functions = text.splitlines(), []
-    for position, name in sorted(found):
-        start = text.count("\n", 0, position)
+    for start, name in sorted(found):
         comments = []
         while start - len(comments) > 0 and lines[start - len(comments) - 1].lstrip().startswith("#"):
             comments.insert(0, lines[start - len(comments) - 1].strip())
