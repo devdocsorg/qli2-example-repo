@@ -19,6 +19,7 @@ Adapting a repository means adding its source formats to discover() and a
 renderer for each language that defines functions to RENDERERS.
 """
 import ast
+import html as htmllib
 import re
 import subprocess
 import sys
@@ -264,25 +265,84 @@ class Shdoc:
             ``Shdoc().page("ci/build.sh", functions)``
         """
         # Each comment block with a stub definition, so embedded functions render too.
-        source = "".join(f"{function['doc']}\n{function['name']}() {{\n    :\n}}\n\n" for function in functions)
+        source = "".join(f"{self.escaped(function['doc'])}\n{function['name']}() {{\n    :\n}}\n\n"
+                         for function in functions)
         output = subprocess.run(["gawk", "-f", str(ROOT / ".venv/bin/shdoc")], input=source,
                                 capture_output=True, text=True, check=True).stdout
         return f"# {path}\n\n{output}"
 
+    @staticmethod
+    def escaped(doc):
+        """Escape Markdown markup in a comment block, outside its example.
+
+        shdoc copies descriptions into Markdown as they are, so ``*`` in a file
+        pattern or ``<name>`` in a path would become emphasis or HTML.
+
+        Args:
+            doc (str): The comment block.
+
+        Returns:
+            str: The block with ``*`` and ``<`` escaped in every line outside ``@example``.
+
+        Example:
+            ``Shdoc.escaped("# @description Copy *.bin files.")`` returns
+            ``"# @description Copy \\*.bin files."``.
+        """
+        lines, example = [], False
+        for line in doc.splitlines():
+            if re.match(r"#\s*@", line.strip()):
+                example = line.strip().startswith("# @example")
+            lines.append(line if example else re.sub(r"([*<])", r"\\\1", line))
+        return "\n".join(lines)
+
+    @staticmethod
+    def description(doc):
+        """Return a comment block's ``@description`` text with whitespace collapsed.
+
+        Args:
+            doc (str): The comment block.
+
+        Returns:
+            str: The description, joined from its continuation lines.
+
+        Example:
+            ``Shdoc.description("# @description Copy\\n#   files.")`` returns ``"Copy files."``.
+        """
+        text, inside = [], False
+        for line in doc.splitlines():
+            body = line.strip().lstrip("#").strip()
+            if body.startswith("@"):
+                inside = body.startswith("@description")
+                body = body[len("@description"):] if inside else ""
+            if inside:
+                text.append(body)
+        return " ".join(" ".join(text).split())
+
     def rendered(self, function, html):
-        """Return whether the built page holds the function's entry.
+        """Return whether the built page holds the function's entry with its description intact.
+
+        Markup that survived into the page would change the rendered text, so the
+        section must contain the whole ``@description``.
 
         Args:
             function (dict): A function found by ``shell_functions``.
             html (str): The built reference page.
 
         Returns:
-            bool: True when the page has a section for the function.
+            bool: True when the page has a section for the function whose text
+            includes its description.
 
         Example:
-            ``Shdoc().rendered({"name": "_is_dir"}, '<section id="is-dir">')`` returns ``True``.
+            ``Shdoc().rendered({"name": "f", "doc": "# @description Run."},
+            '<section id="f"><p>Run.</p>')`` returns ``True``.
         """
-        return f'<section id="{make_id(function["name"])}">' in html
+        start = html.find(f'<section id="{make_id(function["name"])}">')
+        if start < 0:
+            return False
+        end = html.find("<section", start + 1)
+        text = htmllib.unescape(re.sub(r"<[^>]+>", " ", html[start:end if end > 0 else len(html)]))
+        text = text.translate(str.maketrans("\u2018\u2019\u201c\u201d\u2013\u2014", "\'\'\"\"--"))
+        return self.description(function["doc"]) in " ".join(text.split())
 
 
 # Renderers by language. Each provides missing(function), page(path, functions),
