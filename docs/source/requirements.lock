@@ -10,6 +10,7 @@ charset-normalizer==3.5.1
     # via requests
 docutils==0.22.4
     # via
+    #   -r docs/source/requirements.txt
     #   myst-parser
     #   sphinx
 greenlet==3.5.6
