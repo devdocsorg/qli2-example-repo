@@ -22,5 +22,5 @@ jobs:
         run: make -f docs/source/Makefile setup
       - name: Install the browser and its CI dependencies
         run: .venv/bin/playwright install --with-deps chromium
-      - name: Build, validate reference coverage, and check committed output
+      - name: Build the site and check reference coverage and offline browsing
         run: make -f docs/source/Makefile check
