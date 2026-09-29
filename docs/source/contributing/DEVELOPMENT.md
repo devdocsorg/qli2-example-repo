@@ -41,9 +41,9 @@ make -f docs/source/Makefile html
 ```
 
 Expected result: exit status 0 and `docs/site/index.html`, with HTML pages and
-local assets. Commit the source and regenerated site together. The documentation CI job repeats
-the strict build and rejects missing or stale committed output. The build replaces
-`docs/site/` to remove stale pages after a source deletion or rename.
+local assets. `docs/site/` is generated and ignored by Git, so commit only the
+source. The documentation CI job repeats the strict build and checks. The build
+replaces `docs/site/` to remove stale pages after a source deletion or rename.
 
 ## 4. Check the site locally
 
@@ -78,8 +78,8 @@ and renderers. The skeleton's own functions are its documentation helpers, rende
 with Python autodoc.
 
 The [Makefile](https://github.com/devdocsorg/qli2-example-repo/blob/main/docs/source/Makefile) owns dependency installation and build commands for
-both local use and CI. After committing regenerated output, run
-`make -f docs/source/Makefile check` to verify it reproduces.
+both local use and CI. Before submitting, run
+`make -f docs/source/Makefile check` to build and check the site.
 
 The shared `check` target also opens a copied site with Playwright and networking
 disabled. It checks navigation, anchors, resources, and a search-result click.
@@ -91,7 +91,7 @@ Direct documentation dependencies are declared in `docs/source/requirements.txt`
 `docs/source/requirements.lock` also pins their transitive dependencies. After an
 intentional tool update, regenerate the lock with
 `uv pip compile --python-version 3.12 docs/source/requirements.txt -o docs/source/requirements.lock`,
-run setup, and rebuild before committing both source and output.
+run setup, and rebuild before committing the requirements and lock.
 
 The setup target recreates the documentation-only `.venv` from the lockfile.
 Keep project dependencies and custom tools in their own environments.

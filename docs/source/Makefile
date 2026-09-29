@@ -3,7 +3,8 @@
 # the locked Python packages and shdoc, which renders shell function comments.
 # html removes stale generated pages, builds the complete site strictly, and
 # fails unless every function has a documented, rendered reference entry.
-# check verifies output is committed and direct-file search avoids fetch().
+# check rebuilds the site and checks it offline, including that direct-file
+# search avoids fetch(). Readers build the site with: setup html.
 .PHONY: setup html check browser
 
 # shdoc v1.4.
@@ -30,5 +31,3 @@ check: html
 	.venv/bin/python .github/check_offline.py docs/site environment
 	test -f docs/site/index.html
 	grep -q 'SHOW_SEARCH_SUMMARY: false' docs/site/_static/documentation_options.js
-	git diff --exit-code -- docs/site
-	test -z "$$(git ls-files --others --exclude-standard docs/site)"

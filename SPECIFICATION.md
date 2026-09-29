@@ -41,7 +41,7 @@ may supply the policy or template content described under
 | Folder index in `README.md` in every eligible folder | Describe the folder and include its index in Folders and Files sections. Link to every immediate file and subfolder and explain its purpose in one sentence. Update the index when contents change. At the root, include it in the project README. Excepted folders take no README; list each in its parent's README instead. The exceptions are folders prefixed with `.`, such as `.github/`, and folders where only source files can exist, together with their descendants. |
 | `BRANCHES.md` on `main` | List each long-lived branch, why it exists, and whether it is intended to merge back into `main` or be maintained separately. Link to `BRANCHES.md` from the README. |
 | Function documentation | Document each function using the language's standard documentation-comment format, such as JSDoc for JavaScript. Give the function's purpose in one sentence, the relevant parameter and return types, and an example. Install and configure the language-specific extractor and its runtime, then generate a browsable reference from these comments. Pin the toolchain, include internal functions, and make local/CI validation fail on missing documentation or missing reference entries. A prose-only site build does not satisfy this requirement. |
-| Locally browsable documentation site | Keep authoritative source and generated output separate. A reader must be able to open the generated `index.html` directly and navigate the site without a local HTTP server. Bundle assets and any search functionality; validate a copied site under `file://` with networking disabled. |
+| Locally browsable documentation site | Keep authoritative source and generated output separate: commit the source, never the generated site. Give readers one documented command that builds the site locally. A reader must be able to open the generated `index.html` directly and navigate the site without a local HTTP server. Bundle assets and any search functionality; validate a copied site under `file://` with networking disabled. |
 | Repository ecosystem map and nearby view | Maintain the full Qualcomm ecosystem Mermaid map in a dedicated repository's README. At the bottom of each implementation repository's root README, show a Mermaid view with clickable nodes covering every recorded incoming, outgoing, optional, and indirect build/component relationship. Map only Qualcomm repositories: those owned by Qualcomm's GitHub organisations. Omit standalone automation diagrams and their corresponding text; automation connections may remain in mixed component diagrams. Draw indirect paths through their actual intermediates and use plain-language connection verbs. Audit source references against the dataset; concise presentation must not omit known connections. Keep detailed evidence centrally and link to it once. Record export provenance in metadata. Keep maps out of Sphinx sources and generated websites. |
 | Configuration documentation | Document each configuration line with its purpose, type, optional/default behaviour, and a safe example value. Include a commented `.env.example`. Use an adjacent documented schema or example for formats that do not support comments. |
 | **At least one usage tutorial per repository** | Show how to use the repository's output, with prerequisites, ordered steps, and an expected result. The tutorial can live in the product's technical documentation or the repository. |
@@ -87,7 +87,7 @@ record the corresponding paths and ownership instead of creating a competing hom
 | `docs/source/contributing/README.md` | Contributor navigation and the generated function-reference toctree. |
 | `docs/source/user/USAGE.md` | Tutorial for using the project's output. A developer-only tutorial may use `docs/source/contributing/USAGE.md`. |
 | `docs/source/user/CONFIGURATION.md` | Configuration reference when the maintained settings need a separate page. Inline documentation or an existing complete reference can serve this responsibility. |
-| `docs/site/` | Generated Sphinx HTML and bundled assets, committed with their sources. |
+| `docs/site/` | Generated Sphinx HTML and bundled assets, built locally and in CI; ignored by Git, never committed. |
 | Required discovery/policy paths | Root governance files, `.github` templates/owners, and concise contribution/agent/skill pointers. |
 
 Keep each procedure and policy in one authored home. Discovery files and relevant
@@ -116,8 +116,9 @@ only source files can exist, and their descendants take no README. A folder wher
 only source files can exist is one whose files the build reads as a whole or finds
 by name, such as a folder of configuration fragments or patches, so that a README
 there would become build input. Generated output, caches, and dependencies use their
-own navigation and are not maintained source inventories. Link `docs/site/` from
-its parent's README to its generated entry point. Omit an empty index section.
+own navigation and are not maintained source inventories. The documentation README
+gives the command that builds `docs/site/` and names its generated entry point. Omit
+an empty index section.
 
 The root README accounts for every current branch with purpose, status, use/build
 guidance, and contribution destination. `BRANCHES.md` describes long-lived branch
@@ -181,12 +182,13 @@ Run `make -f docs/source/Makefile <target>` from the repository root. `setup`
 installs the locked documentation dependencies and applicable pinned extractors in
 a local environment; `html` clears stale output and builds `docs/site/` with
 warnings treated as errors; `browser` installs a user-local test browser when
-needed; `check` regenerates the site, checks applicable reference coverage and
-offline behaviour, and rejects changed or untracked generated output.
+needed; `check` rebuilds the site and checks applicable reference coverage and
+offline behaviour. Readers build the site with
+`make -f docs/source/Makefile setup html`.
 
 CI and contributor instructions must use these same executable targets. Keep caches,
-installed tools, and intermediate reference files out of the committed site. Commit
-regenerated output with source changes. Do not hand-edit HTML or maintain separate
+installed tools, intermediate reference files, and the generated site out of
+version control; ignore `docs/site/`. Do not hand-edit HTML or maintain separate
 local and CI command implementations.
 
 Preserve working links and intentional download attachments. Bundle a source file
@@ -336,7 +338,7 @@ does not establish content preservation, correct file placement, or minimal scop
 | Preservation and scope | Compare original content with named final homes; retain policies, notices, routing, and build behaviour. Review moves/deletions and meaningful source changes. |
 | Scaffolding and links | Account for every checklist row, folder index, actual branch, policy/default, and placeholder. Resolve local links and anchors and verify intended external owners/destinations. |
 | Contributor and user paths | Exercise documented setup and applicable first-use/check commands, with observable results. Distinguish metadata/build checks from full image or hardware testing. |
-| Documentation build | Build strictly from a clean checkout with pinned tools; regenerate the committed site without missing, stale, or unexpected artifacts. CI uses the same executable entry point. |
+| Documentation build | Build strictly from a clean checkout with pinned tools, without missing or unexpected artifacts; no generated output is committed. CI uses the same executable entry point. |
 | Native extraction | Compare discovered functions to documentation and generated entries, including internal/mixed-language definitions. Removing documentation or an entry must fail; newly unsupported definitions must not be silently skipped. |
 | Offline browser | Copy only the generated site outside the checkout; open `index.html` in a headless browser with networking disabled. Check navigation, anchors, assets, search when present, browser errors, and network requests. A hosted preview alone is insufficient. |
 | Nearby map | Reproduce from its recorded central commit/digest; independently check all incident component relations and indirect paths, source-audit coverage, Mermaid rendering, node links, final README placement, and absence from Sphinx sources/output. |

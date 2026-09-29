@@ -27,9 +27,9 @@ This table lists every current branch.
 
 ## Documentation
 
-Open [docs/site/index.html](docs/site/index.html) directly in a browser for the
-generated site. The [documentation guide](docs/README.md) explains where its
-source lives and how to rebuild it.
+Build the site locally with `make -f docs/source/Makefile setup html` from the
+repository root, then open `docs/site/index.html` directly in a browser. The
+[documentation guide](docs/README.md) explains where its source lives.
 
 
 - [Development setup](docs/source/contributing/DEVELOPMENT.md) — Clone, install the documentation tools, build, and validate locally.
@@ -45,7 +45,7 @@ participating.
 
 ## Folders
 
-- [docs/](docs/README.md) — Contains documentation source, the generated site, and the build entry point.
+- [docs/](docs/README.md) — Contains the documentation source and explains how to build the site.
 - [.github/](.github/) — Holds [CODEOWNERS](.github/CODEOWNERS), [issue templates](.github/ISSUE_TEMPLATE/), and the [pull request template](.github/PULL_REQUEST_TEMPLATE/pr_template.md).
 
 ## Files
