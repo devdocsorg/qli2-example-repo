@@ -120,6 +120,84 @@ effects. The documentation helpers in .github/ are imported by file name.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="test_reference_coverage.Shdoc">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">test_reference_coverage.</span></span><span class="sig-name descname"><span class="pre">Shdoc</span></span><a class="headerlink" href="#test_reference_coverage.Shdoc" title="Link to this definition">¶</a></dt>
+<dd><p>Render shell functions with the pinned shdoc, which the Makefile’s setup installs.</p>
+<p>shdoc reads the <code class="docutils literal notranslate"><span class="pre">&#64;description</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;arg</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;noargs</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;exitcode</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">&#64;example</span></code> annotations in the comment block above each definition, and runs
+on GNU Awk.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="test_reference_coverage.Shdoc.TAGS">
+<span class="sig-name descname"><span class="pre">TAGS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(('&#64;description',),</span> <span class="pre">('&#64;arg',</span> <span class="pre">'&#64;noargs'),</span> <span class="pre">('&#64;exitcode',),</span> <span class="pre">('&#64;example',))</span></span><a class="headerlink" href="#test_reference_coverage.Shdoc.TAGS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test_reference_coverage.Shdoc.missing">
+<span class="sig-name descname"><span class="pre">missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_reference_coverage.Shdoc.missing" title="Link to this definition">¶</a></dt>
+<dd><p>Return the required annotations a shell function’s comment block lacks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>function</strong> (<em>dict</em>) – A function found by <code class="docutils literal notranslate"><span class="pre">shell_functions</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The missing annotations, or a note that shdoc cannot render
+the name; empty when the function can be rendered completely.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p><code class="docutils literal notranslate"><span class="pre">Shdoc().missing({&quot;name&quot;:</span> <span class="pre">&quot;f&quot;,</span> <span class="pre">&quot;doc&quot;:</span> <span class="pre">&quot;&quot;})</span></code> returns all four annotations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test_reference_coverage.Shdoc.page">
+<span class="sig-name descname"><span class="pre">page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_reference_coverage.Shdoc.page" title="Link to this definition">¶</a></dt>
+<dd><p>Return the reference page for one source file; a shdoc failure stops the build.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Source path.</p></li>
+<li><p><strong>functions</strong> (<em>list</em><em>[</em><em>dict</em><em>]</em>) – The shell functions defined in it.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A Markdown page holding shdoc’s output.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p><code class="docutils literal notranslate"><span class="pre">Shdoc().page(&quot;ci/build.sh&quot;,</span> <span class="pre">functions)</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test_reference_coverage.Shdoc.rendered">
+<span class="sig-name descname"><span class="pre">rendered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_reference_coverage.Shdoc.rendered" title="Link to this definition">¶</a></dt>
+<dd><p>Return whether the built page holds the function’s entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function</strong> (<em>dict</em>) – A function found by <code class="docutils literal notranslate"><span class="pre">shell_functions</span></code>.</p></li>
+<li><p><strong>html</strong> (<em>str</em>) – The built reference page.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True when the page has a section for the function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p><code class="docutils literal notranslate"><span class="pre">Shdoc().rendered({&quot;name&quot;:</span> <span class="pre">&quot;_is_dir&quot;},</span> <span class="pre">'&lt;section</span> <span class="pre">id=&quot;is-dir&quot;&gt;')</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="test_reference_coverage.discover">
 <span class="sig-prename descclassname"><span class="pre">test_reference_coverage.</span></span><span class="sig-name descname"><span class="pre">discover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_reference_coverage.discover" title="Link to this definition">¶</a></dt>
@@ -260,6 +338,13 @@ docstring. Functions nested in other functions are included.</p>
 <li class="toctree-l5"><a class="reference internal" href="#test_reference_coverage.PythonAutodoc.missing"><code class="docutils literal notranslate"><span class="pre">PythonAutodoc.missing()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#test_reference_coverage.PythonAutodoc.page"><code class="docutils literal notranslate"><span class="pre">PythonAutodoc.page()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#test_reference_coverage.PythonAutodoc.rendered"><code class="docutils literal notranslate"><span class="pre">PythonAutodoc.rendered()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#test_reference_coverage.Shdoc"><code class="docutils literal notranslate"><span class="pre">Shdoc</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#test_reference_coverage.Shdoc.TAGS"><code class="docutils literal notranslate"><span class="pre">Shdoc.TAGS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#test_reference_coverage.Shdoc.missing"><code class="docutils literal notranslate"><span class="pre">Shdoc.missing()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#test_reference_coverage.Shdoc.page"><code class="docutils literal notranslate"><span class="pre">Shdoc.page()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#test_reference_coverage.Shdoc.rendered"><code class="docutils literal notranslate"><span class="pre">Shdoc.rendered()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#test_reference_coverage.discover"><code class="docutils literal notranslate"><span class="pre">discover()</span></code></a></li>

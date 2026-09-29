@@ -1,13 +1,20 @@
 # Run from the repository root: make -f docs/source/Makefile <target>.
-# setup installs only the pinned documentation toolchain in the local .venv.
+# setup installs only the pinned documentation toolchain in the local .venv:
+# the locked Python packages and shdoc, which renders shell function comments.
 # html removes stale generated pages, builds the complete site strictly, and
 # fails unless every function has a documented, rendered reference entry.
 # check verifies output is committed and direct-file search avoids fetch().
 .PHONY: setup html check browser
 
+# shdoc v1.4.
+SHDOC_REVISION = b3436134f08428f8bbe2e54bc4dc20da85cd300b
+SHDOC_SHA256 = 856bdc62db15e4970c59f011e9a779d6a23e86f4f123707e25f5390d14c9b191
+
 setup:
 	uv venv --python 3.12 --clear .venv
 	uv pip install --python .venv/bin/python -r docs/source/requirements.lock
+	curl -sSfL -o .venv/bin/shdoc https://raw.githubusercontent.com/reconquest/shdoc/$(SHDOC_REVISION)/shdoc
+	echo "$(SHDOC_SHA256)  .venv/bin/shdoc" | sha256sum -c --quiet
 
 html:
 	rm -rf docs/site docs/source/contributing/.generated

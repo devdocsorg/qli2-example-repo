@@ -38,7 +38,7 @@ may supply the policy or template content described under
 | Required File | Purpose and required content |
 | --- | --- |
 | Overall README | Introduce the repository: its purpose, first build or run step, and support channel. Explain **every branch**, including its purpose, status, and whether to build from it or send contributions to it. Link to `BRANCHES.md` on `main`, reference documentation and tutorial. Include the root folder's index in Folders and Files sections, linking every root item with a one-sentence purpose. |
-| Folder index in `README.md` in every eligible folder | Describe the folder and include its index in Folders and Files sections. Link to every immediate file and subfolder and explain its purpose in one sentence. Update the index when contents change. At the root, include it in the project README. Excepted folders take no README; list each in its parent's README instead. The exceptions are folders prefixed with `.`, such as `.github/`, and their descendants. |
+| Folder index in `README.md` in every eligible folder | Describe the folder and include its index in Folders and Files sections. Link to every immediate file and subfolder and explain its purpose in one sentence. Update the index when contents change. At the root, include it in the project README. Excepted folders take no README; list each in its parent's README instead. The exceptions are folders prefixed with `.`, such as `.github/`, and folders where only source files can exist, together with their descendants. |
 | `BRANCHES.md` on `main` | List each long-lived branch, why it exists, and whether it is intended to merge back into `main` or be maintained separately. Link to `BRANCHES.md` from the README. |
 | Function documentation | Document each function using the language's standard documentation-comment format, such as JSDoc for JavaScript. Give the function's purpose in one sentence, the relevant parameter and return types, and an example. Install and configure the language-specific extractor and its runtime, then generate a browsable reference from these comments. Pin the toolchain, include internal functions, and make local/CI validation fail on missing documentation or missing reference entries. A prose-only site build does not satisfy this requirement. |
 | Locally browsable documentation site | Keep authoritative source and generated output separate. A reader must be able to open the generated `index.html` directly and navigate the site without a local HTTP server. Bundle assets and any search functionality; validate a copied site under `file://` with networking disabled. |
@@ -111,8 +111,11 @@ API pages, and README map blocks derive from their maintained sources.
 
 Use exactly `README.md` at the root and in every maintained, non-hidden source
 folder. Its Folders and Files sections link every immediate tracked item, including
-hidden items, with a one-sentence purpose. Dot-prefixed directories and their
-descendants take no README. Generated output, caches, and dependencies use their
+hidden items, with a one-sentence purpose. Dot-prefixed directories, folders where
+only source files can exist, and their descendants take no README. A folder where
+only source files can exist is one whose files the build reads as a whole or finds
+by name, such as a folder of configuration fragments or patches, so that a README
+there would become build input. Generated output, caches, and dependencies use their
 own navigation and are not maintained source inventories. Link `docs/site/` from
 its parent's README to its generated entry point. Omit an empty index section.
 

@@ -26,6 +26,7 @@ from pathlib import Path
 
 import tree_sitter_bash
 import yaml
+from docutils.nodes import make_id
 from tree_sitter import Language, Parser
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -221,9 +222,72 @@ class PythonAutodoc:
         return f'id="{Path(function["path"]).stem}.{function["name"]}"' in html
 
 
+class Shdoc:
+    """Render shell functions with the pinned shdoc, which the Makefile's setup installs.
+
+    shdoc reads the ``@description``, ``@arg`` or ``@noargs``, ``@exitcode``, and
+    ``@example`` annotations in the comment block above each definition, and runs
+    on GNU Awk.
+    """
+
+    TAGS = (("@description",), ("@arg", "@noargs"), ("@exitcode",), ("@example",))
+
+    def missing(self, function):
+        """Return the required annotations a shell function's comment block lacks.
+
+        Args:
+            function (dict): A function found by ``shell_functions``.
+
+        Returns:
+            list[str]: The missing annotations, or a note that shdoc cannot render
+            the name; empty when the function can be rendered completely.
+
+        Example:
+            ``Shdoc().missing({"name": "f", "doc": ""})`` returns all four annotations.
+        """
+        missing = ["/".join(tags) for tags in self.TAGS if not any(tag in function["doc"] for tag in tags)]
+        if not re.fullmatch(r"[\w.:-]+", function["name"]):
+            missing.append("a name shdoc can render")
+        return missing
+
+    def page(self, path, functions):
+        """Return the reference page for one source file; a shdoc failure stops the build.
+
+        Args:
+            path (str): Source path.
+            functions (list[dict]): The shell functions defined in it.
+
+        Returns:
+            str: A Markdown page holding shdoc's output.
+
+        Example:
+            ``Shdoc().page("ci/build.sh", functions)``
+        """
+        # Each comment block with a stub definition, so embedded functions render too.
+        source = "".join(f"{function['doc']}\n{function['name']}() {{\n    :\n}}\n\n" for function in functions)
+        output = subprocess.run(["gawk", "-f", str(ROOT / ".venv/bin/shdoc")], input=source,
+                                capture_output=True, text=True, check=True).stdout
+        return f"# {path}\n\n{output}"
+
+    def rendered(self, function, html):
+        """Return whether the built page holds the function's entry.
+
+        Args:
+            function (dict): A function found by ``shell_functions``.
+            html (str): The built reference page.
+
+        Returns:
+            bool: True when the page has a section for the function.
+
+        Example:
+            ``Shdoc().rendered({"name": "_is_dir"}, '<section id="is-dir">')`` returns ``True``.
+        """
+        return f'<section id="{make_id(function["name"])}">' in html
+
+
 # Renderers by language. Each provides missing(function), page(path, functions),
-# and rendered(function, html), as PythonAutodoc does.
-RENDERERS = {"python": PythonAutodoc()}
+# and rendered(function, html), as PythonAutodoc and Shdoc do.
+RENDERERS = {"python": PythonAutodoc(), "shell": Shdoc()}
 
 
 def main():

@@ -6,7 +6,7 @@ the actual project's compiler/runtime, dependencies, and validation commands.
 
 ## Prerequisites
 
-Use Git, Make, Python 3.12 or newer, [uv](https://docs.astral.sh/uv/getting-started/installation/),
+Use Git, Make, GNU Awk (for shdoc), Python 3.12 or newer, [uv](https://docs.astral.sh/uv/getting-started/installation/),
 and a browser. Dependency installation needs network access; reading the built
 site does not. Python runs the documentation tools and does not select an
 implementation language for the project.
